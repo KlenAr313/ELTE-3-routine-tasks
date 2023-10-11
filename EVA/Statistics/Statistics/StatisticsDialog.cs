@@ -1,4 +1,5 @@
 using ELTE.DocuStat.Model;
+using ELTE.DocuStat.Persistence;
 using static System.Windows.Forms.AxHost;
 
 namespace Statistics
@@ -23,7 +24,8 @@ namespace Statistics
                 {
                     try
                     {
-                        _documentStatistics = new DocumentStatistics(openFileDialog.FileName);
+                        TextFileManager textFileManager = new TextFileManager(openFileDialog.FileName);
+                        _documentStatistics = new DocumentStatistics(textFileManager);
                         _documentStatistics.FileContentReady += UpdateFileContent;
                         _documentStatistics.TextStatisticsReady += UpdateTextStatistics;
                         _documentStatistics.Load();

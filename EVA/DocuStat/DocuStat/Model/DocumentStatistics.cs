@@ -1,4 +1,5 @@
-﻿using System;
+﻿using ELTE.DocuStat.Persistence;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -10,7 +11,7 @@ namespace ELTE.DocuStat.Model
     {
         #region Fields
 
-        private readonly string _filePath;
+        private readonly IFileManager _fileManager;
 
         #endregion
 
@@ -31,9 +32,9 @@ namespace ELTE.DocuStat.Model
 
         #region Constructors
 
-        public DocumentStatistics(string filePath)
+        public DocumentStatistics(IFileManager fileManager)
         {
-            _filePath = filePath;
+            _fileManager = fileManager;
             FileContent = string.Empty;
             DistinctWordCount = new Dictionary<string, int>();
         }
@@ -47,7 +48,7 @@ namespace ELTE.DocuStat.Model
         /// </summary>
         public void Load()
         {
-            FileContent = File.ReadAllText(_filePath);
+            FileContent = _fileManager.Load();
 
             OnFileContentReady();
 

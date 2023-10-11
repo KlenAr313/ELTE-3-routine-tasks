@@ -1,4 +1,5 @@
 ﻿using ELTE.DocuStat.Model;
+using ELTE.DocuStat.Persistence;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -18,7 +19,9 @@ namespace ELTE.DocuStat
             while (System.IO.Path.GetExtension(path) != ".txt"
                    || !System.IO.File.Exists(path));
 
-            IDocumentStatistics stat = new DocumentStatistics(path);
+
+            TextFileManager textFileManager = new TextFileManager(path);
+            IDocumentStatistics stat = new DocumentStatistics(textFileManager);
             try
             {
                 stat.Load();

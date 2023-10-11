@@ -1,4 +1,4 @@
-namespace ShitShow
+namespace Statistics
 {
     internal static class Program
     {
@@ -11,7 +11,7 @@ namespace ShitShow
             // To customize application configuration such as set high DPI settings or default font,
             // see https://aka.ms/applicationconfiguration.
             ApplicationConfiguration.Initialize();
-            Application.Run(new ShitShowDialog());
+            Application.Run(new StatisticsDialog());
         }
     }
 }

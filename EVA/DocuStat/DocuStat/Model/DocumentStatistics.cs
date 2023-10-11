@@ -29,13 +29,6 @@ namespace ELTE.DocuStat.Model
 
         #endregion
 
-        #region Events
-
-        public event EventHendler? FileCountRedy;
-        public event EventHendler? TextStatisticReady;
-
-        #endregion
-
         #region Constructors
 
         public DocumentStatistics(string filePath)
@@ -66,7 +59,7 @@ namespace ELTE.DocuStat.Model
             ColemanLieuIndex = ComputeColemanLieuIndex();
             FleschReadingEase = ComputeFleschReadingEase();
 
-            OnTextStatisticstReady();
+            OnTextStatisticsReady();
         }
 
         #endregion
@@ -234,14 +227,16 @@ namespace ELTE.DocuStat.Model
         }
         #endregion
 
+        public event EventHandler? FileContentReady;
+        public event EventHandler? TextStatisticsReady;
+
         private void OnFileContentReady()
         {
-            FileCountRedy?.Invoke(this, EventArgs.Empty);
+            FileContentReady?.Invoke(this, EventArgs.Empty);
         }
-        
-        private void OnTextStatisticstReady()
+        private void OnTextStatisticsReady()
         {
-            TextStatisticReady?.Invoke(this, EventArgs.Empty);
+            TextStatisticsReady?.Invoke(this, EventArgs.Empty);
         }
     }
 }

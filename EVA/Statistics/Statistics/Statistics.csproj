@@ -9,7 +9,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Aj\DocuStat\DocuStat.csproj" />
+    <ProjectReference Include="..\..\DocuStat\DocuStat\DocuStat.csproj" />
   </ItemGroup>
 
 </Project>

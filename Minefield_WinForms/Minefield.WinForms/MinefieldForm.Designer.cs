@@ -37,6 +37,7 @@
             statusStrip = new StatusStrip();
             strpLbl_GameTimeLbl = new ToolStripStatusLabel();
             lbl_GameTime = new ToolStripStatusLabel();
+            lbl_Paused = new ToolStripStatusLabel();
             tmr_GameTime = new System.Windows.Forms.Timer(components);
             menuStrip.SuspendLayout();
             statusStrip.SuspendLayout();
@@ -47,7 +48,7 @@
             menuStrip.Items.AddRange(new ToolStripItem[] { mni_NewGame, mni_LoadGame, mni_SaveGame, mni_Exit });
             menuStrip.Location = new Point(0, 0);
             menuStrip.Name = "menuStrip";
-            menuStrip.Size = new Size(800, 24);
+            menuStrip.Size = new Size(684, 24);
             menuStrip.TabIndex = 0;
             menuStrip.Text = "menuStrip1";
             // 
@@ -82,28 +83,38 @@
             // 
             // statusStrip
             // 
-            statusStrip.Items.AddRange(new ToolStripItem[] { strpLbl_GameTimeLbl, lbl_GameTime });
-            statusStrip.Location = new Point(0, 428);
+            statusStrip.Items.AddRange(new ToolStripItem[] { strpLbl_GameTimeLbl, lbl_GameTime, lbl_Paused });
+            statusStrip.Location = new Point(0, 837);
             statusStrip.Name = "statusStrip";
-            statusStrip.Size = new Size(800, 22);
+            statusStrip.Size = new Size(684, 24);
             statusStrip.TabIndex = 1;
             statusStrip.Text = "statusStrip";
             // 
             // strpLbl_GameTimeLbl
             // 
             strpLbl_GameTimeLbl.Name = "strpLbl_GameTimeLbl";
-            strpLbl_GameTimeLbl.Size = new Size(73, 17);
+            strpLbl_GameTimeLbl.Size = new Size(73, 19);
             strpLbl_GameTimeLbl.Text = "Game Time: ";
             // 
             // lbl_GameTime
             // 
+            lbl_GameTime.BorderSides = ToolStripStatusLabelBorderSides.Right;
             lbl_GameTime.Name = "lbl_GameTime";
-            lbl_GameTime.Size = new Size(43, 17);
+            lbl_GameTime.Size = new Size(47, 19);
             lbl_GameTime.Text = "0:00:00";
+            // 
+            // lbl_Paused
+            // 
+            lbl_Paused.BorderSides = ToolStripStatusLabelBorderSides.Left;
+            lbl_Paused.Margin = new Padding(5, 3, 0, 2);
+            lbl_Paused.Name = "lbl_Paused";
+            lbl_Paused.Padding = new Padding(5, 0, 0, 0);
+            lbl_Paused.Size = new Size(54, 19);
+            lbl_Paused.Text = "Paused";
+            lbl_Paused.Visible = false;
             // 
             // tmr_GameTime
             // 
-            tmr_GameTime.Enabled = false;
             tmr_GameTime.Interval = 1000;
             tmr_GameTime.Tick += tmr_GameTime_Tick;
             // 
@@ -111,12 +122,15 @@
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(800, 450);
+            ClientSize = new Size(684, 861);
             Controls.Add(statusStrip);
             Controls.Add(menuStrip);
+            FormBorderStyle = FormBorderStyle.Fixed3D;
             MainMenuStrip = menuStrip;
+            MaximizeBox = false;
             Name = "MinefieldForm";
             Text = "Minefield 2023 Ultimate";
+            KeyDown += MinefieldForm_KeyDown;
             menuStrip.ResumeLayout(false);
             menuStrip.PerformLayout();
             statusStrip.ResumeLayout(false);
@@ -136,5 +150,6 @@
         private ToolStripMenuItem mni_SaveGame;
         private ToolStripMenuItem mni_Exit;
         private System.Windows.Forms.Timer tmr_GameTime;
+        private ToolStripStatusLabel lbl_Paused;
     }
 }

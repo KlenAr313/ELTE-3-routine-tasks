@@ -11,14 +11,15 @@ namespace Minefield.WinForms
         {
             InitializeComponent();
             gameModel = new MinefieldGameModel();
+            gameModel.oneSecTick.Elapsed += tmr_GameTime_Tick;
         }
 
         private void mni_NewGame_Click(object sender, EventArgs e)
         {
-            tmr_GameTime.Start();
-            gameModel.Start();
-
+            gameModel.NewGame();
             pause = false;
+            mni_SaveGame.Enabled = false;
+            lbl_Paused.Visible = false;
         }
 
         private void mni_LoadGame_Click(object sender, EventArgs e)
@@ -39,9 +40,8 @@ namespace Minefield.WinForms
             }
         }
 
-        private void tmr_GameTime_Tick(object sender, EventArgs e)
+        private void tmr_GameTime_Tick(object? sender, EventArgs e)
         {
-            gameModel.oneSecTic?.Invoke(this, EventArgs.Empty);
             lbl_GameTime.Text = TimeSpan.FromSeconds(gameModel.gameTime).ToString("g");
         }
 
@@ -49,7 +49,7 @@ namespace Minefield.WinForms
         {
             if (e.KeyCode == Keys.Escape && !pause)
             {
-                gameModel.Stop();
+                gameModel.Pause();
                 pause = true;
                 mni_SaveGame.Enabled = true;
                 lbl_Paused.Visible = true;

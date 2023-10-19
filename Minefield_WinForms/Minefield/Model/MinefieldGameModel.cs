@@ -10,26 +10,32 @@ namespace Minefield.Model
 {
     public class MinefieldGameModel
     {
+        public System.Timers.Timer oneSecTick;
         public int gameTime;
 
-        public EventHandler<EventArgs>? oneSecTic;
 
         public MinefieldGameModel()
         {
+            oneSecTick = new System.Timers.Timer();
+            oneSecTick.Interval = 1000;
             gameTime = 0;
-            oneSecTic += SpendTime;
+            oneSecTick.Elapsed += SpendTime;
         }
 
-        public void Start() { }
-
-        public void Stop() 
+        public void NewGame() 
         {
-            oneSecTic -= SpendTime;
+            gameTime = 0;
+            oneSecTick.Start();
+        }
+
+        public void Pause() 
+        {
+            oneSecTick.Stop();
         }
 
         public void Restrume()
         {
-            oneSecTic += SpendTime;
+            oneSecTick.Start();
         }
 
         public void Reset() { }

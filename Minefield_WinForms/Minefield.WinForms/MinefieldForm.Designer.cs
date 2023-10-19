@@ -28,7 +28,6 @@
         /// </summary>
         private void InitializeComponent()
         {
-            components = new System.ComponentModel.Container();
             menuStrip = new MenuStrip();
             mni_NewGame = new ToolStripMenuItem();
             mni_LoadGame = new ToolStripMenuItem();
@@ -38,9 +37,10 @@
             strpLbl_GameTimeLbl = new ToolStripStatusLabel();
             lbl_GameTime = new ToolStripStatusLabel();
             lbl_Paused = new ToolStripStatusLabel();
-            tmr_GameTime = new System.Windows.Forms.Timer(components);
+            pictureBox1 = new PictureBox();
             menuStrip.SuspendLayout();
             statusStrip.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
             SuspendLayout();
             // 
             // menuStrip
@@ -113,16 +113,20 @@
             lbl_Paused.Text = "Paused";
             lbl_Paused.Visible = false;
             // 
-            // tmr_GameTime
+            // pictureBox1
             // 
-            tmr_GameTime.Interval = 1000;
-            tmr_GameTime.Tick += tmr_GameTime_Tick;
+            pictureBox1.Location = new Point(241, 281);
+            pictureBox1.Name = "pictureBox1";
+            pictureBox1.Size = new Size(100, 50);
+            pictureBox1.TabIndex = 2;
+            pictureBox1.TabStop = false;
             // 
             // MinefieldForm
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(684, 861);
+            Controls.Add(pictureBox1);
             Controls.Add(statusStrip);
             Controls.Add(menuStrip);
             FormBorderStyle = FormBorderStyle.Fixed3D;
@@ -135,6 +139,7 @@
             menuStrip.PerformLayout();
             statusStrip.ResumeLayout(false);
             statusStrip.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -149,7 +154,7 @@
         private ToolStripMenuItem mni_LoadGame;
         private ToolStripMenuItem mni_SaveGame;
         private ToolStripMenuItem mni_Exit;
-        private System.Windows.Forms.Timer tmr_GameTime;
         private ToolStripStatusLabel lbl_Paused;
+        private PictureBox pictureBox1;
     }
 }

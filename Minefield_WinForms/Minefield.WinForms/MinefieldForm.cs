@@ -93,8 +93,8 @@ namespace Minefield.WinForms
                 mine.Name = "mine";
                 mine.Size = new Size(200, 200);
                 mines.Add(mine);
+                this.Controls.Add(mine);
             });
-            this.Controls.AddRange(mines.ToArray());
         }
     }
 }

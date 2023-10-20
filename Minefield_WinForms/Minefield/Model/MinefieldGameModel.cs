@@ -11,8 +11,7 @@ namespace Minefield.Model
     public class MinefieldGameModel
     {
         public Timer oneSecTick;
-        private Timer frameTick;
-        private List<Mine> mineList;
+        public List<Mine> mineList;
         public int gameTime;
 
         private int maxX;
@@ -31,10 +30,6 @@ namespace Minefield.Model
             oneSecTick.Interval = 1000;
             oneSecTick.Elapsed += SpendTime;
 
-            frameTick = new Timer();
-            frameTick.Interval = 10;
-            frameTick.Elapsed += OneFrame;
-
             mineList = new List<Mine>();
 
             this.maxX = maxX;
@@ -51,20 +46,14 @@ namespace Minefield.Model
         public void Pause() 
         {
             oneSecTick.Stop();
-            frameTick.Stop();
         }
-
+        
         public void Restrume()
         {
             StartTimers();
         }
 
-        private void SpendTime(object? sender, EventArgs e)
-        {
-            gameTime++;
-        }
-
-        public void OneFrame(object? sender, EventArgs e)
+        public void OnFrame()
         {
             mineList.ForEach(mine => mine.Move());
             untilGenerate--;
@@ -74,13 +63,19 @@ namespace Minefield.Model
                 GenerateMine();
                 if (generateTime > 0)
                 {
-                    generateTime -= 10;
+                    generateTime -= 3;
                     untilGenerate = generateTime;
                 }
             }
 
             Refresh?.Invoke(this, new MinefieldEventArgs(mineList));
         }
+
+        private void SpendTime(object? sender, EventArgs e)
+        {
+            gameTime++;
+        }
+
 
         public void GenerateMine()
         {
@@ -90,7 +85,6 @@ namespace Minefield.Model
         private void StartTimers()
         {
             oneSecTick.Start();
-            frameTick.Start();
         }
     }
 }

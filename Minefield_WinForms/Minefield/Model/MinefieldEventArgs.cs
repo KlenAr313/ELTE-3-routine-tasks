@@ -12,10 +12,8 @@ namespace Minefield.Model
 
         public List<Mine> Mines { 
             get 
-            { 
-                List<Mine> copy = new List<Mine>();
-                mines.ForEach(m => copy.Add(new Mine(m)));
-                return copy;
+            {
+                return mines;
             } 
         }
 

@@ -1,4 +1,5 @@
 using Minefield.Model;
+using Timer = System.Timers.Timer;
 
 namespace Minefield.WinForms
 {
@@ -12,14 +13,19 @@ namespace Minefield.WinForms
         {
             InitializeComponent();
             gameModel = new MinefieldGameModel(this.Width, this.Height);
+            frameTick.Interval = 10;
+            frameTick.Tick += Frame;
         }
 
         private void mni_NewGame_Click(object sender, EventArgs e)
         {
             gameModel = new MinefieldGameModel(this.Width, this.Height);
             gameModel.oneSecTick.Elapsed += GameTime;
-            gameModel.Refresh += Frame;
+            gameModel.Refresh += Refresh;
             gameModel.NewGame();
+            mines.ForEach(m => this.Controls.Remove(m));
+
+            frameTick.Start();
 
             mines = new List<PictureBox>();
 
@@ -51,6 +57,7 @@ namespace Minefield.WinForms
             if (e.KeyCode == Keys.Escape && !pause)
             {
                 gameModel.Pause();
+                frameTick.Stop();
                 pause = true;
                 mni_SaveGame.Enabled = true;
                 lbl_Paused.Visible = true;
@@ -58,6 +65,7 @@ namespace Minefield.WinForms
             else if (e.KeyCode == Keys.Escape && pause)
             {
                 gameModel.Restrume();
+                frameTick.Start();
                 pause = false;
                 mni_SaveGame.Enabled = false;
                 lbl_Paused.Visible = false;
@@ -69,7 +77,12 @@ namespace Minefield.WinForms
             lbl_GameTime.Text = TimeSpan.FromSeconds(gameModel.gameTime).ToString("g");
         }
 
-        private void Frame(object? sender, MinefieldEventArgs e)
+        private void Frame(object? sender, EventArgs e)
+        {
+            gameModel.OnFrame();
+        }
+
+        private void Refresh(object? sender, MinefieldEventArgs e)
         {
             mines.ForEach(m => this.Controls.Remove(m));
             e.Mines.ForEach(m =>

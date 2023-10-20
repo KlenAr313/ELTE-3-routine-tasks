@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            components = new System.ComponentModel.Container();
             menuStrip = new MenuStrip();
             mni_NewGame = new ToolStripMenuItem();
             mni_LoadGame = new ToolStripMenuItem();
@@ -38,6 +39,7 @@
             lbl_GameTime = new ToolStripStatusLabel();
             lbl_Paused = new ToolStripStatusLabel();
             pictureBox1 = new PictureBox();
+            frameTick = new System.Windows.Forms.Timer(components);
             menuStrip.SuspendLayout();
             statusStrip.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
@@ -122,6 +124,11 @@
             pictureBox1.TabIndex = 2;
             pictureBox1.TabStop = false;
             // 
+            // frameTick
+            // 
+            frameTick.Interval = 10;
+            frameTick.Tick += Frame;
+            // 
             // MinefieldForm
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
@@ -157,5 +164,6 @@
         private ToolStripMenuItem mni_Exit;
         private ToolStripStatusLabel lbl_Paused;
         private PictureBox pictureBox1;
+        private System.Windows.Forms.Timer frameTick;
     }
 }

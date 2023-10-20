@@ -6,13 +6,13 @@ using System.Threading.Tasks;
 
 namespace Minefield.Model
 {
-    public class Bomb
+    public class Mine
     {
         public readonly int x; 
         public int y;
         public int speed;
 
-        public Bomb(int maxX)
+        public Mine(int maxX)
         {
             Random r = new Random();
             x = r.Next(5, maxX-5);
@@ -22,6 +22,18 @@ namespace Minefield.Model
                 case 2: speed = 3; break;
                 case 3: speed = 4; break;
             }
+        }
+
+        public Mine(Mine that)
+        {
+            x = that.x;
+            y = that.y;
+            speed = that.speed;
+        }
+
+        public void Move()
+        {
+            y += speed;
         }
     }
 }

@@ -38,11 +38,9 @@
             strpLbl_GameTimeLbl = new ToolStripStatusLabel();
             lbl_GameTime = new ToolStripStatusLabel();
             lbl_Paused = new ToolStripStatusLabel();
-            pictureBox1 = new PictureBox();
             frameTick = new System.Windows.Forms.Timer(components);
             menuStrip.SuspendLayout();
             statusStrip.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
             SuspendLayout();
             // 
             // menuStrip
@@ -115,15 +113,6 @@
             lbl_Paused.Text = "Paused";
             lbl_Paused.Visible = false;
             // 
-            // pictureBox1
-            // 
-            pictureBox1.Image = Properties.Resources.mine;
-            pictureBox1.Location = new Point(234, 163);
-            pictureBox1.Name = "pictureBox1";
-            pictureBox1.Size = new Size(202, 196);
-            pictureBox1.TabIndex = 2;
-            pictureBox1.TabStop = false;
-            // 
             // frameTick
             // 
             frameTick.Interval = 10;
@@ -134,7 +123,6 @@
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(684, 861);
-            Controls.Add(pictureBox1);
             Controls.Add(statusStrip);
             Controls.Add(menuStrip);
             FormBorderStyle = FormBorderStyle.Fixed3D;
@@ -143,11 +131,11 @@
             Name = "MinefieldForm";
             Text = "Minefield 2023 Ultimate";
             KeyDown += MinefieldForm_KeyDown;
+            KeyUp += MinefieldForm_KeyUp;
             menuStrip.ResumeLayout(false);
             menuStrip.PerformLayout();
             statusStrip.ResumeLayout(false);
             statusStrip.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -163,7 +151,6 @@
         private ToolStripMenuItem mni_SaveGame;
         private ToolStripMenuItem mni_Exit;
         private ToolStripStatusLabel lbl_Paused;
-        private PictureBox pictureBox1;
         private System.Windows.Forms.Timer frameTick;
     }
 }

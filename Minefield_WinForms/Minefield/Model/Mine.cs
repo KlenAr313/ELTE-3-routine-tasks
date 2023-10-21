@@ -8,14 +8,19 @@ namespace Minefield.Model
 {
     public class Mine
     {
-        public readonly int x; 
-        public int y;
-        public int speed;
+        private readonly int x; 
+        private int y;
+        private int speed;
+
+        public int X { get { return x; } }
+
+        public int Y { get { return y; } }
+
 
         public Mine(int maxX)
         {
             Random r = new Random();
-            x = r.Next(5, maxX-5);
+            x = r.Next(5, maxX-55);
             switch (r.Next(1, 4))
             {
                 case 1: speed = 2; break;

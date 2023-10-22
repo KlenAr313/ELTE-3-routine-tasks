@@ -75,8 +75,6 @@ namespace Minefield.WinForms
                     CreateSubmarine(250, 700);
                     this.Controls.Add(submarine);
 
-                    Directions.Reset();
-
                     pause = false;
                     mni_SaveGame.Enabled = false;
                     mni_LoadGame.Enabled = false;

@@ -7,14 +7,21 @@ namespace Minefield.Persistence
 {
     public class DataAccess
     {
-        private readonly string path;
+        private string path;
+
+        public string Path { get { return path; } set { path = value; } }
 
         public DataAccess(string path)
         {
             this.path = path;
         }
 
-        public GameData Load()
+        public DataAccess() 
+        {
+            this.path = "./save.json";
+        }
+
+        public virtual GameData Load()
         {
             try
             {

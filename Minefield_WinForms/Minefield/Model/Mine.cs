@@ -20,6 +20,7 @@ namespace Minefield.Model
 
         public Mine(int maxX)
         {
+            y = 0;
             Random r = new Random();
             x = r.Next(5, maxX-55);
             switch (r.Next(1, 4))
@@ -28,13 +29,6 @@ namespace Minefield.Model
                 case 2: speed = 3; break;
                 case 3: speed = 4; break;
             }
-        }
-
-        public Mine(Mine that)
-        {
-            x = that.x;
-            y = that.y;
-            speed = that.speed;
         }
 
         public Mine() { }

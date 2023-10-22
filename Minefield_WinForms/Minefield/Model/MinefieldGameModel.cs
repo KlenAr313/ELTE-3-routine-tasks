@@ -46,6 +46,8 @@ namespace Minefield.Model
             this.maxY = maxY;
             untilGenerate = 250;
             generateTime = 250;
+
+            Directions.Reset();
         }
 
         public MinefieldGameModel(int maxX, int maxY, DataAccess dataAccess) 
@@ -65,6 +67,8 @@ namespace Minefield.Model
 
             this.maxX = maxX;
             this.maxY = maxY;
+
+            Directions.Reset();
         }
 
         public void SaveGame(DataAccess dataAccess)
@@ -104,12 +108,6 @@ namespace Minefield.Model
             gameTime++;
         }
 
-
-        private void GenerateMine()
-        {
-            mineList.Add(new Mine(maxX));
-        }
-
         private void StartTimers()
         {
             oneSecTick.Start();
@@ -141,6 +139,11 @@ namespace Minefield.Model
                     untilGenerate = generateTime;
                 }
             }
+        }
+
+        private void GenerateMine()
+        {
+            mineList.Add(new Mine(maxX));
         }
 
         private void Collision()

@@ -2,19 +2,20 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Text.Json.Serialization;
 using System.Threading.Tasks;
 
 namespace Minefield.Model
 {
     public class Mine
     {
-        private readonly int x; 
+        private int x;
         private int y;
         private int speed;
 
-        public int X { get { return x; } }
-
-        public int Y { get { return y; } }
+        public int X { get { return x; } set { x = value; } }
+        public int Y { get { return y; } set { y = value; } }
+        public int Speed { get { return speed; } set { speed = value; } }
 
 
         public Mine(int maxX)
@@ -35,6 +36,8 @@ namespace Minefield.Model
             y = that.y;
             speed = that.speed;
         }
+
+        public Mine() { }
 
         public void Move()
         {

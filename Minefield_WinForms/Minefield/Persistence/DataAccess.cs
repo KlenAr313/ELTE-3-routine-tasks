@@ -18,16 +18,16 @@ namespace Minefield.Persistence
         {
             try
             {
-                using StreamReader sr = new StreamReader(path);
+                using StreamReader sr = new(path);
                 string jsonData = sr.ReadToEnd();
                 GameData? gameObject = JsonSerializer.Deserialize<GameData>(jsonData);
                 if (gameObject == null)
                     throw new Exception();
                 return gameObject;
             }
-            catch
+            catch (Exception)
             {
-                throw new Exception();
+                throw;
             }
         }
 
@@ -36,7 +36,7 @@ namespace Minefield.Persistence
             try
             {
                 using StreamWriter sw = new(path);
-                string jsonData = JsonSerializer.Serialize(gameObject);
+                string jsonData = JsonSerializer.Serialize<GameData>(gameObject);
                 sw.Write(jsonData);
             }
             catch (Exception)

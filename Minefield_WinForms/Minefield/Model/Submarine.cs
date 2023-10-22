@@ -8,20 +8,25 @@ namespace Minefield.Model
 {
     public class Submarine
     {
+        private const int speed = 2;
         private int x = 250;
         private int y = 700;
-        private const int speed = 2;
-        private readonly int maxX;
-        private readonly int maxY;
+        private int maxX;
+        private int maxY;
 
-        public int X { get { return x; } }
-        public int Y { get { return y; } }
+        public int X { get { return x; } set { x = value; } }
+        public int Y { get { return y; } set { y = value; } }
+        public int MaxX { get { return maxX; } set { maxX = value; } }
+        public int MaxY { get { return maxY; } set { maxY = value; } }
 
         public Submarine(int maxX, int maxY)
         {
             this.maxX = maxX - 128;
             this.maxY = maxY - 190;
         }
+
+        public Submarine() 
+        { }
 
         public void MoveUp()
         {

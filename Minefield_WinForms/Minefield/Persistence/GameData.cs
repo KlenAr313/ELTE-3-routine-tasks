@@ -9,19 +9,19 @@ namespace Minefield.Persistence
 {
     public class GameData
     {
-        private readonly List<Mine> mineList;
-        private readonly Submarine submarine;
-        private readonly int gameTime;
+        public List<Mine> mineList { get; set; }
+        public Submarine submarine { get; set; }
+        public int gameTime { get; set; }
+        public int untilGenerate { get; set; }
+        public int generateTime { get; set; }
 
-        public List<Mine> MineList { get { return mineList; } }
-        public Submarine Submarine { get { return submarine; } }
-        public int GameTime { get { return gameTime; } }
-            
-        public GameData(List<Mine> mineList, Submarine submarine, int gameTime)
+        public GameData(List<Mine> mineList, Submarine submarine, int gameTime, int untilGenerate, int generateTime)
         {
             this.mineList = mineList;
             this.submarine = submarine;
             this.gameTime = gameTime;
+            this.generateTime = generateTime;
+            this.untilGenerate = untilGenerate;
         }
 
     }

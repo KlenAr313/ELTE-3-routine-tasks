@@ -1,5 +1,5 @@
 using Minefield.Model;
-using Timer = System.Timers.Timer;
+using Minefield.Persistence;
 
 namespace Minefield.WinForms
 {
@@ -22,6 +22,8 @@ namespace Minefield.WinForms
             submarine = new PictureBox();
             CreateSubmarine(250, 700);
             this.Controls.Add(submarine);
+
+            isGameOver = true;
         }
 
         private void NewGame_Click(object sender, EventArgs e)
@@ -45,6 +47,7 @@ namespace Minefield.WinForms
 
             pause = false;
             mni_SaveGame.Enabled = false;
+            mni_LoadGame.Enabled = false;
             lbl_Paused.Visible = false;
 
             isGameOver = false;
@@ -52,12 +55,56 @@ namespace Minefield.WinForms
 
         private void LoadGame_Click(object sender, EventArgs e)
         {
+            if (openFileDialog.ShowDialog() == DialogResult.OK)
+            {
+                try
+                {
+                    DataAccess dataAcces = new(openFileDialog.FileName);
+                    gameModel = new MinefieldGameModel(this.Width, this.Height, dataAcces);
+                    gameModel.oneSecTick.Elapsed += GameTime;
+                    gameModel.Refresh += Refresh;
+                    gameModel.End += GameOver;
+                    gameModel.StartGame();
 
+                    frameTick.Start();
+
+                    mines.ForEach(m => this.Controls.Remove(m));
+                    mines = new List<PictureBox>();
+
+                    this.Controls.Remove(submarine);
+                    CreateSubmarine(250, 700);
+                    this.Controls.Add(submarine);
+
+                    Directions.Reset();
+
+                    pause = false;
+                    mni_SaveGame.Enabled = false;
+                    mni_LoadGame.Enabled = false;
+                    lbl_Paused.Visible = false;
+
+                    isGameOver = false;
+                }
+                catch (Exception)
+                {
+                    MessageBox.Show("Failed to load game!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+            }
         }
 
         private void SaveGame_Click(object sender, EventArgs e)
         {
-
+            if (saveFileDialog.ShowDialog() == DialogResult.OK)
+            {
+                try
+                {
+                    DataAccess dataAccess = new(saveFileDialog.FileName);
+                    gameModel.SaveGame(dataAccess);
+                }
+                catch (Exception)
+                {
+                    MessageBox.Show("Failed to save game!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+            }
         }
 
         private void Exit_Click(object sender, EventArgs e)
@@ -94,6 +141,7 @@ namespace Minefield.WinForms
                         frameTick.Stop();
                         pause = true;
                         mni_SaveGame.Enabled = true;
+                        mni_LoadGame.Enabled = true;
                         lbl_Paused.Visible = true;
                     }
                     else if (pause && !isGameOver)
@@ -102,6 +150,7 @@ namespace Minefield.WinForms
                         frameTick.Start();
                         pause = false;
                         mni_SaveGame.Enabled = false;
+                        mni_LoadGame.Enabled = false;
                         lbl_Paused.Visible = false;
                     }
                     break;
@@ -161,6 +210,7 @@ namespace Minefield.WinForms
                 frameTick.Stop();
                 MessageBox.Show($"You have lost the game.\nYour Time: {TimeSpan.FromSeconds(gameModel.GameTime).ToString("g")}",
                     "Game Over", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                mni_LoadGame.Enabled = true;
                 isGameOver = true;
             }
         }

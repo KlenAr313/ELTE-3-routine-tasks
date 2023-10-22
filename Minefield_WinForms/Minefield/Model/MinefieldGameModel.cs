@@ -57,19 +57,19 @@ namespace Minefield.Model
             };
             oneSecTick.Elapsed += SpendTime;
 
-            gameTime = gameData.GameTime;
-            mineList = gameData.MineList;
-            submarine = gameData.Submarine;
+            gameTime = gameData.gameTime;
+            untilGenerate = gameData.untilGenerate;
+            generateTime = gameData.generateTime;
+            mineList = gameData.mineList;
+            submarine = gameData.submarine;
 
             this.maxX = maxX;
             this.maxY = maxY;
-            untilGenerate = 250;
-            generateTime = 250;
         }
 
         public void SaveGame(DataAccess dataAccess)
         {
-            GameData gameData = new(mineList, submarine, gameTime);
+            GameData gameData = new(mineList, submarine, gameTime, untilGenerate, generateTime);
             dataAccess.Save(gameData);
         }
 

@@ -39,6 +39,8 @@
             lbl_GameTime = new ToolStripStatusLabel();
             lbl_Paused = new ToolStripStatusLabel();
             frameTick = new System.Windows.Forms.Timer(components);
+            openFileDialog = new OpenFileDialog();
+            saveFileDialog = new SaveFileDialog();
             menuStrip.SuspendLayout();
             statusStrip.SuspendLayout();
             SuspendLayout();
@@ -118,6 +120,16 @@
             frameTick.Interval = 10;
             frameTick.Tick += Frame;
             // 
+            // openFileDialog
+            // 
+            openFileDialog.Filter = "JSON (*.json)|*.json";
+            openFileDialog.Title = "Minefield Load";
+            // 
+            // saveFileDialog
+            // 
+            saveFileDialog.Filter = "JSON (*.json)|*.json";
+            saveFileDialog.Title = "Minefield Save";
+            // 
             // MinefieldForm
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
@@ -152,5 +164,7 @@
         private ToolStripMenuItem mni_Exit;
         private ToolStripStatusLabel lbl_Paused;
         private System.Windows.Forms.Timer frameTick;
+        private OpenFileDialog openFileDialog;
+        private SaveFileDialog saveFileDialog;
     }
 }

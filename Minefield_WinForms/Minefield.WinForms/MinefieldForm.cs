@@ -6,7 +6,7 @@ namespace Minefield.WinForms
     public partial class MinefieldForm : Form
     {
         private MinefieldGameModel gameModel;
-        private List<PictureBox> mines = new List<PictureBox>();
+        private List<PictureBox> mines = new();
         private PictureBox submarine;
         private bool pause;
         private bool isGameOver;
@@ -24,7 +24,7 @@ namespace Minefield.WinForms
             this.Controls.Add(submarine);
         }
 
-        private void mni_NewGame_Click(object sender, EventArgs e)
+        private void NewGame_Click(object sender, EventArgs e)
         {
             mines.ForEach(m => this.Controls.Remove(m));
             mines = new List<PictureBox>();
@@ -33,7 +33,7 @@ namespace Minefield.WinForms
             gameModel.oneSecTick.Elapsed += GameTime;
             gameModel.Refresh += Refresh;
             gameModel.End += GameOver;
-            gameModel.NewGame();
+            gameModel.StartGame();
 
             frameTick.Start();
 
@@ -50,17 +50,17 @@ namespace Minefield.WinForms
             isGameOver = false;
         }
 
-        private void mni_LoadGame_Click(object sender, EventArgs e)
+        private void LoadGame_Click(object sender, EventArgs e)
         {
 
         }
 
-        private void mni_SaveGame_Click(object sender, EventArgs e)
+        private void SaveGame_Click(object sender, EventArgs e)
         {
 
         }
 
-        private void mni_Exit_Click(object sender, EventArgs e)
+        private void Exit_Click(object sender, EventArgs e)
         {
             gameModel.Pause();
             frameTick.Stop();
@@ -140,11 +140,13 @@ namespace Minefield.WinForms
             mines.Clear();
             e.Mines.ForEach(m =>
             {
-                PictureBox mine = new PictureBox();
-                mine.Image = Properties.Resources.mineMini;
-                mine.Location = new Point(m.X, m.Y);
-                mine.Name = "mine";
-                mine.Size = new Size(50, 50);
+                PictureBox mine = new()
+                {
+                    Image = Properties.Resources.mineMini,
+                    Location = new Point(m.X, m.Y),
+                    Name = "mine",
+                    Size = new Size(50, 50)
+                };
                 mines.Add(mine);
                 this.Controls.Add(mine);
             });
@@ -165,11 +167,13 @@ namespace Minefield.WinForms
 
         private void CreateSubmarine(int x, int y)
         {
-            submarine = new PictureBox();
-            submarine.Image = Properties.Resources.submarineMini;
-            submarine.Location = new Point(x, y);
-            submarine.Name = "submarine";
-            submarine.Size = new Size(128, 120);
+            submarine = new PictureBox
+            {
+                Image = Properties.Resources.submarineMini,
+                Location = new Point(x, y),
+                Name = "submarine",
+                Size = new Size(128, 120)
+            };
         }
     }
 }

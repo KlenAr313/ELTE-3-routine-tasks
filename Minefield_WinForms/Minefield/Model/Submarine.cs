@@ -11,8 +11,8 @@ namespace Minefield.Model
         private int x = 250;
         private int y = 700;
         private const int speed = 2;
-        private int maxX;
-        private int maxY;
+        private readonly int maxX;
+        private readonly int maxY;
 
         public int X { get { return x; } }
         public int Y { get { return y; } }

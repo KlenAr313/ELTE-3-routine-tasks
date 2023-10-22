@@ -8,8 +8,8 @@ namespace Minefield.Model
 {
     public class MinefieldEventArgs : EventArgs
     {
-        private List<Mine> mines;
-        private Submarine submarine;
+        private readonly List<Mine> mines;
+        private readonly Submarine submarine;
 
         public List<Mine> Mines { 
             get 

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Minefield.Persistence;
+using System;
 using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
 using System.Linq;
@@ -16,11 +17,11 @@ namespace Minefield.Model
 
         public int GameTime { get { return gameTime; } }
 
-        private List<Mine> mineList;
-        private Submarine submarine;
+        private readonly List<Mine> mineList;
+        private readonly Submarine submarine;
 
-        private int maxX;
-        private int maxY;
+        private readonly int maxX;
+        private readonly int maxY;
         private int untilGenerate;
         private int generateTime;
 
@@ -31,12 +32,13 @@ namespace Minefield.Model
 
         public MinefieldGameModel(int maxX, int maxY)
         {
-            gameTime = 0;
-
-            oneSecTick = new Timer();
-            oneSecTick.Interval = 1000;
+            oneSecTick = new Timer
+            {
+                Interval = 1000
+            };
             oneSecTick.Elapsed += SpendTime;
 
+            gameTime = 0;
             mineList = new List<Mine>();
             submarine = new Submarine(maxX, maxY);
 
@@ -46,7 +48,32 @@ namespace Minefield.Model
             generateTime = 250;
         }
 
-        public void NewGame() 
+        public MinefieldGameModel(int maxX, int maxY, DataAccess dataAccess) 
+        {
+            GameData gameData = dataAccess.Load();
+            oneSecTick = new Timer
+            {
+                Interval = 1000
+            };
+            oneSecTick.Elapsed += SpendTime;
+
+            gameTime = gameData.GameTime;
+            mineList = gameData.MineList;
+            submarine = gameData.Submarine;
+
+            this.maxX = maxX;
+            this.maxY = maxY;
+            untilGenerate = 250;
+            generateTime = 250;
+        }
+
+        public void SaveGame(DataAccess dataAccess)
+        {
+            GameData gameData = new(mineList, submarine, gameTime);
+            dataAccess.Save(gameData);
+        }
+
+        public void StartGame() 
         {
             StartTimers();
         }
@@ -78,7 +105,7 @@ namespace Minefield.Model
         }
 
 
-        public void GenerateMine()
+        private void GenerateMine()
         {
             mineList.Add(new Mine(maxX));
         }

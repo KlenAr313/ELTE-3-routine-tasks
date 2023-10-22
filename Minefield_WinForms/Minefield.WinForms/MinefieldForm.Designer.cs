@@ -57,14 +57,14 @@
             mni_NewGame.Name = "mni_NewGame";
             mni_NewGame.Size = new Size(77, 20);
             mni_NewGame.Text = "New Game";
-            mni_NewGame.Click += mni_NewGame_Click;
+            mni_NewGame.Click += NewGame_Click;
             // 
             // mni_LoadGame
             // 
             mni_LoadGame.Name = "mni_LoadGame";
             mni_LoadGame.Size = new Size(79, 20);
             mni_LoadGame.Text = "Load Game";
-            mni_LoadGame.Click += mni_LoadGame_Click;
+            mni_LoadGame.Click += LoadGame_Click;
             // 
             // mni_SaveGame
             // 
@@ -72,14 +72,14 @@
             mni_SaveGame.Name = "mni_SaveGame";
             mni_SaveGame.Size = new Size(77, 20);
             mni_SaveGame.Text = "Save Game";
-            mni_SaveGame.Click += mni_SaveGame_Click;
+            mni_SaveGame.Click += SaveGame_Click;
             // 
             // mni_Exit
             // 
             mni_Exit.Name = "mni_Exit";
             mni_Exit.Size = new Size(38, 20);
             mni_Exit.Text = "Exit";
-            mni_Exit.Click += mni_Exit_Click;
+            mni_Exit.Click += Exit_Click;
             // 
             // statusStrip
             // 

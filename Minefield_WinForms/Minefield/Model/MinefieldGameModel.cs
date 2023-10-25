@@ -10,7 +10,7 @@ using Timer = System.Timers.Timer;
 
 namespace Minefield.Model
 {
-    public class MinefieldGameModel
+    public class MinefieldGameModel : IDisposable
     {
         private Timer oneSecTick;
         private int gameTime;
@@ -159,8 +159,8 @@ namespace Minefield.Model
                 }
             });
         }
-        
-        ~MinefieldGameModel()
+
+        public void Dispose()
         {
             oneSecTick.Dispose();
             OneSecTick.Dispose();

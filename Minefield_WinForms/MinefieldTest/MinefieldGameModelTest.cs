@@ -5,7 +5,7 @@ using System.Reflection.Metadata.Ecma335;
 
 namespace MinefieldTest
 {
-    public class MinefieldGameModelTest
+    public class MinefieldGameModelTest : IDisposable
     {
         private MinefieldGameModel gameModel;
         private GameData gameData;
@@ -92,6 +92,11 @@ namespace MinefieldTest
         private void GameOver(object? sender, EventArgs e)
         {
             Assert.True(false);
+        }
+
+        public void Dispose()
+        {
+            gameModel.Dispose();
         }
     }
 }

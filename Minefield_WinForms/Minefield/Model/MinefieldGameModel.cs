@@ -12,9 +12,10 @@ namespace Minefield.Model
 {
     public class MinefieldGameModel
     {
-        public Timer oneSecTick;
+        private Timer oneSecTick;
         private int gameTime;
 
+        public Timer OneSecTick { get { return oneSecTick; } }
         public int GameTime { get { return gameTime; } }
 
         private readonly List<Mine> mineList;
@@ -25,10 +26,11 @@ namespace Minefield.Model
         private int untilGenerate;
         private int generateTime;
 
-        public EventHandler<MinefieldEventArgs>? Refresh;
+        private EventHandler<MinefieldEventArgs>? refresh;
+        public EventHandler<MinefieldEventArgs>? Refresh { get { return refresh; } set { refresh = value; } }
 
-        public EventHandler? End;
-
+        private EventHandler? end;
+        public EventHandler? End { get { return end; } set { end = value; } }
 
         public MinefieldGameModel(int maxX, int maxY)
         {
@@ -52,12 +54,13 @@ namespace Minefield.Model
 
         public MinefieldGameModel(int maxX, int maxY, DataAccess dataAccess) 
         {
-            GameData gameData = dataAccess.Load();
             oneSecTick = new Timer
             {
                 Interval = 1000
             };
             oneSecTick.Elapsed += SpendTime;
+
+            GameData gameData = dataAccess.Load();
 
             gameTime = gameData.gameTime;
             untilGenerate = gameData.untilGenerate;
@@ -98,7 +101,7 @@ namespace Minefield.Model
             
             MoveSubmarine();
 
-            Refresh?.Invoke(this, new MinefieldEventArgs(mineList, submarine));
+            refresh?.Invoke(this, new MinefieldEventArgs(mineList, submarine));
 
             Collision();
         }
@@ -152,9 +155,15 @@ namespace Minefield.Model
             {
                 if ( mine.Y > submarine.Y - 45 && mine.Y < submarine.Y + 115 && mine.X > submarine.X - 45 && mine.X < submarine.X + 123 )
                 {
-                    End?.Invoke(this, EventArgs.Empty);
+                    end?.Invoke(this, EventArgs.Empty);
                 }
             });
+        }
+        
+        ~MinefieldGameModel()
+        {
+            oneSecTick.Dispose();
+            OneSecTick.Dispose();
         }
     }
 }

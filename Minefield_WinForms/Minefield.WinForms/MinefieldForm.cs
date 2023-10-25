@@ -32,7 +32,7 @@ namespace Minefield.WinForms
             mines = new List<PictureBox>();
 
             gameModel = new MinefieldGameModel(this.Width, this.Height);
-            gameModel.oneSecTick.Elapsed += GameTime;
+            gameModel.OneSecTick.Elapsed += GameTime;
             gameModel.Refresh += Refresh;
             gameModel.End += GameOver;
             gameModel.StartGame();
@@ -61,12 +61,9 @@ namespace Minefield.WinForms
                 {
                     DataAccess dataAcces = new(openFileDialog.FileName);
                     gameModel = new MinefieldGameModel(this.Width, this.Height, dataAcces);
-                    gameModel.oneSecTick.Elapsed += GameTime;
+                    gameModel.OneSecTick.Elapsed += GameTime;
                     gameModel.Refresh += Refresh;
                     gameModel.End += GameOver;
-                    gameModel.StartGame();
-
-                    frameTick.Start();
 
                     mines.ForEach(m => this.Controls.Remove(m));
                     mines = new List<PictureBox>();
@@ -74,6 +71,12 @@ namespace Minefield.WinForms
                     this.Controls.Remove(submarine);
                     CreateSubmarine(250, 700);
                     this.Controls.Add(submarine);
+
+                    MessageBox.Show("let's continue!", "Loaded", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+                    gameModel.StartGame();
+
+                    frameTick.Start();
 
                     pause = false;
                     mni_SaveGame.Enabled = false;
@@ -86,6 +89,8 @@ namespace Minefield.WinForms
                 {
                     MessageBox.Show("Failed to load game!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
+
+                Directions.Reset();
             }
         }
 

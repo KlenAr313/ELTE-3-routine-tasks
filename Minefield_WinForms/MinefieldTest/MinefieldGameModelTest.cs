@@ -45,7 +45,7 @@ namespace MinefieldTest
 
             gameModel.StartGame();
 
-            Assert.True(gameModel.oneSecTick.Enabled);
+            Assert.True(gameModel.OneSecTick.Enabled);
 
             Thread.Sleep(1100);
 

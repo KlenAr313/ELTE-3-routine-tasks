@@ -10,12 +10,22 @@ using Timer = System.Timers.Timer;
 
 namespace Minefield.Model
 {
+    /// <summary>
+    /// Class of Minefield game
+    /// </summary>
     public class MinefieldGameModel : IDisposable
     {
         private Timer oneSecTick;
         private int gameTime;
 
+        /// <summary>
+        /// Timer for game time
+        /// </summary>
         public Timer OneSecTick { get { return oneSecTick; } }
+        
+        /// <summary>
+        /// Passed time of game since start
+        /// </summary>
         public int GameTime { get { return gameTime; } }
 
         private readonly List<Mine> mineList;
@@ -27,11 +37,24 @@ namespace Minefield.Model
         private int generateTime;
 
         private EventHandler<MinefieldEventArgs>? refresh;
+
+        /// <summary>
+        /// Event to refresh frontend
+        /// </summary>
         public EventHandler<MinefieldEventArgs>? Refresh { get { return refresh; } set { refresh = value; } }
 
         private EventHandler? end;
+
+        /// <summary>
+        /// Event at game over
+        /// </summary>
         public EventHandler? End { get { return end; } set { end = value; } }
 
+        /// <summary>
+        /// Constructor in case of new game
+        /// </summary>
+        /// <param name="maxX">Maximum horizontal position</param>
+        /// <param name="maxY">Maximum vertical position</param>
         public MinefieldGameModel(int maxX, int maxY)
         {
             oneSecTick = new Timer
@@ -52,6 +75,12 @@ namespace Minefield.Model
             Directions.Reset();
         }
 
+        /// <summary>
+        /// Constructor in case of loading a saved game
+        /// </summary>
+        /// <param name="maxX">Maximum horizontal position</param>
+        /// <param name="maxY">Maximum vertical position</param>
+        /// <param name="dataAccess">Instance of a data acces</param>
         public MinefieldGameModel(int maxX, int maxY, DataAccess dataAccess) 
         {
             oneSecTick = new Timer
@@ -74,27 +103,43 @@ namespace Minefield.Model
             Directions.Reset();
         }
 
+        /// <summary>
+        /// Saving the current status of the game
+        /// </summary>
+        /// <param name="dataAccess"></param>
         public void SaveGame(DataAccess dataAccess)
         {
             GameData gameData = new(mineList, submarine, gameTime, untilGenerate, generateTime);
             dataAccess.Save(gameData);
         }
 
+        /// <summary>
+        /// Start the game's timers
+        /// </summary>
         public void StartGame() 
         {
             StartTimers();
         }
 
+        /// <summary>
+        /// Pauses the timer 
+        /// </summary>
         public void Pause() 
         {
             oneSecTick.Stop();
         }
         
+        /// <summary>
+        /// Start the game's timers
+        /// </summary>
         public void Restrume()
         {
             StartTimers();
         }
 
+        /// <summary>
+        /// Move every element of the game, send signal to frontend
+        /// </summary>
         public void OnFrame()
         {
             MoveMines();
@@ -160,6 +205,9 @@ namespace Minefield.Model
             });
         }
 
+        /// <summary>
+        /// Implement IDisposeable
+        /// </summary>
         public void Dispose()
         {
             oneSecTick.Dispose();

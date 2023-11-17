@@ -7,17 +7,34 @@ using System.Threading.Tasks;
 
 namespace Minefield.Model
 {
+    /// <summary>
+    /// Class of a mine
+    /// </summary>
     public class Mine
     {
         private int x;
         private int y;
         private int speed;
 
+        /// <summary>
+        /// Horizontal position
+        /// </summary>
         public int X { get { return x; } set { x = value; } }
+
+        /// <summary>
+        /// Vertical position
+        /// </summary>
         public int Y { get { return y; } set { y = value; } }
+
+        /// <summary>
+        /// Speed of the mine
+        /// </summary>
         public int Speed { get { return speed; } set { speed = value; } }
 
-
+        /// <summary>
+        /// Constructor in case of new game
+        /// </summary>
+        /// <param name="maxX">Maximum horizontal position</param>
         public Mine(int maxX)
         {
             y = 0;
@@ -31,8 +48,14 @@ namespace Minefield.Model
             }
         }
 
+        /// <summary>
+        /// Default constructor in case of loading a saved game
+        /// </summary>
         public Mine() { }
 
+        /// <summary>
+        /// Moving the mine downwards
+        /// </summary>
         public void Move()
         {
             y += speed;

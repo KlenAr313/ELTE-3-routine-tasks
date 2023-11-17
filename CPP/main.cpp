@@ -27,8 +27,11 @@ int main(){
 
     // why const at string ptr
     // lvalue vs rvalue   
-    // meg lehet e akadájozni a destruálást?
+    //// meg lehet e akadájozni a destruálást?
     //// realloc? 
     //// static hozzáfér e a privát adattagokhoz? - Igen
     // copy ctor -> nincs def ctor !! def ctor -> lesz copy ctor
+
+    //// delete[] **data
+    //// const keyword after func
 }

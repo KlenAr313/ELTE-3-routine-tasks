@@ -3,6 +3,9 @@ using Minefield.Persistence;
 
 namespace Minefield.WinForms
 {
+    /// <summary>
+    /// Class of Form for the game
+    /// </summary>
     public partial class MinefieldForm : Form
     {
         private MinefieldGameModel gameModel;
@@ -11,6 +14,9 @@ namespace Minefield.WinForms
         private bool pause;
         private bool isGameOver;
 
+        /// <summary>
+        /// Constructor of the Form
+        /// </summary>
         public MinefieldForm()
         {
             InitializeComponent();

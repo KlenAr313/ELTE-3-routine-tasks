@@ -142,13 +142,16 @@ namespace Minefield.Model
         /// </summary>
         public void OnFrame()
         {
-            MoveMines();
+            if(oneSecTick.Enabled)
+            {
+                MoveMines();
             
-            MoveSubmarine();
+                MoveSubmarine();
 
-            refresh?.Invoke(this, new MinefieldEventArgs(mineList, submarine));
+                refresh?.Invoke(this, new MinefieldEventArgs(mineList, submarine));
 
-            Collision();
+                Collision();
+            }
         }
 
         private void SpendTime(object? sender, EventArgs e)
@@ -200,6 +203,7 @@ namespace Minefield.Model
             {
                 if ( mine.Y > submarine.Y - 45 && mine.Y < submarine.Y + 115 && mine.X > submarine.X - 45 && mine.X < submarine.X + 123 )
                 {
+                    Pause();
                     end?.Invoke(this, EventArgs.Empty);
                 }
             });

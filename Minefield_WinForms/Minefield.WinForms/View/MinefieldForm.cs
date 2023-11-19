@@ -215,7 +215,6 @@ namespace Minefield.WinForms
         {
             if (!isGameOver)
             {
-                gameModel.Pause();
                 frameTick.Stop();
                 MessageBox.Show($"You have lost the game.\nYour Time: {TimeSpan.FromSeconds(gameModel.GameTime).ToString("g")}",
                     "Game Over", MessageBoxButtons.OK, MessageBoxIcon.Information);

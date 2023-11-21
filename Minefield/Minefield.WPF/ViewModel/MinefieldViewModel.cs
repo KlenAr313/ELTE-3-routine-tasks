@@ -6,6 +6,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
+using System.Windows.Controls;
+using System.Windows.Input;
 
 namespace Minefield.WPF.ViewModel
 {
@@ -13,10 +15,9 @@ namespace Minefield.WPF.ViewModel
     {
         private MinefieldGameModel gameModel;
 
-        private double gameTime;
-
         private bool paused;
 
+        private bool isGameOver;
 
 
         public DelegateCommand NewGameCommand { get; private set; }
@@ -28,12 +29,11 @@ namespace Minefield.WPF.ViewModel
         public DelegateCommand ExitCommand { get; private set; }
 
 
-
         public ObservableCollection<MineField> MineFields { get; set; }
 
-        public string GameTime { get { return TimeSpan.FromSeconds(gameTime).ToString("g"); } }
+        public String GameTime { get { return TimeSpan.FromSeconds(gameModel.GameTime).ToString("g"); } }
 
-        public bool Paused { get; private set; }
+        public bool Paused { get { return paused; } private set { } }
 
 
 
@@ -45,6 +45,10 @@ namespace Minefield.WPF.ViewModel
 
         public event EventHandler? ExitGame;
 
+        public event EventHandler? PauseGame;
+
+        public event EventHandler? RestrumeGame;
+
 
 
 
@@ -53,15 +57,51 @@ namespace Minefield.WPF.ViewModel
             this.gameModel = gameModel;
             this.gameModel.End += new EventHandler(Model_End);
             this.gameModel.Refresh += new EventHandler<MinefieldEventArgs>(Model_Refresh);
+            this.gameModel.OneSecTick.Elapsed += Model_GameTime;
 
             NewGameCommand = new DelegateCommand(param => OnNewGame());
             LoadGameCommand = new DelegateCommand(param => OnLoadGame());
             SaveGameCommand = new DelegateCommand(param => OnSaveGame());
             ExitCommand = new DelegateCommand(param => OnExitGame());
 
-            gameTime = 0;
-
             MineFields = new ObservableCollection<MineField>();
+
+        }
+
+        public void KeyDown(object sender, KeyEventArgs e)
+        {
+            switch (e.Key)
+            {
+                case Key.Up: Directions.Up = true; break;
+                case Key.Down: Directions.Down = true; break;
+                case Key.Left: Directions.Left = true; break;
+                case Key.Right: Directions.Right = true; break;
+                case Key.Escape:
+                    if (!paused && !isGameOver)
+                    {
+                        gameModel.Pause();
+                        paused = true;
+                        PauseGame?.Invoke(this, EventArgs.Empty);
+                    }
+                    else if (paused && !isGameOver)
+                    {
+                        gameModel.Restrume();
+                        paused = false;
+                        RestrumeGame?.Invoke(this, EventArgs.Empty);
+                    }
+                    break;
+            }
+        }
+
+        public void KeyUp(object sender, KeyEventArgs e)
+        {
+            switch (e.Key)
+            {
+                case Key.Up: Directions.Up = false; break;
+                case Key.Down: Directions.Down = false; break;
+                case Key.Left: Directions.Left = false; break;
+                case Key.Right: Directions.Right = false; break;
+            }
         }
 
         private void Model_End(object? sender, EventArgs e)
@@ -71,22 +111,30 @@ namespace Minefield.WPF.ViewModel
 
         private void Model_Refresh(object? sender, MinefieldEventArgs e)
         {
-            throw new NotImplementedException();
+            OnPropertyChanged(nameof(GameTime));
+        }
+
+        private void Model_GameTime(object? sender, EventArgs e)
+        {
+            OnPropertyChanged(nameof(GameTime));
         }
 
         private void OnNewGame()
         {
-            throw new NotImplementedException();
+            NewGame?.Invoke(this, EventArgs.Empty);
+            isGameOver = false;
         }
 
         private void OnLoadGame()
         {
-            throw new NotImplementedException();
+            LoadGame?.Invoke(this, EventArgs.Empty);
+            isGameOver = false;
         }
 
         private void OnSaveGame()
         {
-            throw new NotImplementedException();
+            SaveGame?.Invoke(this, EventArgs.Empty);
+            //
         }
 
         private void OnExitGame()

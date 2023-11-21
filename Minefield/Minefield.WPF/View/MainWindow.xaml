@@ -11,6 +11,10 @@
     FontSize="16"
     ResizeMode="NoResize"
     mc:Ignorable="d">
+    <!--<Window.InputBindings>
+        <KeyBinding Command="{Binding KeyDown}" />
+        <KeyBinding Command="{Binding KeyUp}" />
+    </Window.InputBindings>-->
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto" />
@@ -21,8 +25,14 @@
 
         <Menu Grid.Row="0">
             <MenuItem Command="{Binding NewGameCommand}" Header="New Game" />
-            <MenuItem Command="{Binding LoadGameCommand}" Header="Load Game" />
-            <MenuItem Command="{Binding SaveGameCommand}" Header="Save Game" />
+            <MenuItem
+                Command="{Binding LoadGameCommand}"
+                Header="Load Game"
+                IsEnabled="{Binding Paused}" />
+            <MenuItem
+                Command="{Binding SaveGameCommand}"
+                Header="Save Game"
+                IsEnabled="{Binding Paused}" />
             <MenuItem Command="{Binding ExitCommand}" Header="Exit" />
         </Menu>
 
@@ -40,5 +50,6 @@
             </StatusBarItem>
             <StatusBarItem />
         </StatusBar>
+
     </Grid>
 </Window>

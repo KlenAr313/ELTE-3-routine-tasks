@@ -1,10 +1,14 @@
-﻿using System;
+﻿using Minefield.Model;
+using Minefield.WPF.ViewModel;
+using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Configuration;
 using System.Data;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Windows;
+using System.Windows.Threading;
 
 namespace Minefield.WPF
 {
@@ -13,5 +17,108 @@ namespace Minefield.WPF
     /// </summary>
     public partial class App : Application
     {
+        private MinefieldGameModel gameModel = null!;
+        private MinefieldViewModel viewModel = null!;
+        private MainWindow mainWindow = null!;
+        private DispatcherTimer frameTick = null!;
+        private bool pause;
+
+        public App()
+        {
+            Startup += new StartupEventHandler(App_Startup);
+        }
+
+        private void App_Startup(object sender, StartupEventArgs e)
+        {
+            mainWindow = new MainWindow();
+            mainWindow.Closing += new System.ComponentModel.CancelEventHandler(View_Closing);
+
+            gameModel = new MinefieldGameModel((int)mainWindow.Width,(int)mainWindow.Height);
+
+            viewModel = new MinefieldViewModel(gameModel);
+            viewModel.NewGame += new EventHandler(ViewModel_NewGame);
+            viewModel.ExitGame += new EventHandler(ViewModel_ExitGame);
+            viewModel.LoadGame += new EventHandler(ViewModel_LoadGame);
+            viewModel.SaveGame += new EventHandler(ViewModel_SaveGame);
+
+            mainWindow.DataContext = viewModel;
+            mainWindow.Show();
+
+            frameTick = new DispatcherTimer();
+            frameTick.Interval = TimeSpan.FromMilliseconds(20);
+            frameTick.Tick += Frame;
+        }
+
+        private void Frame(object? sender, EventArgs e)
+        {
+            gameModel.OnFrame();
+        }
+
+        private void View_Closing(object? sender, CancelEventArgs e)
+        {
+            bool restart = !pause;
+
+            gameModel.Pause();
+            frameTick.Stop();
+            pause = true;
+            if (MessageBox.Show("Are you sure you want to exit?", "Minefield",  MessageBoxButton.YesNo, MessageBoxImage.Question) == MessageBoxResult.No)
+            {
+                e.Cancel = true;
+
+                if (restart)
+                {
+                    gameModel.Restrume();
+                    frameTick.Stop();
+                    pause = true;
+                }
+            }
+        }
+
+
+        private void ViewModel_NewGame(object? sender, EventArgs e)
+        {
+            gameModel = new MinefieldGameModel((int)mainWindow.Width, (int)mainWindow.Height);
+            gameModel.End += new EventHandler(Model_GameOver);
+
+            viewModel = new MinefieldViewModel(gameModel);
+            viewModel.NewGame += new EventHandler(ViewModel_NewGame);
+            viewModel.ExitGame += new EventHandler(ViewModel_ExitGame);
+            viewModel.LoadGame += new EventHandler(ViewModel_LoadGame);
+            viewModel.SaveGame += new EventHandler(ViewModel_SaveGame);
+
+            mainWindow.DataContext = viewModel;
+
+            frameTick.Start();
+            gameModel.StartGame();
+
+            pause = false;
+        }
+
+        private void ViewModel_ExitGame(object? sender, EventArgs e)
+        {
+            mainWindow.Close();
+        }
+
+        private void ViewModel_LoadGame(object? sender, EventArgs e)
+        {
+            throw new NotImplementedException();
+        }
+
+        private void ViewModel_SaveGame(object? sender, EventArgs e)
+        {
+            throw new NotImplementedException();
+        }
+
+
+        private void Model_GameOver(object? sender, EventArgs e)
+        {
+            frameTick.Stop();
+            MessageBox.Show($"You have lost the game.\nYour Time: {TimeSpan.FromSeconds(gameModel.GameTime).ToString("g")}",
+                "Game Over", MessageBoxButton.OK, MessageBoxImage.Information );
+            //mni_LoadGame.Enabled = true;
+            //isGameOver = true;
+        }
+
+
     }
 }

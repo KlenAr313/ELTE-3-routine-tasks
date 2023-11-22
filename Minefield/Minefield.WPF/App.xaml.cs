@@ -24,7 +24,6 @@ namespace Minefield.WPF
         private MinefieldViewModel viewModel = null!;
         private MainWindow mainWindow = null!;
         private DispatcherTimer frameTick = null!;
-        private bool pause;
 
         public App()
         {
@@ -52,7 +51,7 @@ namespace Minefield.WPF
             mainWindow.Show();
 
             frameTick = new DispatcherTimer();
-            frameTick.Interval = TimeSpan.FromMilliseconds(20);
+            frameTick.Interval = TimeSpan.FromMilliseconds(10);
             frameTick.Tick += Frame;
         }
 
@@ -98,8 +97,6 @@ namespace Minefield.WPF
 
             frameTick.Start();
             gameModel.StartGame();
-
-            pause = false;
         }
 
         private void ViewModel_LoadGame(object? sender, EventArgs e)
@@ -120,8 +117,6 @@ namespace Minefield.WPF
 
                     frameTick.Start();
                     gameModel.StartGame();
-
-                    pause = false;
                 }
                 catch (Exception)
                 {
@@ -132,7 +127,20 @@ namespace Minefield.WPF
 
         private void ViewModel_SaveGame(object? sender, EventArgs e)
         {
-            throw new NotImplementedException();
+            SaveFileDialog saveFileDialog = new SaveFileDialog();
+            if(saveFileDialog.ShowDialog() == true)
+            {
+                try 
+                { 
+                    DataAccess dataAcces = new(saveFileDialog.FileName);
+                    gameModel.SaveGame(dataAcces); 
+                }
+                catch (Exception)
+                {
+                    MessageBox.Show("Failed to save game!", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                }
+
+            }
         }
 
         private void ViewModel_PauseGame(object? sender, EventArgs e)
@@ -151,8 +159,6 @@ namespace Minefield.WPF
             frameTick.Stop();
             MessageBox.Show($"You have lost the game.\nYour Time: {viewModel.GameTime}",
                 "Game Over", MessageBoxButton.OK, MessageBoxImage.Information );
-            //mni_LoadGame.Enabled = true;
-            //isGameOver = true;
         }
 
 

@@ -54,8 +54,8 @@
             <ItemsControl.ItemTemplate>
                 <DataTemplate>
                     <Rectangle
-                        Width="100"
-                        Height="100"
+                        Width="50"
+                        Height="50"
                         Fill="Black" />
                 </DataTemplate>
             </ItemsControl.ItemTemplate>
@@ -76,8 +76,8 @@
             <ItemsControl.ItemTemplate>
                 <DataTemplate>
                     <Rectangle
-                        Width="100"
-                        Height="100"
+                        Width="126"
+                        Height="120"
                         Fill="Red" />
                 </DataTemplate>
             </ItemsControl.ItemTemplate>

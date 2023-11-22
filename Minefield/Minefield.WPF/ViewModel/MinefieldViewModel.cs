@@ -82,8 +82,7 @@ namespace Minefield.WPF.ViewModel
 
 
             Mines = new ObservableCollection<Mine>();
-            Submarines = new ObservableCollection<Submarine>(); 
-            Submarines.Add(new Submarine { X = 20, Y = 20 });
+            Submarines = new ObservableCollection<Submarine>();
 
             gameModel.OnFrame();
 
@@ -176,7 +175,6 @@ namespace Minefield.WPF.ViewModel
         private void OnSaveGame()
         {
             SaveGame?.Invoke(this, EventArgs.Empty);
-            //
         }
 
         private void OnExitGame()

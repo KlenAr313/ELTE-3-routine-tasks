@@ -25,6 +25,9 @@ namespace Minefield.WPF
         private MainWindow mainWindow = null!;
         private DispatcherTimer frameTick = null!;
 
+        /// <summary>
+        /// Constructor of the app
+        /// </summary>
         public App()
         {
             Startup += new StartupEventHandler(App_Startup);
@@ -62,25 +65,19 @@ namespace Minefield.WPF
 
         private void View_Closing(object? sender, CancelEventArgs e)
         {
-#if DEBUG
-#else
-            bool restart = !pause;
-
+            bool rest = frameTick.IsEnabled;
             gameModel.Pause();
             frameTick.Stop();
-            pause = true;
+
             if (MessageBox.Show("Are you sure you want to exit?", "Minefield",  MessageBoxButton.YesNo, MessageBoxImage.Question) == MessageBoxResult.No)
             {
                 e.Cancel = true;
-
-                if (restart)
+                if(rest)
                 {
                     gameModel.Restrume();
-                    frameTick.Stop();
-                    pause = true;
+                    frameTick.Start();
                 }
             }
-#endif
         }
 
         private void ViewModel_ExitGame(object? sender, EventArgs e)
@@ -102,6 +99,8 @@ namespace Minefield.WPF
         private void ViewModel_LoadGame(object? sender, EventArgs e)
         {
             OpenFileDialog openFileDialog = new OpenFileDialog();
+            openFileDialog.Title = "Load Minefield Game";
+            openFileDialog.Filter = "JSON |*.json";
             if (openFileDialog.ShowDialog() == true)
             {
                 try
@@ -128,7 +127,9 @@ namespace Minefield.WPF
         private void ViewModel_SaveGame(object? sender, EventArgs e)
         {
             SaveFileDialog saveFileDialog = new SaveFileDialog();
-            if(saveFileDialog.ShowDialog() == true)
+            saveFileDialog.Title = "Save Minefield Game";
+            saveFileDialog.Filter = "JSON |*.json";
+            if (saveFileDialog.ShowDialog() == true)
             {
                 try 
                 { 

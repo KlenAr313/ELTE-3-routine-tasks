@@ -11,7 +11,10 @@ using System.Windows.Input;
 
 namespace Minefield.WPF.ViewModel
 {
-    public class MinefieldViewModel : ViewModelBase
+    /// <summary>
+    /// Class of MinefieldViewModel
+    /// </summary>
+    public class MinefieldViewModel : ViewModelBase, IDisposable
     {
         private MinefieldGameModel gameModel;
 
@@ -19,40 +22,82 @@ namespace Minefield.WPF.ViewModel
 
         private bool isGameOver;
 
-
+        /// <summary>
+        /// New game command query to start game
+        /// </summary>
         public DelegateCommand NewGameCommand { get; private set; }
 
+        /// <summary>
+        /// Load game command query to start saved game
+        /// </summary>
         public DelegateCommand LoadGameCommand { get; private set; }
 
+        /// <summary>
+        /// Save game command query to save current game
+        /// </summary>
         public DelegateCommand SaveGameCommand { get; private set; }
 
+        /// <summary>
+        /// Exit command query to exit from game
+        /// </summary>
         public DelegateCommand ExitCommand { get; private set; }
 
-
+        /// <summary>
+        /// Collection of mines query
+        /// </summary>
         public ObservableCollection<Mine> Mines { get; set; }
 
+        /// <summary>
+        /// Collection of submarine query
+        /// </summary>
         public ObservableCollection<Submarine> Submarines { get; set; }
 
+        /// <summary>
+        /// Game time query
+        /// </summary>
         public string GameTime { get { return TimeSpan.FromSeconds(gameModel.GameTime).ToString("g"); } }
 
-        public bool Paused { get { return paused; } }
+        /// <summary>
+        /// Paused status query
+        /// </summary>
+        public bool Paused { get { return paused; } set { paused = value; } }
 
 
-
+        /// <summary>
+        /// New game event
+        /// </summary>
         public event EventHandler? NewGame;
 
+        /// <summary>
+        /// Load game event
+        /// </summary>
         public event EventHandler? LoadGame;
 
+        /// <summary>
+        /// Save game event
+        /// </summary>
         public event EventHandler? SaveGame;
 
+        /// <summary>
+        /// Exit game event
+        /// </summary>
         public event EventHandler? ExitGame;
 
+        /// <summary>
+        /// Pause game event
+        /// </summary>
         public event EventHandler? PauseGame;
 
+        /// <summary>
+        /// Restrume game event
+        /// </summary>
         public event EventHandler? RestrumeGame;
 
 
-
+        /// <summary>
+        /// Constructor of Minefield ViewModel
+        /// </summary>
+        /// <param name="gameModel">Class of game model</param>
         public MinefieldViewModel(MinefieldGameModel gameModel)
         {
             this.gameModel = gameModel;
@@ -73,6 +118,10 @@ namespace Minefield.WPF.ViewModel
 
         }
 
+        /// <summary>
+        /// Recieving new model in case of new and loaded game
+        /// </summary>
+        /// <param name="gameModel">Class of game model</param>
         public void NewModel(MinefieldGameModel gameModel)
         {
             this.gameModel = gameModel;
@@ -92,6 +141,11 @@ namespace Minefield.WPF.ViewModel
             OnPropertyChanged(nameof(Paused));
         }
 
+        /// <summary>
+        /// Event hendler to receive keyboard input start
+        /// </summary>
+        /// <param name="sender">Sender</param>
+        /// <param name="e">KeyEvent argument</param>
         public void KeyDown(object sender, KeyEventArgs e)
         {
             switch (e.Key)
@@ -119,6 +173,11 @@ namespace Minefield.WPF.ViewModel
             OnPropertyChanged(nameof(Paused));
         }
 
+        /// <summary>
+        /// Event hendler to receive keyboard input end
+        /// </summary>
+        /// <param name="sender">Sender</param>
+        /// <param name="e">KeyEvent argument</param>
         public void KeyUp(object sender, KeyEventArgs e)
         {
             switch (e.Key)
@@ -182,5 +241,12 @@ namespace Minefield.WPF.ViewModel
             ExitGame?.Invoke(this, EventArgs.Empty);
         }
 
+        /// <summary>
+        /// Implementation of Dispose
+        /// </summary>
+        public void Dispose()
+        {
+            gameModel.Dispose();
+        }
     }
 }

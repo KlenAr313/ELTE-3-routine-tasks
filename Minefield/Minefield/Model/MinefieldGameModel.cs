@@ -69,7 +69,7 @@ namespace Minefield.Model
 
             this.maxX = maxX;
             this.maxY = maxY;
-            untilGenerate = 250;
+            untilGenerate = 20;
             generateTime = 250;
 
             Directions.Reset();

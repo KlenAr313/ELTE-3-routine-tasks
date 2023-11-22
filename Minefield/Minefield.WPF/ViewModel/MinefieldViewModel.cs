@@ -31,6 +31,8 @@ namespace Minefield.WPF.ViewModel
 
         public ObservableCollection<Mine> Mines { get; set; }
 
+        public ObservableCollection<Submarine> Submarines { get; set; }
+
         public string GameTime { get { return TimeSpan.FromSeconds(gameModel.GameTime).ToString("g"); } }
 
         public bool Paused { get { return paused; } }
@@ -64,7 +66,7 @@ namespace Minefield.WPF.ViewModel
             ExitCommand = new DelegateCommand(param => OnExitGame());
 
             Mines = new ObservableCollection<Mine>();
-            //Mines.Add(new Mine { X = 50, Y = 50 });
+            Submarines = new ObservableCollection<Submarine>();
 
             paused = true;
             isGameOver = false;
@@ -80,7 +82,12 @@ namespace Minefield.WPF.ViewModel
 
 
             Mines = new ObservableCollection<Mine>();
+            Submarines = new ObservableCollection<Submarine>(); 
+            Submarines.Add(new Submarine { X = 20, Y = 20 });
 
+            gameModel.OnFrame();
+
+            OnPropertyChanged(nameof(Submarines));
             OnPropertyChanged(nameof(Mines));
             OnPropertyChanged(nameof(GameTime));
             OnPropertyChanged(nameof(Paused));
@@ -126,19 +133,22 @@ namespace Minefield.WPF.ViewModel
 
         private void Model_End(object? sender, EventArgs e)
         {
-            throw new NotImplementedException();
+            isGameOver = true;
         }
 
         private void Model_Refresh(object? sender, MinefieldEventArgs e)
         {
             Mines = new ObservableCollection<Mine>();
 
-            Mines.Add(new Mine { X = 500, Y = 50 });
             foreach (Mine item in e.Mines)
             {
                 Mines.Add(new Mine { X= item.X, Y = item.Y});
             }
 
+            Submarines = new ObservableCollection<Submarine>();
+            Submarines.Add(new Submarine { X = e.Submarine.X, Y = e.Submarine.Y });
+
+            OnPropertyChanged(nameof(Submarines));
             OnPropertyChanged(nameof(Mines));
         }
 

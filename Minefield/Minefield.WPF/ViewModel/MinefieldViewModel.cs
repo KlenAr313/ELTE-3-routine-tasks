@@ -31,9 +31,9 @@ namespace Minefield.WPF.ViewModel
 
         public ObservableCollection<MineField> MineFields { get; set; }
 
-        public String GameTime { get { return TimeSpan.FromSeconds(gameModel.GameTime).ToString("g"); } }
+        public string GameTime { get { return TimeSpan.FromSeconds(gameModel.GameTime).ToString("g"); } }
 
-        public bool Paused { get { return paused; } private set { } }
+        public bool Paused { get { return paused; } }
 
 
 
@@ -51,7 +51,6 @@ namespace Minefield.WPF.ViewModel
 
 
 
-
         public MinefieldViewModel(MinefieldGameModel gameModel)
         {
             this.gameModel = gameModel;
@@ -66,6 +65,23 @@ namespace Minefield.WPF.ViewModel
 
             MineFields = new ObservableCollection<MineField>();
 
+            paused = true;
+            isGameOver = false;
+
+        }
+
+        public void NewModel(MinefieldGameModel gameModel)
+        {
+            this.gameModel = gameModel;
+            this.gameModel.End += new EventHandler(Model_End);
+            this.gameModel.Refresh += new EventHandler<MinefieldEventArgs>(Model_Refresh);
+            this.gameModel.OneSecTick.Elapsed += Model_GameTime;
+
+
+            MineFields = new ObservableCollection<MineField>();
+
+            OnPropertyChanged(nameof(GameTime));
+            OnPropertyChanged(nameof(Paused));
         }
 
         public void KeyDown(object sender, KeyEventArgs e)
@@ -91,6 +107,8 @@ namespace Minefield.WPF.ViewModel
                     }
                     break;
             }
+
+            OnPropertyChanged(nameof(Paused));
         }
 
         public void KeyUp(object sender, KeyEventArgs e)
@@ -122,13 +140,17 @@ namespace Minefield.WPF.ViewModel
         private void OnNewGame()
         {
             NewGame?.Invoke(this, EventArgs.Empty);
+            paused = false;
             isGameOver = false;
+            OnPropertyChanged(nameof(Paused));
         }
 
         private void OnLoadGame()
         {
             LoadGame?.Invoke(this, EventArgs.Empty);
+            paused = false;
             isGameOver = false;
+            OnPropertyChanged(nameof(Paused));
         }
 
         private void OnSaveGame()

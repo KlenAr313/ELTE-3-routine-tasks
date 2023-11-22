@@ -63,6 +63,8 @@ namespace Minefield.WPF
 
         private void View_Closing(object? sender, CancelEventArgs e)
         {
+#if DEBUG
+#else
             bool restart = !pause;
 
             gameModel.Pause();
@@ -79,6 +81,7 @@ namespace Minefield.WPF
                     pause = true;
                 }
             }
+#endif
         }
 
         private void ViewModel_ExitGame(object? sender, EventArgs e)
@@ -91,16 +94,7 @@ namespace Minefield.WPF
             gameModel = new MinefieldGameModel((int)mainWindow.Width, (int)mainWindow.Height);
             gameModel.End += new EventHandler(Model_GameOver);
 
-            viewModel = new MinefieldViewModel(gameModel);
-            viewModel.NewGame += new EventHandler(ViewModel_NewGame);
-            viewModel.ExitGame += new EventHandler(ViewModel_ExitGame);
-            viewModel.LoadGame += new EventHandler(ViewModel_LoadGame);
-            viewModel.SaveGame += new EventHandler(ViewModel_SaveGame);
-            viewModel.PauseGame += new EventHandler(ViewModel_PauseGame);
-
-            mainWindow.DataContext = viewModel;
-            mainWindow.KeyDown += viewModel.KeyDown;
-            mainWindow.KeyUp += viewModel.KeyUp;
+            viewModel.NewModel(gameModel);
 
             frameTick.Start();
             gameModel.StartGame();
@@ -119,16 +113,7 @@ namespace Minefield.WPF
                     gameModel = new MinefieldGameModel((int)mainWindow.Width, (int)mainWindow.Height, dataAcces);
                     gameModel.End += new EventHandler(Model_GameOver);
 
-                    viewModel = new MinefieldViewModel(gameModel);
-                    viewModel.NewGame += new EventHandler(ViewModel_NewGame);
-                    viewModel.ExitGame += new EventHandler(ViewModel_ExitGame);
-                    viewModel.LoadGame += new EventHandler(ViewModel_LoadGame);
-                    viewModel.SaveGame += new EventHandler(ViewModel_SaveGame);
-                    viewModel.PauseGame += new EventHandler(ViewModel_PauseGame);
-
-                    mainWindow.DataContext = viewModel;
-                    mainWindow.KeyDown += viewModel.KeyDown;
-                    mainWindow.KeyUp += viewModel.KeyUp;
+                    viewModel.NewModel(gameModel);
 
                     MessageBox.Show("let's continue!", "Loaded", MessageBoxButton.OK, MessageBoxImage.Information);
 

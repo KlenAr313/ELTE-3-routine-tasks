@@ -15,6 +15,9 @@
         <KeyBinding Command="{Binding KeyDown}" />
         <KeyBinding Command="{Binding KeyUp}" />
     </Window.InputBindings>-->
+    <Window.Resources>
+        <BooleanToVisibilityConverter x:Key="VisibleIfTrueConverter" />
+    </Window.Resources>
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto" />
@@ -46,7 +49,7 @@
             </StatusBarItem>
             <Separator />
             <StatusBarItem>
-                <TextBlock IsEnabled="{Binding Paused}" Text="Paused" />
+                <TextBlock Text="Paused" Visibility="{Binding Paused, Converter={StaticResource VisibleIfTrueConverter}}" />
             </StatusBarItem>
             <StatusBarItem />
         </StatusBar>

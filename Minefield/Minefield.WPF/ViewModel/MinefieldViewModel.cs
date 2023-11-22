@@ -29,7 +29,7 @@ namespace Minefield.WPF.ViewModel
         public DelegateCommand ExitCommand { get; private set; }
 
 
-        public ObservableCollection<MineField> MineFields { get; set; }
+        public ObservableCollection<Mine> Mines { get; set; }
 
         public string GameTime { get { return TimeSpan.FromSeconds(gameModel.GameTime).ToString("g"); } }
 
@@ -63,7 +63,8 @@ namespace Minefield.WPF.ViewModel
             SaveGameCommand = new DelegateCommand(param => OnSaveGame());
             ExitCommand = new DelegateCommand(param => OnExitGame());
 
-            MineFields = new ObservableCollection<MineField>();
+            Mines = new ObservableCollection<Mine>();
+            //Mines.Add(new Mine { X = 50, Y = 50 });
 
             paused = true;
             isGameOver = false;
@@ -78,8 +79,9 @@ namespace Minefield.WPF.ViewModel
             this.gameModel.OneSecTick.Elapsed += Model_GameTime;
 
 
-            MineFields = new ObservableCollection<MineField>();
+            Mines = new ObservableCollection<Mine>();
 
+            OnPropertyChanged(nameof(Mines));
             OnPropertyChanged(nameof(GameTime));
             OnPropertyChanged(nameof(Paused));
         }
@@ -129,7 +131,15 @@ namespace Minefield.WPF.ViewModel
 
         private void Model_Refresh(object? sender, MinefieldEventArgs e)
         {
-            OnPropertyChanged(nameof(GameTime));
+            Mines = new ObservableCollection<Mine>();
+
+            Mines.Add(new Mine { X = 500, Y = 50 });
+            foreach (Mine item in e.Mines)
+            {
+                Mines.Add(new Mine { X= item.X, Y = item.Y});
+            }
+
+            OnPropertyChanged(nameof(Mines));
         }
 
         private void Model_GameTime(object? sender, EventArgs e)

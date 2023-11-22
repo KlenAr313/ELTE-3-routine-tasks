@@ -11,4 +11,10 @@
     <ProjectReference Include="..\Minefield\Minefield.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <None Update="graphic\mine.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+
 </Project>

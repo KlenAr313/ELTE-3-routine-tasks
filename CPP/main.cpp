@@ -34,4 +34,6 @@ int main(){
 
     //// delete[] **data
     //// const keyword after func
+
+    // g++ -g -fsanitize=leak,undefined,address,memory main.cpp 
 }

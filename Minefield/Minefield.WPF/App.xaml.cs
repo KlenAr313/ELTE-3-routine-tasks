@@ -18,7 +18,7 @@ namespace Minefield.WPF
     /// <summary>
     /// Interaction logic for App.xaml
     /// </summary>
-    public partial class App : Application
+    public partial class App : Application, IDisposable
     {
         private MinefieldGameModel gameModel = null!;
         private MinefieldViewModel viewModel = null!;
@@ -162,6 +162,13 @@ namespace Minefield.WPF
                 "Game Over", MessageBoxButton.OK, MessageBoxImage.Information );
         }
 
-
+        /// <summary>
+        /// Implementation of Dispose
+        /// </summary>
+        public void Dispose()
+        {
+            gameModel.Dispose();
+            viewModel.Dispose();
+        }
     }
 }

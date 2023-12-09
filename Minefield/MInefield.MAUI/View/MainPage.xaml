@@ -1,0 +1,79 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage
+    x:Class="MInefield.MAUI.MainPage"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    Title="Minefield 2023 Ultimate"
+    Width="700"
+    Height="900">
+
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="Auto" />
+        </Grid.RowDefinitions>
+
+        <Button
+            Grid.Row="0"
+            Command="{Binding NewGameCommand}"
+            HorizontalOptions="Start"
+            Text="New Game" />
+        <Button
+            Grid.Row="0"
+            Command="{Binding LoadGameCommand}"
+            HorizontalOptions="Start"
+            IsEnabled="{Binding Paused}"
+            Text="Load Game" />
+        <Button
+            Grid.Row="0"
+            Command="{Binding SaveGameCommand}"
+            HorizontalOptions="Start"
+            IsEnabled="{Binding Paused}"
+            Text="Save Game" />
+        <Button
+            Grid.Row="0"
+            Command="{Binding ExitCommand}"
+            HorizontalOptions="End"
+            Text="Exit" />
+
+        <Grid Grid.Row="1" BindableLayout.ItemsSource="{Binding Mines}">
+
+            <BindableLayout.ItemTemplate>
+                <DataTemplate>
+                    <Rectangle
+                        Fill="Black"
+                        HeightRequest="50"
+                        HorizontalOptions="{Binding X}"
+                        StrokeThickness="25"
+                        VerticalOptions="{Binding y}"
+                        WidthRequest="50" />
+                </DataTemplate>
+            </BindableLayout.ItemTemplate>
+        </Grid>
+
+        <Grid Grid.Row="1" BindableLayout.ItemsSource="{Binding Submarines}">
+
+            <BindableLayout.ItemTemplate>
+                <DataTemplate>
+                    <Rectangle
+                        Fill="Red"
+                        HeightRequest="126"
+                        HorizontalOptions="{Binding X}"
+                        VerticalOptions="{Binding y}"
+                        WidthRequest="120" />
+                </DataTemplate>
+            </BindableLayout.ItemTemplate>
+        </Grid>
+
+        <HorizontalStackLayout Grid.Row="2" HorizontalOptions="Start">
+            <Label Text="Game time: " />
+            <Label Text="{Binding GameTime}" />
+        </HorizontalStackLayout>
+        <HorizontalStackLayout Grid.Row="2" HorizontalOptions="End">
+            <Label IsVisible="{Binding Paused}" Text="Paused" />
+        </HorizontalStackLayout>
+
+    </Grid>
+
+</ContentPage>

@@ -1,7 +1,7 @@
 ﻿using ObjCRuntime;
 using UIKit;
 
-namespace MInefield.MAUI
+namespace Minefield.MAUI
 {
     public class Program
     {

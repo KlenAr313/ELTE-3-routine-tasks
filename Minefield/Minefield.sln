@@ -11,7 +11,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MinefieldTest", "MinefieldT
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Minefield.WPF", "Minefield.WPF\Minefield.WPF.csproj", "{58CFBE1F-369E-4625-BAB4-3A35BD97D8C6}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MInefield.MAUI", "MInefield.MAUI\MInefield.MAUI.csproj", "{F36D474F-854C-4801-B19B-7ED6E4BFBC68}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Minefield.MAUI", "MInefield.MAUI\Minefield.MAUI.csproj", "{F36D474F-854C-4801-B19B-7ED6E4BFBC68}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

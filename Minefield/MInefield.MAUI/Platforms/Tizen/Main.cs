@@ -2,7 +2,7 @@ using Microsoft.Maui;
 using Microsoft.Maui.Hosting;
 using System;
 
-namespace MInefield.MAUI
+namespace Minefield.MAUI
 {
     internal class Program : MauiApplication
     {

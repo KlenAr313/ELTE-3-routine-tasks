@@ -1,4 +1,4 @@
-﻿namespace MInefield.MAUI
+﻿namespace Minefield.MAUI
 {
     public partial class MainPage : ContentPage
     {

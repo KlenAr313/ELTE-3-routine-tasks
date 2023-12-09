@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace MInefield.MAUI.Persistence
+namespace Minefield.MAUI.Persistence
 {
     public class MinefieldStore : IStore
     {

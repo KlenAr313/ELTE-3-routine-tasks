@@ -1,7 +1,7 @@
 ﻿using Android.App;
 using Android.Runtime;
 
-namespace MInefield.MAUI
+namespace Minefield.MAUI
 {
     [Application]
     public class MainApplication : MauiApplication

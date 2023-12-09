@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage
+    x:Class="Minefield.MAUI.View.LoadGamePage"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    Title="Load Game">
+    <ListView ItemsSource="{Binding StoredGames}">
+        <ListView.ItemTemplate>
+            <DataTemplate>
+                <TextCell
+                    Command="{Binding LoadGameCommand}"
+                    CommandParameter="{Binding Name}"
+                    Detail="{Binding Modified}"
+                    Text="{Binding Name}" />
+            </DataTemplate>
+        </ListView.ItemTemplate>
+    </ListView>
+</ContentPage>

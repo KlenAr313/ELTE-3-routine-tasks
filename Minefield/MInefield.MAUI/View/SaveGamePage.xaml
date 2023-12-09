@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Minefield.MAUI.View.SaveGamePage"
+             Title="Save Game">
+    <VerticalStackLayout>
+        <Entry x:Name="saveName_entry" Placeholder="Name"/>
+        <Button Text="Mentés" Command="{Binding NewSaveCommand}"/>
+
+        <ListView ItemsSource="{Binding StoredGames}">
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <TextCell
+                        Text="{Binding Name}"
+                        Detail="{Binding Modified}"
+                        Command="{Binding SaveGameCommand}"
+                        CommandParameter="{Binding Name}"/>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
+    </VerticalStackLayout>
+</ContentPage>

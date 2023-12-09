@@ -2,7 +2,7 @@
 using Minefield.Model;
 using Minefield.Persistence;
 
-namespace MInefield.MAUI
+namespace Minefield.MAUI
 {
     public partial class AppShell : Shell, IDisposable
     {

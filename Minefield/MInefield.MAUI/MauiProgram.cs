@@ -1,6 +1,6 @@
 ﻿using Microsoft.Extensions.Logging;
 
-namespace MInefield.MAUI
+namespace Minefield.MAUI
 {
     public static class MauiProgram
     {

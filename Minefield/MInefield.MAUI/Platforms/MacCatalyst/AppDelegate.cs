@@ -1,6 +1,6 @@
 ﻿using Foundation;
 
-namespace MInefield.MAUI
+namespace Minefield.MAUI
 {
     [Register("AppDelegate")]
     public class AppDelegate : MauiUIApplicationDelegate

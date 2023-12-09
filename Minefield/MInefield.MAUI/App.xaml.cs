@@ -1,7 +1,7 @@
 ﻿using Minefield.MAUI.ViewModel;
 using Minefield.Model;
 
-namespace MInefield.MAUI
+namespace Minefield.MAUI
 {
     public partial class App : Application, IDisposable
     {

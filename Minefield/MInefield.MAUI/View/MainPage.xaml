@@ -14,6 +14,59 @@
             <RowDefinition Height="Auto" />
         </Grid.RowDefinitions>
 
+        <!--FlyoutBase.ContextFlyout>
+            <MenuFlyout />
+            <MenuFlyoutItem Command="{Binding MoveCommand}" CommandParameter="Up">
+                <MenuFlyoutItem.KeyboardAccelerators>
+                    <KeyboardAccelerator Key="W" />
+                </MenuFlyoutItem.KeyboardAccelerators>
+            </MenuFlyoutItem>
+            <MenuFlyoutItem Command="{Binding MoveCommand}" CommandParameter="Down">
+                <MenuFlyoutItem.KeyboardAccelerators>
+                    <KeyboardAccelerator Key="S" />
+                </MenuFlyoutItem.KeyboardAccelerators>
+            </MenuFlyoutItem>
+            <MenuFlyoutItem Command="{Binding MoveCommand}" CommandParameter="Right">
+                <MenuFlyoutItem.KeyboardAccelerators>
+                    <KeyboardAccelerator Key="D" />
+                </MenuFlyoutItem.KeyboardAccelerators>
+            </MenuFlyoutItem>
+            <MenuFlyoutItem Command="{Binding MoveCommand}" CommandParameter="Left">
+                <MenuFlyoutItem.KeyboardAccelerators>
+                    <KeyboardAccelerator Key="A" />
+                </MenuFlyoutItem.KeyboardAccelerators>
+            </MenuFlyoutItem>
+            <MenuFlyoutItem Command="{Binding MoveCommand}" CommandParameter="Stop">
+                <MenuFlyoutItem.KeyboardAccelerators>
+                    <KeyboardAccelerator Key="Space" />
+                </MenuFlyoutItem.KeyboardAccelerators>
+            </MenuFlyoutItem>
+        </FlyoutBase.ContextFlyout-->
+
+
+        <Grid.GestureRecognizers>
+            <SwipeGestureRecognizer
+                Command="{Binding MoveCommand}"
+                CommandParameter="Up"
+                Direction="Up" />
+            <SwipeGestureRecognizer
+                Command="{Binding MoveCommand}"
+                CommandParameter="Down"
+                Direction="Down" />
+            <SwipeGestureRecognizer
+                Command="{Binding MoveCommand}"
+                CommandParameter="Right"
+                Direction="Right" />
+            <SwipeGestureRecognizer
+                Command="{Binding MoveCommand}"
+                CommandParameter="Left"
+                Direction="Left" />
+            <TapGestureRecognizer
+                Command="{Binding MoveCommand}"
+                CommandParameter="Stop"
+                NumberOfTapsRequired="1" />
+        </Grid.GestureRecognizers>
+
         <Button
             Grid.Row="0"
             Command="{Binding NewGameCommand}"

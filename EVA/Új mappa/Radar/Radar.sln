@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.7.34024.191
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Radar", "Radar.csproj", "{6DD437D7-6643-4F4C-B3C5-A32CD1C6BEB4}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Radar.Model", "..\Radar.Model\Radar.Model.csproj", "{2EEDC0AC-E3AC-4E1C-B8EB-5A003D4E641F}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{6DD437D7-6643-4F4C-B3C5-A32CD1C6BEB4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6DD437D7-6643-4F4C-B3C5-A32CD1C6BEB4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6DD437D7-6643-4F4C-B3C5-A32CD1C6BEB4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6DD437D7-6643-4F4C-B3C5-A32CD1C6BEB4}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2EEDC0AC-E3AC-4E1C-B8EB-5A003D4E641F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2EEDC0AC-E3AC-4E1C-B8EB-5A003D4E641F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2EEDC0AC-E3AC-4E1C-B8EB-5A003D4E641F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2EEDC0AC-E3AC-4E1C-B8EB-5A003D4E641F}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {91776EDD-AEFB-409C-9946-F7A025332070}
+	EndGlobalSection
+EndGlobal

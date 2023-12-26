@@ -8,8 +8,6 @@ namespace Minefield.MAUI
 {
     public partial class AppShell : Shell, IDisposable
     {
-        private int maxX;
-        private int maxY;
         private MinefieldGameModel gameModel = null!;
         private MinefieldViewModel viewModel = null!;
 
@@ -131,9 +129,9 @@ namespace Minefield.MAUI
             }
         }
 
-        private void BrowserViewModel_GameLoading(object? sender, StoredGameEventArgs e)
+        private async void BrowserViewModel_GameLoading(object? sender, StoredGameEventArgs e)
         {
-            Navigation.PopAsync();
+            await Navigation.PopAsync();
 
             try
             {
@@ -142,15 +140,15 @@ namespace Minefield.MAUI
                     new DataAccess(Path.Combine(FileSystem.AppDataDirectory, e.Name)));
                 viewModel.NewModel(gameModel, (int)Window.Width, (int)Window.Height);
                 
-                Navigation.PopAsync();
-                DisplayAlert("Mindefield", "Successful loading", "Ok");
+                await Navigation.PopAsync();
+                await DisplayAlert("Mindefield", "Successful loading", "Ok");
 
                 gameModel.StartGame();
                 StartTimer();
             }
             catch
             {
-                DisplayAlert("Mindefield", "Unsuccessful loading", "Ok");
+                await DisplayAlert("Mindefield", "Unsuccessful loading", "Ok");
             }
         }
 

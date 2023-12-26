@@ -30,14 +30,12 @@ namespace Minefield.MAUI.ViewModel
             NewSaveCommand = new DelegateCommand(param =>
             {
                 string? fileName = Path.GetFileNameWithoutExtension(param?.ToString()?.Trim());
-
-                if (!string.IsNullOrEmpty(fileName))
+                if (!String.IsNullOrEmpty(fileName))
                 {
                     fileName += ".json";
                     OnGameSaving(fileName);
                 }
             });
-
             StoredGames = new ObservableCollection<StoredGameViewModel>();
             UpdateStoredGames();
         }

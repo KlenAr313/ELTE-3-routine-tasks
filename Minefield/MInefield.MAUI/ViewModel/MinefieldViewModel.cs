@@ -119,6 +119,7 @@ namespace Minefield.MAUI.ViewModel
             paused = true;
             isGameOver = false;
 
+            OnPropertyChanged(nameof(Paused));
         }
 
         /// <summary>

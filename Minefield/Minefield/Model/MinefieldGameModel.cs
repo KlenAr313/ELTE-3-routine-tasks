@@ -206,7 +206,7 @@ namespace Minefield.Model
         {
             mineList.ForEach((mine) =>
             {
-                if ( mine.Y > submarine.Y - 45 && mine.Y < submarine.Y + 115 && mine.X > submarine.X - 45 && mine.X < submarine.X + 123 )
+                if ( mine.Y > submarine.Y - 45 && mine.Y < submarine.Y + 115 && mine.X > submarine.X - 50 && mine.X < submarine.X + 120 )
                 {
                     Pause();
                     end?.Invoke(this, EventArgs.Empty);

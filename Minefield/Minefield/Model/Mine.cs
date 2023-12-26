@@ -42,9 +42,9 @@ namespace Minefield.Model
             x = r.Next(5, maxX-55);
             switch (r.Next(1, 4))
             {
-                case 1: speed = 2; break;
-                case 2: speed = 3; break;
-                case 3: speed = 4; break;
+                case 1: speed = 3; break;
+                case 2: speed = 5; break;
+                case 3: speed = 7; break;
             }
         }
 

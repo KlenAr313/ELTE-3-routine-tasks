@@ -1,6 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage
-    x:Class="Minefield.MAUI.MainPage"
+    x:Class="Minefield.MAUI.GamePage"
     xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     Title="Minefield 2023 Ultimate"
@@ -10,9 +10,12 @@
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto" />
-            <RowDefinition Height="*" />
+            <RowDefinition x:Name="playgroundFH" Height="*" />
             <RowDefinition Height="Auto" />
         </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition x:Name="playgroundFW" Width="*" />
+        </Grid.ColumnDefinitions>
 
 
         <Grid.GestureRecognizers>
@@ -69,14 +72,16 @@
                 Text="Pause" />
         </Grid>
 
-        <Grid Grid.Row="1" BindableLayout.ItemsSource="{Binding Mines}">
+        <Grid
+            x:Name="minesGrid"
+            Grid.Row="1"
+            BindableLayout.ItemsSource="{Binding Mines}">
 
             <BindableLayout.ItemTemplate>
                 <DataTemplate>
                     <Rectangle
                         Fill="Black"
                         HeightRequest="50"
-                        StrokeThickness="25"
                         TranslationX="{Binding X}"
                         TranslationY="{Binding Y}"
                         WidthRequest="50" />
@@ -84,10 +89,6 @@
             </BindableLayout.ItemTemplate>
         </Grid>
 
-        <!--<Grid Grid.Row="1" BindableLayout.ItemsSource="{Binding SubmarineVM}">
-
-            <BindableLayout.ItemTemplate>
-                <DataTemplate>-->
         <Rectangle
             Grid.Row="1"
             BindingContext="{Binding SubmarineVM}"
@@ -96,9 +97,6 @@
             TranslationX="{Binding X}"
             TranslationY="{Binding Y}"
             WidthRequest="120" />
-        <!--</DataTemplate>
-            </BindableLayout.ItemTemplate>
-        </Grid>-->
 
         <HorizontalStackLayout Grid.Row="2" HorizontalOptions="Start">
             <Label Text="Game time: " />

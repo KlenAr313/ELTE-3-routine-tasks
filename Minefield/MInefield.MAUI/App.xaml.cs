@@ -20,8 +20,8 @@ namespace Minefield.MAUI
 
             store = new MinefieldStore();
 
-            gameModel = new MinefieldGameModel( Convert.ToInt32(DeviceDisplay.Current.MainDisplayInfo.Width), (int)DeviceDisplay.Current.MainDisplayInfo.Height);
-            viewModel = new MinefieldViewModel(gameModel);
+            gameModel = new MinefieldGameModel((int)DeviceDisplay.Current.MainDisplayInfo.Width, (int)DeviceDisplay.Current.MainDisplayInfo.Height);
+            viewModel = new MinefieldViewModel(gameModel, (int)DeviceDisplay.Current.MainDisplayInfo.Width, (int)DeviceDisplay.Current.MainDisplayInfo.Height);
 
             shell = new AppShell(viewModel, gameModel, store)
             {
@@ -34,6 +34,8 @@ namespace Minefield.MAUI
         protected override Window CreateWindow(IActivationState? activationState)
         {
             Window window = base.CreateWindow(activationState);
+            window.MinimumHeight = 300;
+            window.MinimumHeight = 300;
 
             window.Created += (s, e) =>
             { };

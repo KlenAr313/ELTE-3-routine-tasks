@@ -4,12 +4,12 @@
     xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:local="clr-namespace:Minefield.MAUI"
-    Shell.FlyoutBehavior="Disabled"
-    Title="Minefield.MAUI">
+    Title="Minefield.MAUI"
+    Shell.FlyoutBehavior="Disabled">
 
     <ShellContent
         Title="Home"
-        ContentTemplate="{DataTemplate local:MainPage}"
+        ContentTemplate="{DataTemplate local:GamePage}"
         Route="MainPage" />
 
 </Shell>

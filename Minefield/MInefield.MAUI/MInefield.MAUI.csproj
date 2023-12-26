@@ -67,6 +67,9 @@
 	</ItemGroup>
 
 	<ItemGroup>
+	  <Compile Update="View\GamePage.xaml.cs">
+	    <DependentUpon>GamePage.xaml</DependentUpon>
+	  </Compile>
 	  <Compile Update="View\SaveGamePage.xaml.cs">
 	    <DependentUpon>SaveGamePage.xaml</DependentUpon>
 	  </Compile>

@@ -8,6 +8,8 @@ namespace Minefield.MAUI
 {
     public partial class AppShell : Shell, IDisposable
     {
+        private int maxX;
+        private int maxY;
         private MinefieldGameModel gameModel = null!;
         private MinefieldViewModel viewModel = null!;
 
@@ -81,10 +83,10 @@ namespace Minefield.MAUI
         private void ViewModel_NewGame(object? sender, EventArgs e)
         {
             gameModel.Dispose();
-            gameModel = new MinefieldGameModel((int)DeviceDisplay.Current.MainDisplayInfo.Width, (int)DeviceDisplay.Current.MainDisplayInfo.Height);
+            gameModel = new MinefieldGameModel((int)Window.Width, (int)Window.Height);
             gameModel.End += GameModel_End;
 
-            viewModel.NewModel(gameModel);
+            viewModel.NewModel(gameModel, (int)Window.Width, (int)Window.Height);
 
             StartTimer();
             gameModel.StartGame();
@@ -136,9 +138,9 @@ namespace Minefield.MAUI
             try
             {
                 gameModel.Dispose();
-                gameModel = new MinefieldGameModel((int)DeviceDisplay.Current.MainDisplayInfo.Width, (int)DeviceDisplay.Current.MainDisplayInfo.Height,
+                gameModel = new MinefieldGameModel((int)Window.Width, (int)Window.Height,
                     new DataAccess(Path.Combine(FileSystem.AppDataDirectory, e.Name)));
-                viewModel.NewModel(gameModel);
+                viewModel.NewModel(gameModel, (int)Window.Width, (int)Window.Height);
                 
                 Navigation.PopAsync();
                 DisplayAlert("Mindefield", "Successful loading", "Ok");
@@ -159,10 +161,10 @@ namespace Minefield.MAUI
         public void LoadGame(DataAccess dataAccess)
         {
             gameModel.Dispose();
-            gameModel = new MinefieldGameModel((int)DeviceDisplay.Current.MainDisplayInfo.Width, (int)DeviceDisplay.Current.MainDisplayInfo.Height, dataAccess);
+            gameModel = new MinefieldGameModel((int)Window.Width, (int)Window.Height, dataAccess);
             gameModel.End += GameModel_End;
 
-            viewModel.NewModel(gameModel);
+            viewModel.NewModel(gameModel, (int)Window.Width, (int)Window.Height);
 
             gameModel.StartGame();
             StartTimer();

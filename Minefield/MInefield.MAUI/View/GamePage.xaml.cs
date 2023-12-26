@@ -1,11 +1,10 @@
 ﻿namespace Minefield.MAUI
 {
-    public partial class MainPage : ContentPage
+    public partial class GamePage : ContentPage
     {
-        public MainPage()
+        public GamePage()
         {
             InitializeComponent();
-
         }
     }
 

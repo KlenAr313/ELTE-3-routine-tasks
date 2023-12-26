@@ -6,10 +6,10 @@ using System.Threading.Tasks;
 
 namespace Minefield.MAUI.ViewModel
 {
-    public class SubmarineViewModel : ViewModelBase
+    public class MineViewModel: ViewModelBase
     {
-        private int difX;
-        private int difY;
+        private static int difX = 0;
+        private static int difY = 0;
 
         private int x;
 
@@ -28,19 +28,18 @@ namespace Minefield.MAUI.ViewModel
         public int Y
         {
             get { return y; }
-            set 
-            { 
-                y = value - difY; 
+            set
+            {
+                y = value - difY;
                 OnPropertyChanged(nameof(Y));
             }
         }
 
-        public SubmarineViewModel(int maxX, int maxY)
+        public static void SetDifference(int maxX, int maxY)
         {
-            this.difX = (int)(maxX / 2 - 60);
+            difX = (int)(maxX / 2 - 25);
 
-            this.difY = (int)(maxY / 2 - 60);
-
+            difY = (int)(maxY / 2 - 25);
         }
     }
 }

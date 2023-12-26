@@ -47,7 +47,7 @@ namespace Minefield.MAUI.ViewModel
         /// <summary>
         /// Collection of mines query
         /// </summary>
-        public ObservableCollection<Mine> Mines { get; set; }
+        public ObservableCollection<MineViewModel> Mines { get; set; }
 
         /// <summary>
         /// Collection of submarine query
@@ -95,7 +95,7 @@ namespace Minefield.MAUI.ViewModel
         /// Constructor of Minefield ViewModel
         /// </summary>
         /// <param name="gameModel">Class of game model</param>
-        public MinefieldViewModel(MinefieldGameModel gameModel)
+        public MinefieldViewModel(MinefieldGameModel gameModel, int maxX, int maxY)
         {
             this.gameModel = gameModel;
             this.gameModel.End += new EventHandler(Model_End);
@@ -112,8 +112,9 @@ namespace Minefield.MAUI.ViewModel
                     Movement(direction);
             });
 
-            Mines = new ObservableCollection<Mine>();
-            SubmarineVM = new SubmarineViewModel();
+            MineViewModel.SetDifference(maxX, maxY);
+            Mines = new ObservableCollection<MineViewModel>();
+            SubmarineVM = new SubmarineViewModel(maxX, maxY);
 
             paused = true;
             isGameOver = false;
@@ -124,16 +125,16 @@ namespace Minefield.MAUI.ViewModel
         /// Recieving new model in case of new and loaded game
         /// </summary>
         /// <param name="gameModel">Class of game model</param>
-        public void NewModel(MinefieldGameModel gameModel)
+        public void NewModel(MinefieldGameModel gameModel, int maxX, int maxY)
         {
             this.gameModel = gameModel;
             this.gameModel.End += new EventHandler(Model_End);
             this.gameModel.Refresh += new EventHandler<MinefieldEventArgs>(Model_Refresh);
             this.gameModel.OneSecTick.Elapsed += Model_GameTime;
 
-
-            Mines = new ObservableCollection<Mine>();
-            SubmarineVM = new SubmarineViewModel();
+            MineViewModel.SetDifference(maxX, maxY);
+            Mines = new ObservableCollection<MineViewModel>();
+            SubmarineVM = new SubmarineViewModel(maxX, maxY);
 
             gameModel.OnFrame();
 
@@ -225,17 +226,16 @@ namespace Minefield.MAUI.ViewModel
 
         private void Model_Refresh(object? sender, MinefieldEventArgs e)
         {
-            Mines = new ObservableCollection<Mine>();
+            Mines = new ObservableCollection<MineViewModel>();
 
             foreach (Mine item in e.Mines)
             {
-                Mines.Add(new Mine { X= item.X, Y = item.Y});
+                Mines.Add(new MineViewModel { X= item.X, Y = item.Y});
             }
 
             SubmarineVM.X = e.Submarine.X;
             SubmarineVM.Y = e.Submarine.Y;
 
-            OnPropertyChanged(nameof(SubmarineVM));
             OnPropertyChanged(nameof(Mines));
         }
 
@@ -268,17 +268,19 @@ namespace Minefield.MAUI.ViewModel
         private void OnPauseGame()
         {
             if (!paused && !isGameOver)
-                    {
-                        gameModel.Pause();
-                        paused = true;
-                        PauseGame?.Invoke(this, EventArgs.Empty);
-                    }
-                    else if (paused && !isGameOver)
-                    {
-                        gameModel.Restrume();
-                        paused = false;
-                        RestrumeGame?.Invoke(this, EventArgs.Empty);
-                    }
+            {
+                gameModel.Pause();
+                paused = true;
+                PauseGame?.Invoke(this, EventArgs.Empty);
+            }
+            else if (paused && !isGameOver)
+            {
+                gameModel.Restrume();
+                paused = false;
+                RestrumeGame?.Invoke(this, EventArgs.Empty);
+            }
+
+            OnPropertyChanged(nameof(Paused));
         }
 
         /// <summary>

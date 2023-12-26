@@ -14,35 +14,6 @@
             <RowDefinition Height="Auto" />
         </Grid.RowDefinitions>
 
-        <!--FlyoutBase.ContextFlyout>
-            <MenuFlyout />
-            <MenuFlyoutItem Command="{Binding MoveCommand}" CommandParameter="Up">
-                <MenuFlyoutItem.KeyboardAccelerators>
-                    <KeyboardAccelerator Key="W" />
-                </MenuFlyoutItem.KeyboardAccelerators>
-            </MenuFlyoutItem>
-            <MenuFlyoutItem Command="{Binding MoveCommand}" CommandParameter="Down">
-                <MenuFlyoutItem.KeyboardAccelerators>
-                    <KeyboardAccelerator Key="S" />
-                </MenuFlyoutItem.KeyboardAccelerators>
-            </MenuFlyoutItem>
-            <MenuFlyoutItem Command="{Binding MoveCommand}" CommandParameter="Right">
-                <MenuFlyoutItem.KeyboardAccelerators>
-                    <KeyboardAccelerator Key="D" />
-                </MenuFlyoutItem.KeyboardAccelerators>
-            </MenuFlyoutItem>
-            <MenuFlyoutItem Command="{Binding MoveCommand}" CommandParameter="Left">
-                <MenuFlyoutItem.KeyboardAccelerators>
-                    <KeyboardAccelerator Key="A" />
-                </MenuFlyoutItem.KeyboardAccelerators>
-            </MenuFlyoutItem>
-            <MenuFlyoutItem Command="{Binding MoveCommand}" CommandParameter="Stop">
-                <MenuFlyoutItem.KeyboardAccelerators>
-                    <KeyboardAccelerator Key="Space" />
-                </MenuFlyoutItem.KeyboardAccelerators>
-            </MenuFlyoutItem>
-        </FlyoutBase.ContextFlyout-->
-
 
         <Grid.GestureRecognizers>
             <SwipeGestureRecognizer
@@ -67,28 +38,36 @@
                 NumberOfTapsRequired="1" />
         </Grid.GestureRecognizers>
 
-        <Button
-            Grid.Row="0"
-            Command="{Binding NewGameCommand}"
-            HorizontalOptions="Start"
-            Text="New Game" />
-        <Button
-            Grid.Row="0"
-            Command="{Binding LoadGameCommand}"
-            HorizontalOptions="Start"
-            IsEnabled="{Binding Paused}"
-            Text="Load Game" />
-        <Button
-            Grid.Row="0"
-            Command="{Binding SaveGameCommand}"
-            HorizontalOptions="Start"
-            IsEnabled="{Binding Paused}"
-            Text="Save Game" />
-        <Button
-            Grid.Row="0"
-            Command="{Binding ExitCommand}"
-            HorizontalOptions="End"
-            Text="Exit" />
+        <Grid Grid.Row="0">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto" />
+                <ColumnDefinition Width="Auto" />
+                <ColumnDefinition Width="Auto" />
+                <ColumnDefinition Width="Auto" />
+            </Grid.ColumnDefinitions>
+            <Button
+                Grid.Column="0"
+                Command="{Binding NewGameCommand}"
+                HorizontalOptions="Start"
+                Text="New Game" />
+            <Button
+                Grid.Column="1"
+                Command="{Binding LoadGameCommand}"
+                HorizontalOptions="Start"
+                IsEnabled="{Binding Paused}"
+                Text="Load Game" />
+            <Button
+                Grid.Column="2"
+                Command="{Binding SaveGameCommand}"
+                HorizontalOptions="Start"
+                IsEnabled="{Binding Paused}"
+                Text="Save Game" />
+            <Button
+                Grid.Column="3"
+                Command="{Binding PauseCommand}"
+                HorizontalOptions="Start"
+                Text="Pause" />
+        </Grid>
 
         <Grid Grid.Row="1" BindableLayout.ItemsSource="{Binding Mines}">
 
@@ -97,27 +76,29 @@
                     <Rectangle
                         Fill="Black"
                         HeightRequest="50"
-                        HorizontalOptions="{Binding X}"
                         StrokeThickness="25"
-                        VerticalOptions="{Binding y}"
+                        TranslationX="{Binding X}"
+                        TranslationY="{Binding Y}"
                         WidthRequest="50" />
                 </DataTemplate>
             </BindableLayout.ItemTemplate>
         </Grid>
 
-        <Grid Grid.Row="1" BindableLayout.ItemsSource="{Binding Submarines}">
+        <!--<Grid Grid.Row="1" BindableLayout.ItemsSource="{Binding SubmarineVM}">
 
             <BindableLayout.ItemTemplate>
-                <DataTemplate>
-                    <Rectangle
-                        Fill="Red"
-                        HeightRequest="126"
-                        HorizontalOptions="{Binding X}"
-                        VerticalOptions="{Binding y}"
-                        WidthRequest="120" />
-                </DataTemplate>
+                <DataTemplate>-->
+        <Rectangle
+            Grid.Row="1"
+            BindableLayout.ItemsSource="{Binding SubmarineVM}"
+            Fill="Red"
+            HeightRequest="126"
+            TranslationX="{Binding X}"
+            TranslationY="{Binding Y}"
+            WidthRequest="120" />
+        <!--</DataTemplate>
             </BindableLayout.ItemTemplate>
-        </Grid>
+        </Grid>-->
 
         <HorizontalStackLayout Grid.Row="2" HorizontalOptions="Start">
             <Label Text="Game time: " />

@@ -20,7 +20,7 @@ namespace Minefield.MAUI
 
             store = new MinefieldStore();
 
-            gameModel = new MinefieldGameModel((int)DeviceDisplay.Current.MainDisplayInfo.Width, (int)DeviceDisplay.Current.MainDisplayInfo.Height);
+            gameModel = new MinefieldGameModel( Convert.ToInt32(DeviceDisplay.Current.MainDisplayInfo.Width), (int)DeviceDisplay.Current.MainDisplayInfo.Height);
             viewModel = new MinefieldViewModel(gameModel);
 
             shell = new AppShell(viewModel, gameModel, store)
@@ -36,10 +36,7 @@ namespace Minefield.MAUI
             Window window = base.CreateWindow(activationState);
 
             window.Created += (s, e) =>
-            {
-                gameModel.StartGame();
-                shell.StartTimer();
-            };
+            { };
 
             window.Activated += (s, e) =>
             {

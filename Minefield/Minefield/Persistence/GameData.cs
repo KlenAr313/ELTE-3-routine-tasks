@@ -38,6 +38,16 @@ namespace Minefield.Persistence
         public int generateTime { get; set; }
 
         /// <summary>
+        /// Size of width
+        /// </summary>
+        public int maxX { get; set; }
+
+        /// <summary>
+        /// Size of height
+        /// </summary>
+        public int maxY { get; set; }
+
+        /// <summary>
         /// Constructor of Game data
         /// </summary>
         /// <param name="mineList">List of active mines</param>
@@ -45,13 +55,15 @@ namespace Minefield.Persistence
         /// <param name="gameTime">Time of the game</param>
         /// <param name="untilGenerate">Remaining time for nex mine generation</param>
         /// <param name="generateTime">Base line for the next untiolGenerate start point</param>
-        public GameData(List<Mine> mineList, Submarine submarine, int gameTime, int untilGenerate, int generateTime)
+        public GameData(List<Mine> mineList, Submarine submarine, int gameTime, int untilGenerate, int generateTime, int maxX, int maxY)
         {
             this.mineList = mineList;
             this.submarine = submarine;
             this.gameTime = gameTime;
             this.generateTime = generateTime;
             this.untilGenerate = untilGenerate;
+            this.maxX = maxX;
+            this.maxY = maxY;
         }
 
     }

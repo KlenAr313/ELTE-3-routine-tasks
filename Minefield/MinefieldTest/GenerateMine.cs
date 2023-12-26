@@ -30,7 +30,7 @@ namespace MinefieldTest
 
             mines = new List<Mine>();
 
-            gameData = new(mines, submarine, 20, 0, 200);
+            gameData = new(mines, submarine, 20, 0, 200, 600, 900);
 
             mock = new Mock<DataAccess>();
             mock.Setup(m => m.Load()).Returns(gameData);

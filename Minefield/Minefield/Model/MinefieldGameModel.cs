@@ -91,6 +91,11 @@ namespace Minefield.Model
 
             GameData gameData = dataAccess.Load();
 
+            if(gameData.maxX != maxX || gameData.maxY != maxY)
+            {
+                throw new NotSupportedException("Not supported savefile");
+            }
+
             gameTime = gameData.gameTime;
             untilGenerate = gameData.untilGenerate;
             generateTime = gameData.generateTime;
@@ -109,7 +114,7 @@ namespace Minefield.Model
         /// <param name="dataAccess"></param>
         public void SaveGame(DataAccess dataAccess)
         {
-            GameData gameData = new(mineList, submarine, gameTime, untilGenerate, generateTime);
+            GameData gameData = new(mineList, submarine, gameTime, untilGenerate, generateTime, maxX, maxY);
             dataAccess.Save(gameData);
         }
 

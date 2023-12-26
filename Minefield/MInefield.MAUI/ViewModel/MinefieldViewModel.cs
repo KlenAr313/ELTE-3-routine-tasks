@@ -40,7 +40,9 @@ namespace Minefield.MAUI.ViewModel
         /// <summary>
         /// Exit command query to exit from game
         /// </summary>
-        public DelegateCommand ExitCommand { get; private set; }
+        public DelegateCommand PauseCommand { get; private set; }
+
+        public DelegateCommand MoveCommand { get; private set; }
 
         /// <summary>
         /// Collection of mines query
@@ -50,7 +52,7 @@ namespace Minefield.MAUI.ViewModel
         /// <summary>
         /// Collection of submarine query
         /// </summary>
-        public ObservableCollection<Submarine> Submarines { get; set; }
+        public SubmarineViewModel SubmarineVM { get; set; }
 
         /// <summary>
         /// Game time query
@@ -79,11 +81,6 @@ namespace Minefield.MAUI.ViewModel
         public event EventHandler? SaveGame;
 
         /// <summary>
-        /// Exit game event
-        /// </summary>
-        public event EventHandler? ExitGame;
-
-        /// <summary>
         /// Pause game event
         /// </summary>
         public event EventHandler? PauseGame;
@@ -108,10 +105,15 @@ namespace Minefield.MAUI.ViewModel
             NewGameCommand = new DelegateCommand(param => OnNewGame());
             LoadGameCommand = new DelegateCommand(param => OnLoadGame());
             SaveGameCommand = new DelegateCommand(param => OnSaveGame());
-            ExitCommand = new DelegateCommand(param => OnExitGame());
+            PauseCommand = new DelegateCommand(param => OnPauseGame());
+            MoveCommand = new DelegateCommand(param =>
+            {
+                if (param is string direction)
+                    Movement(direction);
+            });
 
             Mines = new ObservableCollection<Mine>();
-            Submarines = new ObservableCollection<Submarine>();
+            SubmarineVM = new SubmarineViewModel();
 
             paused = true;
             isGameOver = false;
@@ -131,14 +133,41 @@ namespace Minefield.MAUI.ViewModel
 
 
             Mines = new ObservableCollection<Mine>();
-            Submarines = new ObservableCollection<Submarine>();
+            SubmarineVM = new SubmarineViewModel();
 
             gameModel.OnFrame();
 
-            OnPropertyChanged(nameof(Submarines));
+            OnPropertyChanged(nameof(SubmarineVM));
             OnPropertyChanged(nameof(Mines));
             OnPropertyChanged(nameof(GameTime));
             OnPropertyChanged(nameof(Paused));
+        }
+
+        private void Movement(string direction)
+        {
+            switch (direction)
+            {
+                case "Up":
+                    Directions.Up = true;
+                    Directions.Down = false;
+                    break;
+                case "Down":
+                    Directions.Down = true;
+                    Directions.Up = false;
+                    break;
+                case "Right":
+                    Directions.Right = true;
+                    Directions.Left = false;
+                    break;
+                case "Left":
+                    Directions.Left = true;
+                    Directions.Right = false;
+                    break;
+                case "Stop":
+                    Directions.Reset();
+                    break;
+                default: break;
+            }
         }
 
         /// <summary>
@@ -203,10 +232,10 @@ namespace Minefield.MAUI.ViewModel
                 Mines.Add(new Mine { X= item.X, Y = item.Y});
             }
 
-            Submarines = new ObservableCollection<Submarine>();
-            Submarines.Add(new Submarine { X = e.Submarine.X, Y = e.Submarine.Y });
+            SubmarineVM.X = e.Submarine.X;
+            SubmarineVM.Y = e.Submarine.Y;
 
-            OnPropertyChanged(nameof(Submarines));
+            OnPropertyChanged(nameof(SubmarineVM));
             OnPropertyChanged(nameof(Mines));
         }
 
@@ -236,9 +265,20 @@ namespace Minefield.MAUI.ViewModel
             SaveGame?.Invoke(this, EventArgs.Empty);
         }
 
-        private void OnExitGame()
+        private void OnPauseGame()
         {
-            ExitGame?.Invoke(this, EventArgs.Empty);
+            if (!paused && !isGameOver)
+                    {
+                        gameModel.Pause();
+                        paused = true;
+                        PauseGame?.Invoke(this, EventArgs.Empty);
+                    }
+                    else if (paused && !isGameOver)
+                    {
+                        gameModel.Restrume();
+                        paused = false;
+                        RestrumeGame?.Invoke(this, EventArgs.Empty);
+                    }
         }
 
         /// <summary>

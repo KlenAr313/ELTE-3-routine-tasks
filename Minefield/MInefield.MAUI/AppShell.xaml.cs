@@ -33,7 +33,6 @@ namespace Minefield.MAUI
             viewModel.NewGame += ViewModel_NewGame;
             viewModel.LoadGame += ViewModel_LoadGame;
             viewModel.SaveGame += ViewModel_SaveGame;
-            viewModel.ExitGame += ViewModel_ExitGame;
             viewModel.PauseGame += ViewModel_PauseGame;
             viewModel.RestrumeGame += ViewModel_RestrumeGame;
 
@@ -60,11 +59,6 @@ namespace Minefield.MAUI
         }
         
 
-
-        private void ViewModel_ExitGame(object? sender, EventArgs e)
-        {
-            throw new NotImplementedException();
-        }
 
         private async void ViewModel_SaveGame(object? sender, EventArgs e)
         {
@@ -99,11 +93,13 @@ namespace Minefield.MAUI
         private void ViewModel_PauseGame(object? sender, EventArgs e)
         {
             frameTick.Stop();
+            gameModel.Pause();
         }
 
         private void ViewModel_RestrumeGame(object? sender, EventArgs e)
         {
             frameTick.Start();
+            gameModel.Restrume();
         }
 
 

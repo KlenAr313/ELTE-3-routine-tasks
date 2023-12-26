@@ -12,8 +12,8 @@ namespace Minefield.Model
     public class Submarine
     {
         private const int speed = 2;
-        private int x = 250;
-        private int y = 700;
+        private int x = 0;
+        private int y = 0;
         private int maxX;
         private int maxY;
 

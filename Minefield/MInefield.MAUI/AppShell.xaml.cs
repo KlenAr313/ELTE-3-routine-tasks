@@ -1,4 +1,6 @@
-﻿using Minefield.MAUI.ViewModel;
+﻿using Microsoft.Maui.Controls;
+using Minefield.MAUI.View;
+using Minefield.MAUI.ViewModel;
 using Minefield.Model;
 using Minefield.Persistence;
 
@@ -24,7 +26,7 @@ namespace Minefield.MAUI
 
             frameTick = Dispatcher.CreateTimer();
             frameTick.Interval = TimeSpan.FromMilliseconds(20);
-            frameTick.Tick += (_, _) => Frame();
+            frameTick.Tick += (_, _) => MoveFrame();
 
             gameModel.End += GameModel_End;
 
@@ -32,6 +34,8 @@ namespace Minefield.MAUI
             viewModel.LoadGame += ViewModel_LoadGame;
             viewModel.SaveGame += ViewModel_SaveGame;
             viewModel.ExitGame += ViewModel_ExitGame;
+            viewModel.PauseGame += ViewModel_PauseGame;
+            viewModel.RestrumeGame += ViewModel_RestrumeGame;
 
             storedBrowserModel = new StoredGameBrowserModel(store);
             storedBrowserViewModel = new StoredGameBorwserViewModel(storedBrowserModel);
@@ -40,19 +44,19 @@ namespace Minefield.MAUI
 
         }
 
-        private void Frame()
+        private void MoveFrame()
         {
             gameModel.OnFrame();
         }
 
         internal void StartTimer()
         {
-            throw new NotImplementedException();
+            frameTick.Start();
         }
 
         internal void StopTimer()
         {
-            throw new NotImplementedException();
+            frameTick.Stop();
         }
         
 
@@ -62,24 +66,52 @@ namespace Minefield.MAUI
             throw new NotImplementedException();
         }
 
-        private void ViewModel_SaveGame(object? sender, EventArgs e)
+        private async void ViewModel_SaveGame(object? sender, EventArgs e)
         {
-            throw new NotImplementedException();
+            await storedBrowserModel.UpdateAsync();
+            await Navigation.PushAsync(new SaveGamePage
+            {
+                BindingContext = storedBrowserViewModel
+            });
         }
 
-        private void ViewModel_LoadGame(object? sender, EventArgs e)
+        private async void ViewModel_LoadGame(object? sender, EventArgs e)
         {
-            throw new NotImplementedException();
+            await storedBrowserModel.UpdateAsync();
+            await Navigation.PushAsync(new LoadGamePage
+            {
+                BindingContext = storedBrowserViewModel
+            });
         }
 
         private void ViewModel_NewGame(object? sender, EventArgs e)
         {
-            throw new NotImplementedException();
+            gameModel.Dispose();
+            gameModel = new MinefieldGameModel((int)DeviceDisplay.Current.MainDisplayInfo.Width, (int)DeviceDisplay.Current.MainDisplayInfo.Height);
+            gameModel.End += GameModel_End;
+
+            viewModel.NewModel(gameModel);
+
+            StartTimer();
+            gameModel.StartGame();
         }
+
+        private void ViewModel_PauseGame(object? sender, EventArgs e)
+        {
+            frameTick.Stop();
+        }
+
+        private void ViewModel_RestrumeGame(object? sender, EventArgs e)
+        {
+            frameTick.Start();
+        }
+
 
         private void GameModel_End(object? sender, EventArgs e)
         {
-            throw new NotImplementedException();
+            StopTimer();
+
+            DisplayAlert("Game Over", $"You have lost the game.\nYour Time: {viewModel.GameTime}", "OK");
         }
 
 
@@ -107,6 +139,7 @@ namespace Minefield.MAUI
 
             try
             {
+                gameModel.Dispose();
                 gameModel = new MinefieldGameModel((int)DeviceDisplay.Current.MainDisplayInfo.Width, (int)DeviceDisplay.Current.MainDisplayInfo.Height,
                     new DataAccess(Path.Combine(FileSystem.AppDataDirectory, e.Name)));
                 viewModel.NewModel(gameModel);
@@ -121,6 +154,22 @@ namespace Minefield.MAUI
             {
                 DisplayAlert("Mindefield", "Unsuccessful loading", "Ok");
             }
+        }
+
+        /// <summary>
+        /// Load new game with specific data access
+        /// </summary>
+        /// <param name="dataAccess">Instance of the scpecific data acces</param>
+        public void LoadGame(DataAccess dataAccess)
+        {
+            gameModel.Dispose();
+            gameModel = new MinefieldGameModel((int)DeviceDisplay.Current.MainDisplayInfo.Width, (int)DeviceDisplay.Current.MainDisplayInfo.Height, dataAccess);
+            gameModel.End += GameModel_End;
+
+            viewModel.NewModel(gameModel);
+
+            gameModel.StartGame();
+            StartTimer();
         }
 
 

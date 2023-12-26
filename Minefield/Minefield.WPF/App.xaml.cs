@@ -87,6 +87,7 @@ namespace Minefield.WPF
 
         private void ViewModel_NewGame(object? sender, EventArgs e)
         {
+            gameModel.Dispose();
             gameModel = new MinefieldGameModel((int)mainWindow.Width, (int)mainWindow.Height);
             gameModel.End += new EventHandler(Model_GameOver);
 

@@ -22,7 +22,7 @@ namespace Minefield.Model
             StoredGames = new List<StoredGameModel>();
         }
 
-        public async Task Update()
+        public async Task UpdateAsync()
         {
             if(store == null) return;
 

@@ -52,12 +52,7 @@ namespace Minefield.MAUI
                 {
                     try
                     {
-                        gameModel = new MinefieldGameModel((int)DeviceDisplay.Current.MainDisplayInfo.Width, (int)DeviceDisplay.Current.MainDisplayInfo.Height, new DataAccess(Path.Combine(FileSystem.AppDataDirectory, SuspendedGameSavePath)));
-
-                        viewModel.NewModel(gameModel);
-
-                        gameModel.StartGame();
-                        shell.StartTimer();
+                        shell.LoadGame(new DataAccess(Path.Combine(FileSystem.AppDataDirectory, SuspendedGameSavePath)));
                     }
                     catch { }
                 });
@@ -69,6 +64,7 @@ namespace Minefield.MAUI
                 {
                     shell.StopTimer();
                     gameModel.SaveGame(new DataAccess(Path.Combine(FileSystem.AppDataDirectory, SuspendedGameSavePath)));
+                    gameModel.Dispose();
                 });
             };
 

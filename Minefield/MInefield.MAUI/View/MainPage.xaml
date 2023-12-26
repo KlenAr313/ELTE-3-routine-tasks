@@ -90,7 +90,7 @@
                 <DataTemplate>-->
         <Rectangle
             Grid.Row="1"
-            BindableLayout.ItemsSource="{Binding SubmarineVM}"
+            BindingContext="{Binding SubmarineVM}"
             Fill="Red"
             HeightRequest="126"
             TranslationX="{Binding X}"

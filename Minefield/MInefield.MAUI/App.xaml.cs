@@ -5,23 +5,29 @@ using Minefield.Persistence;
 
 namespace Minefield.MAUI
 {
+    /// <summary>
+    /// Class of App
+    /// </summary>
     public partial class App : Application, IDisposable
     {
-        private const string SuspendedGameSavePath = "SuspendedGame";
+        private const string SuspendedGameSavePath = "SuspendedGame.json";
 
         private readonly AppShell shell;
         private MinefieldGameModel gameModel;
         private readonly IStore store;
         private readonly MinefieldViewModel viewModel;
 
+        /// <summary>
+        /// Constructor of App
+        /// </summary>
         public App()
         {
             InitializeComponent();
 
             store = new MinefieldStore();
 
-            gameModel = new MinefieldGameModel((int)DeviceDisplay.Current.MainDisplayInfo.Width, (int)DeviceDisplay.Current.MainDisplayInfo.Height);
-            viewModel = new MinefieldViewModel(gameModel, (int)DeviceDisplay.Current.MainDisplayInfo.Width, (int)DeviceDisplay.Current.MainDisplayInfo.Height);
+            gameModel = new MinefieldGameModel(0, 0);
+            viewModel = new MinefieldViewModel(gameModel,0, 0);
 
             shell = new AppShell(viewModel, gameModel, store)
             {
@@ -35,10 +41,12 @@ namespace Minefield.MAUI
         {
             Window window = base.CreateWindow(activationState);
             window.MinimumHeight = 300;
-            window.MinimumHeight = 300;
+            window.MinimumWidth = 300;
 
             window.Created += (s, e) =>
-            { };
+            {
+                shell.CreateModel();
+            };
 
             window.Activated += (s, e) =>
             {
@@ -62,8 +70,8 @@ namespace Minefield.MAUI
                 Task.Run(() =>
                 {
                     shell.StopTimer();
+                    gameModel.Pause();
                     gameModel.SaveGame(new DataAccess(Path.Combine(FileSystem.AppDataDirectory, SuspendedGameSavePath)));
-                    gameModel.Dispose();
                 });
             };
 

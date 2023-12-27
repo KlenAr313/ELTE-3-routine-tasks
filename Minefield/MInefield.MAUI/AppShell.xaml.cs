@@ -6,6 +6,9 @@ using Minefield.Persistence;
 
 namespace Minefield.MAUI
 {
+    /// <summary>
+    /// AppShell class
+    /// </summary>
     public partial class AppShell : Shell, IDisposable
     {
         private MinefieldGameModel gameModel = null!;
@@ -17,6 +20,12 @@ namespace Minefield.MAUI
         private readonly StoredGameBrowserModel storedBrowserModel = null!;
         private readonly StoredGameBorwserViewModel storedBrowserViewModel = null!;
 
+        /// <summary>
+        /// Constructur of Shell
+        /// </summary>
+        /// <param name="viewModel">Instance of MinefieldViewModel</param>
+        /// <param name="gameModel">Instance of MinefieldGameModel</param>
+        /// <param name="store">Interface of IStore</param>
         public AppShell(MinefieldViewModel viewModel, MinefieldGameModel gameModel, IStore store)
         {
             InitializeComponent();
@@ -48,11 +57,17 @@ namespace Minefield.MAUI
             gameModel.OnFrame();
         }
 
+        /// <summary>
+        /// Start tick timer
+        /// </summary>
         internal void StartTimer()
         {
             frameTick.Start();
         }
 
+        /// <summary>
+        /// Stop tick timer
+        /// </summary>
         internal void StopTimer()
         {
             frameTick.Stop();
@@ -158,12 +173,25 @@ namespace Minefield.MAUI
         /// <param name="dataAccess">Instance of the scpecific data acces</param>
         public void LoadGame(DataAccess dataAccess)
         {
-            gameModel.Dispose();
             gameModel = new MinefieldGameModel((int)Window.Width, (int)Window.Height, dataAccess);
             gameModel.End += GameModel_End;
 
             viewModel.NewModel(gameModel, (int)Window.Width, (int)Window.Height);
+            viewModel.Paused = true;
 
+            //gameModel.StartGame();
+            //StartTimer();
+        }
+
+        /// <summary>
+        /// Creation of model in case of application create
+        /// </summary>
+        public void CreateModel()
+        {
+            this.gameModel = new MinefieldGameModel((int)Window.Width, (int)Window.Height);
+            this.viewModel.NewModel(gameModel, (int)Window.Width, (int)Window.Height);
+
+            gameModel.End += GameModel_End;
             gameModel.StartGame();
             StartTimer();
         }

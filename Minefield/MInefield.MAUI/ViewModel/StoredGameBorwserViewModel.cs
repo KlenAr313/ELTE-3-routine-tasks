@@ -8,18 +8,37 @@ using System.Threading.Tasks;
 
 namespace Minefield.MAUI.ViewModel
 {
+    /// <summary>
+    /// Stored gamebrowser's viewmodel
+    /// </summary>
     public class StoredGameBorwserViewModel :ViewModelBase
     {
         private StoredGameBrowserModel model;
 
+        /// <summary>
+        /// Load event
+        /// </summary>
         public event EventHandler<StoredGameEventArgs>? GameLoading;
 
+        /// <summary>
+        /// Save event
+        /// </summary>
         public event EventHandler<StoredGameEventArgs>? GameSaving;
 
+        /// <summary>
+        /// New save command
+        /// </summary>
         public DelegateCommand NewSaveCommand { get; set; }
 
+        /// <summary>
+        /// Collection of stored games
+        /// </summary>
         public ObservableCollection<StoredGameViewModel> StoredGames { get; set; }
 
+        /// <summary>
+        /// Constructor of the viewmodel
+        /// </summary>
+        /// <param name="model">Model</param>
         public StoredGameBorwserViewModel(StoredGameBrowserModel model)
         {
             if (model == null) throw new ArgumentNullException(nameof(model));

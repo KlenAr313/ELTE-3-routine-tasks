@@ -42,6 +42,9 @@ namespace Minefield.MAUI.ViewModel
         /// </summary>
         public DelegateCommand PauseCommand { get; private set; }
 
+        /// <summary>
+        /// Move command querry to move player
+        /// </summary>
         public DelegateCommand MoveCommand { get; private set; }
 
         /// <summary>
@@ -62,7 +65,12 @@ namespace Minefield.MAUI.ViewModel
         /// <summary>
         /// Paused status query
         /// </summary>
-        public bool Paused { get { return paused; } set { paused = value; } }
+        public bool Paused { get { return paused; } 
+            set 
+            { 
+                paused = value; 
+                OnPropertyChanged(nameof(Paused));
+            } }
 
 
         /// <summary>
@@ -116,7 +124,7 @@ namespace Minefield.MAUI.ViewModel
             Mines = new ObservableCollection<MineViewModel>();
             SubmarineVM = new SubmarineViewModel(maxX, maxY);
 
-            paused = true;
+            paused = false;
             isGameOver = false;
 
             OnPropertyChanged(nameof(Paused));

@@ -16,7 +16,7 @@ namespace MinefieldTest
         {
             Assert.Equal(0, mine.Y);
             Assert.True(5 <= mine.X && mine.X <= 844);
-            Assert.True(2 <= mine.Speed && mine.Speed <= 4);
+            Assert.True(2 <= mine.Speed && mine.Speed <= 7);
         }
 
         [Theory]

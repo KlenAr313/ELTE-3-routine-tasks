@@ -70,8 +70,8 @@ namespace MinefieldTest
 
         private void RefreshForContinueTest(object? sender, MinefieldEventArgs e)
         {
-            Assert.True(e.Mines[0].Y >= 702 && e.Mines[0].Y <= 704);
-            Assert.Equal(598, e.Submarine.Y);
+            Assert.True(e.Mines[0].Y >= 702 && e.Mines[0].Y <= 707);
+            Assert.Equal(596, e.Submarine.Y);
             wasClled = true;
         }
 

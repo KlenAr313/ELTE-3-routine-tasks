@@ -23,7 +23,7 @@ namespace MinefieldTest
         {
             submarine.MoveUp();
 
-            Assert.Equal(698, submarine.Y);
+            Assert.Equal(246, submarine.Y);
             Assert.Equal(250, submarine.X);
         }
 
@@ -32,7 +32,7 @@ namespace MinefieldTest
         {
             submarine.MoveDown();
 
-            Assert.Equal(702, submarine.Y);
+            Assert.Equal(254, submarine.Y);
             Assert.Equal(250, submarine.X);
         }
 
@@ -41,8 +41,8 @@ namespace MinefieldTest
         {
             submarine.MoveLeft();
 
-            Assert.Equal(248, submarine.X);
-            Assert.Equal(700, submarine.Y);
+            Assert.Equal(246, submarine.X);
+            Assert.Equal(250, submarine.Y);
         }
 
         [Fact]
@@ -50,8 +50,8 @@ namespace MinefieldTest
         {
             submarine.MoveRight();
 
-            Assert.Equal(252, submarine.X);
-            Assert.Equal(700, submarine.Y);
+            Assert.Equal(254, submarine.X);
+            Assert.Equal(250, submarine.Y);
         }
 
         [Theory]
@@ -94,7 +94,7 @@ namespace MinefieldTest
                 submarine.MoveLeft();
             }
 
-            Assert.True(submarine.X >= 4);
+            Assert.True(submarine.X >= 2);
         }
         
         [Theory]

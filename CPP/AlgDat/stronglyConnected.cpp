@@ -84,7 +84,7 @@ int main()
         { 0, 0, 0, 1, 0}
     };
 	std::vector<int> ans = findMaxSCC(V, edgeMatrix);
-	std::cout << "Strongly Connected Component with the most vertices " << ans.size() << "is:" << std::endl;
+	std::cout << "Strongly Connected Component with the most vertices (" << ans.size() << ") is:" << std::endl;
     for(std::vector<int>::iterator it = ans.begin(); it != ans.end(); ++it){
         std::cout << *it << " ";
     }

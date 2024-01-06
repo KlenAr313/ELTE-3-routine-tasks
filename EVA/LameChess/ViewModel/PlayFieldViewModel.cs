@@ -32,6 +32,7 @@ namespace LameChess.ViewModel
                         case 4: case 8: Text = "4"; break;
                         default: break;
                     }
+                    OnPropertyChanged();
                 }
             }
         }

@@ -20,32 +20,32 @@
             Text="Új játék" />
         <Button
             Grid.Row="0"
-            Command="{Binding ExitCommand}"
+            Command="{Binding SettingsCommand}"
             HorizontalOptions="End"
             Text="Beállítások" />
 
         <Grid
             Grid.Row="1"
             BindableLayout.ItemsSource="{Binding Fields}"
-            ColumnDefinitions="{Binding GameTableColumns}"
+            ColumnDefinitions="{Binding ColumnCount}"
             ColumnSpacing="4"
-            RowDefinitions="{Binding GameTableRows}"
+            RowDefinitions="{Binding RowCount}"
             RowSpacing="4">
             <!--  a játéktáblát egy sorfolytos listával valósítjuk meg  -->
             <BindableLayout.ItemTemplate>
                 <DataTemplate>
                     <!--  a rács elemei gombok lesznek  -->
                     <Button
-                        Grid.Row="{Binding Y}"
-                        Grid.Column="{Binding X}"
+                        Grid.Row="{Binding Row}"
+                        Grid.Column="{Binding Column}"
                         Padding="0"
-                        Command="{Binding StepCommand}"
-                        CommandParameter="{Binding XY}"
+                        Command="{Binding FieldChangeCommand}"
+                        CommandParameter="{Binding Coords}"
                         FontAttributes="Bold"
                         FontSize="Medium"
                         HorizontalOptions="FillAndExpand"
-                        IsEnabled="{Binding IsEnabled}"
-                        Text="{Binding Text}"
+                        IsEnabled="True"
+                        Text="{Binding Num}"
                         VerticalOptions="FillAndExpand" />
                 </DataTemplate>
             </BindableLayout.ItemTemplate>
@@ -55,10 +55,6 @@
         <HorizontalStackLayout Grid.Row="2" HorizontalOptions="Start">
             <Label Text="Lépésszám: " />
             <Label Text="{Binding GameStepCount}" />
-        </HorizontalStackLayout>
-        <HorizontalStackLayout Grid.Row="2" HorizontalOptions="End">
-            <Label Text="Játékidő: " />
-            <Label Text="{Binding GameTime}" />
         </HorizontalStackLayout>
     </Grid>
 </ContentPage>

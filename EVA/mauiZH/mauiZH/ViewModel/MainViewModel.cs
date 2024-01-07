@@ -14,28 +14,46 @@ namespace mauiZH.ViewModel
         private int rowCount;
         private int columnCount;
 
-        public int RowCount
+        public RowDefinitionCollection RowCount
+        {
+            get 
+            { 
+                return new RowDefinitionCollection(Enumerable.Repeat(new RowDefinition(GridLength.Star), rowCount).ToArray());  
+            }
+        }
+
+        public ColumnDefinitionCollection ColumnCount
+        {
+            get 
+            { 
+                return new ColumnDefinitionCollection(Enumerable.Repeat(new ColumnDefinition(GridLength.Star), columnCount).ToArray());
+            }
+        }
+
+        public int RowCountSet
         {
             get { return rowCount; }
-            set
-            {
-                if (rowCount != value)
+            set 
+            { 
+                if(rowCount != value)
                 {
                     rowCount = value;
                     OnPropertyChanged();
+                    OnPropertyChanged(nameof(RowCount));
                 }
             }
         }
 
-        public int ColumnCount
+        public int ColumnCountSet
         {
             get { return columnCount; }
             set
             {
-                if (columnCount != value)
+                if(columnCount != value)
                 {
                     columnCount = value;
                     OnPropertyChanged();
+                    OnPropertyChanged(nameof(ColumnCount));
                 }
             }
         }
@@ -43,16 +61,18 @@ namespace mauiZH.ViewModel
         public ObservableCollection<GridViewModel> Fields { get; private set; }
 
         public DelegateCommand NewGameCommand { get; private set; }
+        public DelegateCommand SettingsCommand { get; private set; }
         public DelegateCommand LoadCommand { get; private set; }
         public DelegateCommand SaveCommand { get; private set; }
 
+        public event EventHandler? Settings;
         public event EventHandler? LoadGame;
         public event EventHandler? SaveGame;
 
         public MainViewModel(GameModel gameModel)
         {
-            RowCount = 5;
-            ColumnCount = 5;
+            rowCount = 5;
+            columnCount = 5;
             this.gameModel = gameModel;
             this.gameModel.FieldChanged += FieldChanged;
             this.gameModel.GameCreated += OnGameCreated;
@@ -60,11 +80,17 @@ namespace mauiZH.ViewModel
             NewGameCommand = new DelegateCommand(param => NewGame());
             SaveCommand = new DelegateCommand(param => OnSaveGame());
             LoadCommand = new DelegateCommand(param => OnLoadGame());
+            SettingsCommand = new DelegateCommand(param => OnSettings());
         }
 
         private void NewGame()
         {
-            gameModel.NewGame(RowCount, ColumnCount);
+            gameModel.NewGame(rowCount, columnCount);
+        }
+
+        private void OnSettings()
+        {
+            Settings?.Invoke(this, EventArgs.Empty);
         }
 
         private void OnSaveGame()
@@ -80,8 +106,8 @@ namespace mauiZH.ViewModel
         private void OnGameCreated(object? sender, CreatedEventArgs e)
         {
             int[,] table = e.Table;
-            RowCount = e.X;
-            ColumnCount = e.Y;
+            rowCount = e.X;
+            columnCount = e.Y;
             Fields.Clear();
             for (int i = 0; i < rowCount; i++)
             {
@@ -92,11 +118,11 @@ namespace mauiZH.ViewModel
                         Num = table[i,j],
                         Row = i,
                         Column = j,
-                        FieldChangeCommand = new DelegateCommand(field =>
+                        FieldChangeCommand = new DelegateCommand(param =>
                         {
-                            if (field is GridViewModel viewModel)
+                            if (param is Tuple<int, int> coords)
                             {
-                                Clicked(viewModel);
+                                Clicked(coords.Item1, coords.Item2);
                             }
                         })
                     });
@@ -104,9 +130,9 @@ namespace mauiZH.ViewModel
             }
         }
 
-        private void Clicked(GridViewModel selectedField)
+        private void Clicked(int Row, int Column)
         {
-            gameModel.Step(selectedField.Row, selectedField.Column);
+            gameModel.Step(Row, Column);
         }
 
         private void FieldChanged(object? sender, FieldEventArgs e)

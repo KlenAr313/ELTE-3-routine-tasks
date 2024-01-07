@@ -26,6 +26,14 @@ namespace mauiZH.ViewModel
         public int Row { get; set; }
         public int Column { get; set; }
 
+        public Tuple<int, int> Coords
+        {
+            get
+            {
+                return new(Row, Column);
+            }
+        }
+
         public DelegateCommand? FieldChangeCommand { get; set; }
     }
 }

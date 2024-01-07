@@ -10,14 +10,20 @@
         Margin="4"
         HorizontalOptions="CenterAndExpand"
         Spacing="8">
-        <Button Command="{Binding LoadGameCommand}" Text="Betöltés" />
-        <Button Command="{Binding SaveGameCommand}" Text="Mentés" />
+        <Button Command="{Binding LoadCommand}" Text="Betöltés" />
+        <Button Command="{Binding SaveCommand}" Text="Mentés" />
 
-        <Picker
-            Title="Játéknehézség kiválasztása:"
-            HorizontalTextAlignment="Center"
-            ItemDisplayBinding="{Binding DifficultyText}"
-            ItemsSource="{Binding DifficultyLevels}"
-            SelectedItem="{Binding Difficulty}" />
+        <Label Text="Rows:" />
+        <Entry
+            HeightRequest="22"
+            Placeholder="Row"
+            Text="{Binding RowCountSet}"
+            WidthRequest="80" />
+        <Label Text="Collumns:" />
+        <Entry
+            HeightRequest="22"
+            Placeholder="Collumn"
+            Text="{Binding ColumnCountSet}"
+            WidthRequest="80" />
     </VerticalStackLayout>
 </ContentPage>

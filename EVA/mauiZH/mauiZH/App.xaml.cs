@@ -21,7 +21,7 @@ namespace mauiZH
             store = new Store();
             dataAccess = new DataAccess(FileSystem.AppDataDirectory);
 
-            gameModel = new GameModel(2, 2, dataAccess);
+            gameModel = new GameModel(5, 5, dataAccess);
             mainViewModel = new MainViewModel(gameModel);
 
             appShell = new AppShell(store, dataAccess, gameModel, mainViewModel)
@@ -38,7 +38,7 @@ namespace mauiZH
 
             window.Created += (s, e) =>
             {
-                gameModel.NewGame(4, 4);
+                gameModel.NewGame(5, 5);
             };
 
             window.Activated += (s, e) =>
@@ -52,7 +52,7 @@ namespace mauiZH
                 {
                     try
                     {
-                        gameModel.LoadGame(SuspendedGameSavePath);
+                        //gameModel.LoadGame(SuspendedGameSavePath);
                     }
                     catch { }
                 });

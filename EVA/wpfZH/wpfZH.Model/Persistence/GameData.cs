@@ -12,7 +12,7 @@ namespace wpfZH.Model.Persistence
 
         public int Y { get; set; }
 
-        public List<int> Table { get; set; }
+        public List<int> Table { get; set; } = null!;
 
         public int GameStepCount { get; set; }
 

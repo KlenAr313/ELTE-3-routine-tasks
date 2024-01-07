@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8" ?>
+
+<ContentPage
+    x:Class="mauiZH.View.GamePage"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    Title="Sudoku">
+    <Grid Margin="4" RowSpacing="8">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="Auto" />
+        </Grid.RowDefinitions>
+
+        <!--  a gombokat a képernyő tetejére helyezzük  -->
+        <Button
+            Grid.Row="0"
+            Command="{Binding NewGameCommand}"
+            HorizontalOptions="Start"
+            Text="Új játék" />
+        <Button
+            Grid.Row="0"
+            Command="{Binding ExitCommand}"
+            HorizontalOptions="End"
+            Text="Beállítások" />
+
+        <Grid
+            Grid.Row="1"
+            BindableLayout.ItemsSource="{Binding Fields}"
+            ColumnDefinitions="{Binding GameTableColumns}"
+            ColumnSpacing="4"
+            RowDefinitions="{Binding GameTableRows}"
+            RowSpacing="4">
+            <!--  a játéktáblát egy sorfolytos listával valósítjuk meg  -->
+            <BindableLayout.ItemTemplate>
+                <DataTemplate>
+                    <!--  a rács elemei gombok lesznek  -->
+                    <Button
+                        Grid.Row="{Binding Y}"
+                        Grid.Column="{Binding X}"
+                        Padding="0"
+                        Command="{Binding StepCommand}"
+                        CommandParameter="{Binding XY}"
+                        FontAttributes="Bold"
+                        FontSize="Medium"
+                        HorizontalOptions="FillAndExpand"
+                        IsEnabled="{Binding IsEnabled}"
+                        Text="{Binding Text}"
+                        VerticalOptions="FillAndExpand" />
+                </DataTemplate>
+            </BindableLayout.ItemTemplate>
+        </Grid>
+
+        <!--  az információkat alul írjuk ki  -->
+        <HorizontalStackLayout Grid.Row="2" HorizontalOptions="Start">
+            <Label Text="Lépésszám: " />
+            <Label Text="{Binding GameStepCount}" />
+        </HorizontalStackLayout>
+        <HorizontalStackLayout Grid.Row="2" HorizontalOptions="End">
+            <Label Text="Játékidő: " />
+            <Label Text="{Binding GameTime}" />
+        </HorizontalStackLayout>
+    </Grid>
+</ContentPage>

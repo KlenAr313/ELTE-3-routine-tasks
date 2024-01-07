@@ -43,7 +43,7 @@ namespace wpfZH
             {
                 OpenFileDialog openFileDialog = new OpenFileDialog();
                 openFileDialog.Title = "Load game";
-                openFileDialog.Filter = "Game|*.json";
+                openFileDialog.Filter = "Game (.json)|*.json";
                 if (openFileDialog.ShowDialog() == true)
                 {
                     model.LoadGame(openFileDialog.FileName);
@@ -61,7 +61,7 @@ namespace wpfZH
             {
                 SaveFileDialog saveFileDialog = new SaveFileDialog();
                 saveFileDialog.Title = "Save game";
-                saveFileDialog.Filter = "Game|*.json";
+                saveFileDialog.Filter = "Game (.json)|*.json";
                 if (saveFileDialog.ShowDialog() == true)
                 {
                     try

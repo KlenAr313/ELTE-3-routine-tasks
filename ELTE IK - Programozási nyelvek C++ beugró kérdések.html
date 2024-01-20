@@ -1,0 +1,1366 @@
+<html>
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <title>ELTE IK - Programozási nyelvek C++ beugró kérdések</title>
+    <!--link type="text/css" rel="stylesheet"
+        href="ELTE%20IK%20-%20Programoz%EF%BF%BDsi%20nyelvek%20C++%20beugr%EF%BF%BD%20k%EF%BF%BDrd%EF%BF%BDsek%20v%EF%BF%BDlaszokkal_files/style.css"-->
+    <style type="text/css">
+    #container {
+        width: 960px;
+        margin: 0 auto;
+    }
+    
+    .question-block {
+        margin: 10px 0 40px;
+    }
+    
+    .question-block .q {
+        font-size: 20px;
+        margin-bottom: 10px;
+        text-decoration: underline;
+    }
+    
+    .question-block .answers li {
+        list-style-type: none;
+        font-size: 18px;
+        line-height: 30px;
+    }
+    
+    .question-block .code {
+        background-color: #efefef;
+        padding: 10px 0 10px 10px;
+    }</style>
+</head>
+
+<body>
+    <div id="container">
+        <div class="question-block">
+            <p class="q">1. Hány byte-on tárol a C++ egy karaktert (char)?</p>
+            <ul class="answers">
+                <li><input type="radio" name="1" value="1" disabled="disabled"> implementáció-függő</li>
+                <li><input type="radio" name="1" value="2" disabled="disabled"> 4</li>
+                <li><input type="radio" name="1" value="3" disabled="disabled"> 1</li>
+                <li><input type="radio" name="1" value="4" disabled="disabled"> 8</li>
+            </ul>
+        </div>
+        <hr class="separator">
+        <div class="question-block">
+            <p class="q">2. Melyik reláció <b>hamis</b> az alábbiak közül?</p>
+            <ul class="answers">
+                <li><input type="radio" name="2" value="5" disabled="disabled"> sizeof(float) &lt;= sizeof(double)</li>
+                <li><input type="radio" name="2" value="6" disabled="disabled"> sizeof(short) &lt;= sizeof(int)</li>
+                <li><input type="radio" name="2" value="7" disabled="disabled"> sizeof(unsigned char) == sizeof(char)
+                </li>
+                <li><input type="radio" name="2" value="8" disabled="disabled"> sizeof(double) &lt; sizeof(long double)
+                </li>
+            </ul>
+        </div>
+        <hr class="separator">
+        <div class="question-block">
+            <p class="q">3. Melyik állítás igaz az alábbiak közül?</p>
+            <ul class="answers">
+                <li><input type="radio" name="3" value="9" disabled="disabled"> A 4e-1 és a 0.4 konstansok értéke
+                    megegyezik.</li>
+                <li><input type="radio" name="3" value="10" disabled="disabled"> A 4e-1f és a 4.1 konstansok típusa
+                    megegyezik.</li>
+                <li><input type="radio" name="3" value="11" disabled="disabled"> A 4e-1f és a 4.1 konstansok értéke
+                    megegyezik.</li>
+                <li><input type="radio" name="3" value="12" disabled="disabled"> A 4e2 és a 4.2L konstansok típusa
+                    megegyezik.</li>
+            </ul>
+        </div>
+        <hr class="separator">
+        <div class="question-block">
+            <p class="q">4. Melyik <b>nem</b> preprocesszor direktíva?</p>
+            <ul class="answers">
+                <li><input type="radio" name="4" value="13" disabled="disabled"> #else</li>
+                <li><input type="radio" name="4" value="14" disabled="disabled"> #elif</li>
+                <li><input type="radio" name="4" value="15" disabled="disabled"> #undef</li>
+                <li><input type="radio" name="4" value="16" disabled="disabled"> #while</li>
+            </ul>
+        </div>
+        <hr class="separator">
+        <div class="question-block">
+            <p class="q">5. Melyik definíció az alábbiak közül?</p>
+            <ul class="answers">
+                <li><input type="radio" name="5" value="17" disabled="disabled"> class MyClass;</li>
+                <li><input type="radio" name="5" value="18" disabled="disabled"> int a[10];</li>
+                <li><input type="radio" name="5" value="19" disabled="disabled"> extern int i;</li>
+                <li><input type="radio" name="5" value="20" disabled="disabled"> struct MyStruct;</li>
+            </ul>
+        </div>
+        <hr class="separator">
+        <div class="question-block">
+            <p class="q">6. Melyik igaz az alábbiak közül?</p>
+            <ul class="answers">
+                <li><input type="radio" name="6" value="21" disabled="disabled"> Az automatikus változók a stack-en
+                    jönnek létre.</li>
+                <li><input type="radio" name="6" value="22" disabled="disabled"> Az automatikus változók a statikus
+                    tárterületen jönnek létre.</li>
+                <li><input type="radio" name="6" value="23" disabled="disabled"> Az automatikus változók a winchester-en
+                    jönnek létre.</li>
+                <li><input type="radio" name="6" value="24" disabled="disabled"> Az automatikus változók a heap-en
+                    jönnek létre.</li>
+            </ul>
+        </div>
+        <hr class="separator">
+        <div class="question-block">
+            <p class="q">7. Mi a csillagozott sorban meghívott művelet neve?</p>
+            <div class="code">
+                <pre>class Foo
+{
+// ...
+};
+
+Foo f;
+Foo g = f; // (*)</pre>
+            </div>
+            <ul class="answers">
+                <li><input type="radio" name="7" value="25" disabled="disabled"> destruktor</li>
+                <li><input type="radio" name="7" value="26" disabled="disabled"> default konstruktor</li>
+                <li><input type="radio" name="7" value="27" disabled="disabled"> értékadó operátor</li>
+                <li><input type="radio" name="7" value="28" disabled="disabled"> copy konstruktor</li>
+            </ul>
+        </div>
+        <hr class="separator">
+        <div class="question-block">
+            <p class="q">8. Az alábbi példában a Foo f(5); konstruktor hívása után mennyi lesz f.b értéke?</p>
+            <div class="code">
+                <pre>struct Foo
+{
+    int a, b;
+    Foo(int c):a(c*2),b(c*3) {}
+};</pre>
+            </div>
+            <ul class="answers">
+                <li><input type="radio" name="8" value="29" disabled="disabled"> 10</li>
+                <li><input type="radio" name="8" value="30" disabled="disabled"> nemdefiniált</li>
+                <li><input type="radio" name="8" value="31" disabled="disabled"> 0</li>
+                <li><input type="radio" name="8" value="32" disabled="disabled"> 15</li>
+            </ul>
+        </div>
+        <hr class="separator">
+        <div class="question-block">
+            <p class="q">9. Melyik típusnak van push_front tagfüggvénye?</p>
+            <ul class="answers">
+                <li><input type="radio" name="9" value="33" disabled="disabled"> std::list</li>
+                <li><input type="radio" name="9" value="34" disabled="disabled"> std::set</li>
+                <li><input type="radio" name="9" value="35" disabled="disabled"> std::vector</li>
+                <li><input type="radio" name="9" value="36" disabled="disabled"> std::stack</li>
+            </ul>
+        </div>
+        <hr class="separator">
+        <div class="question-block">
+            <p class="q">10.
+                Adott az alábbi x típus és f függvény. Az f(x) függvény hívásakor az x
+                típus melyik műveletét hajtjuk végre a paraméter átadáshoz?</p>
+            <div class="code">
+                <pre>class X
+{
+// ...
+};
+
+void f(X a)
+{
+// ...
+}
+
+X x;</pre>
+            </div>
+            <ul class="answers">
+                <li><input type="radio" name="10" value="37" disabled="disabled"> Az x típus default konstruktorát.</li>
+                <li><input type="radio" name="10" value="38" disabled="disabled"> Az x típus értékadó operátorát.</li>
+                <li><input type="radio" name="10" value="39" disabled="disabled"> Nem hajtunk végre műveletet, mert x
+                    hivatkozás szerint adódik át.</li>
+                <li><input type="radio" name="10" value="40" disabled="disabled"> Az x típus copy konstruktorát.</li>
+            </ul>
+        </div>
+        <hr class="separator">
+        <div class="question-block">
+            <p class="q">11. Az alábbi kódban a csillagozott helyen mi a this-nek a típusa?</p>
+            <div class="code">
+                <pre>struct Foo
+{
+    void f()
+    {
+        // (*)
+    }
+};</pre>
+            </div>
+            <ul class="answers">
+                <li><input type="radio" name="11" value="41" disabled="disabled"> const Foo*</li>
+                <li><input type="radio" name="11" value="42" disabled="disabled"> Foo*</li>
+                <li><input type="radio" name="11" value="43" disabled="disabled"> Foo&amp;</li>
+                <li><input type="radio" name="11" value="44" disabled="disabled"> void*</li>
+            </ul>
+        </div>
+        <hr class="separator">
+        <div class="question-block">
+            <p class="q">12. Melyik állítás igaz az alábbiak közül?</p>
+            <ul class="answers">
+                <li><input type="radio" name="12" value="45" disabled="disabled"> Nem származtathatunk az std::string
+                    típusból, mert nincs virtuális destruktora.</li>
+                <li><input type="radio" name="12" value="46" disabled="disabled"> Származtathatunk az std::string
+                    típusból.</li>
+                <li><input type="radio" name="12" value="47" disabled="disabled"> Nem származtathatunk az std::string
+                    típusból, mert az nem típus, hanem typedef.</li>
+                <li><input type="radio" name="12" value="48" disabled="disabled"> Nem származtathatunk az std::string
+                    típusból, mert nincsenek protected adattagjai.</li>
+            </ul>
+        </div>
+        <hr class="separator">
+        <div class="question-block">
+            <p class="q">13. Mi <b>nem</b> lehet template paraméter az alábbiak közül?</p>
+            <ul class="answers">
+                <li><input type="radio" name="13" value="49" disabled="disabled"> típus</li>
+                <li><input type="radio" name="13" value="50" disabled="disabled"> Külső szerkesztésű függvény címe</li>
+                <li><input type="radio" name="13" value="51" disabled="disabled"> Egész konstans</li>
+                <li><input type="radio" name="13" value="52" disabled="disabled"> Karakterlánc iterál</li>
+            </ul>
+        </div>
+        <hr class="separator">
+        <div class="question-block">
+            <p class="q">14. Mennyi az értéke i-nek az alábbi kód végrehajtása után:</p>
+            <div class="code">
+                <pre>char ch = 255;
+int i = ch;</pre>
+            </div>
+            <ul class="answers">
+                <li><input type="radio" name="14" value="53" disabled="disabled"> -1</li>
+                <li><input type="radio" name="14" value="54" disabled="disabled"> 255</li>
+                <li><input type="radio" name="14" value="55" disabled="disabled"> implementáció-függő</li>
+                <li><input type="radio" name="14" value="56" disabled="disabled"> nem fordul le.</li>
+            </ul>
+        </div>
+        <hr class="separator">
+        <div class="question-block">
+            <p class="q">15. Melyik értékadás szabályos az alábbi kód után?</p>
+            <div class="code">
+                <pre>int i = 10;
+const int j = 15;
+
+const int *p = &amp;j;</pre>
+            </div>
+            <ul class="answers">
+                <li><input type="radio" name="15" value="57" disabled="disabled"> p = *j;</li>
+                <li><input type="radio" name="15" value="58" disabled="disabled"> *p = i;</li>
+                <li><input type="radio" name="15" value="59" disabled="disabled"> p *= i;</li>
+                <li><input type="radio" name="15" value="60" disabled="disabled"> p = &amp;i;</li>
+            </ul>
+        </div>
+        <hr class="separator">
+        <div class="question-block">
+            <p class="q">16. Hány byte-on tárol a C++ egy double-t?</p>
+            <ul class="answers">
+                <li><input type="radio" name="16" value="61" disabled="disabled"> implementáció-függő</li>
+                <li><input type="radio" name="16" value="62" disabled="disabled"> 4</li>
+                <li><input type="radio" name="16" value="63" disabled="disabled"> 8</li>
+                <li><input type="radio" name="16" value="64" disabled="disabled"> 6</li>
+            </ul>
+        </div>
+        <hr class="separator">
+        <div class="question-block">
+            <p class="q">17. Mi a típusa a "Hello" literálnak?</p>
+            <ul class="answers">
+                <li><input type="radio" name="17" value="65" disabled="disabled"> const std::string</li>
+                <li><input type="radio" name="17" value="66" disabled="disabled"> char*</li>
+                <li><input type="radio" name="17" value="67" disabled="disabled"> char[5]</li>
+                <li><input type="radio" name="17" value="68" disabled="disabled"> const char[6]</li>
+            </ul>
+        </div>
+        <hr class="separator">
+        <div class="question-block">
+            <p class="q">18. Melyik kulcsszó <b>nem</b> a tárolási osztályt specifikálja egy deklarációban ill.
+                definícióban?</p>
+            <ul class="answers">
+                <li><input type="radio" name="18" value="69" disabled="disabled"> extern</li>
+                <li><input type="radio" name="18" value="70" disabled="disabled"> static</li>
+                <li><input type="radio" name="18" value="71" disabled="disabled"> auto</li>
+                <li><input type="radio" name="18" value="72" disabled="disabled"> int</li>
+            </ul>
+        </div>
+        <hr class="separator">
+        <div class="question-block">
+            <p class="q">19. Melyik igaz az alábbiak közül?</p>
+            <ul class="answers">
+                <li><input type="radio" name="19" value="73" disabled="disabled"> A globális változók a heap-en jönnek
+                    létre.</li>
+                <li><input type="radio" name="19" value="74" disabled="disabled"> A globális változók a statikus
+                    tárterületen jönnek létre.</li>
+                <li><input type="radio" name="19" value="75" disabled="disabled"> A globális változók a winchester-en
+                    jönnek létre.</li>
+                <li><input type="radio" name="19" value="76" disabled="disabled"> A globális változók a stack-en jönnek
+                    létre.</li>
+            </ul>
+        </div>
+        <hr class="separator">
+        <div class="question-block">
+            <p class="q">20. Melyik igaz az alábbiak közül?</p>
+            <div class="code">
+                <pre>struct X
+{
+    X(int i = 0) {}
+};</pre>
+            </div>
+            <ul class="answers">
+                <li><input type="radio" name="20" value="77" disabled="disabled"> A fenti struct-nak nincs default
+                    konstruktora.</li>
+                <li><input type="radio" name="20" value="78" disabled="disabled"> A fenti struct-nak csak default
+                    konstruktora van.</li>
+                <li><input type="radio" name="20" value="79" disabled="disabled"> A fenti struct-nak nincs copy
+                    konstruktora.</li>
+                <li><input type="radio" name="20" value="80" disabled="disabled"> A fenti struct-nak van default
+                    konstruktora.</li>
+            </ul>
+        </div>
+        <hr class="separator">
+        <div class="question-block">
+            <p class="q">21. Az alábbiak közül melyiket kötelező inicializálni az inicializáló listában?</p>
+            <ul class="answers">
+                <li><input type="radio" name="21" value="81" disabled="disabled"> az összes adattagot</li>
+                <li><input type="radio" name="21" value="82" disabled="disabled"> tömböket</li>
+                <li><input type="radio" name="21" value="83" disabled="disabled"> semmit sem kötelező inicializálni</li>
+                <li><input type="radio" name="21" value="84" disabled="disabled"> a konstansokat</li>
+            </ul>
+        </div>
+        <hr class="separator">
+        <div class="question-block">
+            <p class="q">22. Melyik konténer asszociatív?</p>
+            <ul class="answers">
+                <li><input type="radio" name="22" value="85" disabled="disabled"> std::queue</li>
+                <li><input type="radio" name="22" value="86" disabled="disabled"> std::set</li>
+                <li><input type="radio" name="22" value="87" disabled="disabled"> std::vector</li>
+                <li><input type="radio" name="22" value="88" disabled="disabled"> std::list</li>
+            </ul>
+        </div>
+        <hr class="separator">
+        <div class="question-block">
+            <p class="q">23. Mi lesz az <b>a</b> változó értéke a függvényhívás után?</p>
+            <div class="code">
+                <pre>int a = 1, b =2;
+
+void f(int&amp; x, int&amp; y)
+{
+    int t = x;
+    x = y;
+    y = t;
+}
+
+f(a,b);</pre>
+            </div>
+            <ul class="answers">
+                <li><input type="radio" name="23" value="89" disabled="disabled"> nem definiált</li>
+                <li><input type="radio" name="23" value="90" disabled="disabled"> 2</li>
+                <li><input type="radio" name="23" value="91" disabled="disabled"> semmi, fordítási hiba keletkezik</li>
+                <li><input type="radio" name="23" value="92" disabled="disabled"> 1</li>
+            </ul>
+        </div>
+        <hr class="separator">
+        <div class="question-block">
+            <p class="q">24. Az alábbi függvény deklarációk alapján melyik tagfüggvény hívható meg <b>const Foo</b>
+                objektumon?</p>
+            <div class="code">
+                <pre>struct Foo
+{
+    const int a(int i);
+    int b(const int i);
+    virtual int c(int i);
+    int d(int i) const;
+};
+
+const Foo foo;</pre>
+            </div>
+            <ul class="answers">
+                <li><input type="radio" name="24" value="93" disabled="disabled"> foo.d(2);</li>
+                <li><input type="radio" name="24" value="94" disabled="disabled"> foo.c(0);</li>
+                <li><input type="radio" name="24" value="95" disabled="disabled"> foo.a(3);</li>
+                <li><input type="radio" name="24" value="96" disabled="disabled"> foo.b(12);</li>
+            </ul>
+        </div>
+        <hr class="separator">
+        <div class="question-block">
+            <p class="q">25. Az alábbi típusok közül melyik poliformikus?</p>
+            <div class="code">
+                <pre>struct X;
+struct A
+{
+    A(const X&amp; b);
+    A(int i);
+};
+
+struct B
+{
+    static int a;
+};
+
+struct Base{};
+
+struct C : public Base
+{
+
+};
+
+struct D
+{
+    virtual ~D();
+};</pre>
+            </div>
+            <ul class="answers">
+                <li><input type="radio" name="25" value="97" disabled="disabled"> A</li>
+                <li><input type="radio" name="25" value="98" disabled="disabled"> B</li>
+                <li><input type="radio" name="25" value="99" disabled="disabled"> C</li>
+                <li><input type="radio" name="25" value="100" disabled="disabled"> D</li>
+            </ul>
+        </div>
+        <hr class="separator">
+        <div class="question-block">
+            <p class="q">26. Melyik kódrészlet helyes?</p>
+            <ul class="answers">
+                <li><input type="radio" name="26" value="101" disabled="disabled"> struct Foo { template &lt;bool f&gt;
+                    void bar() const { // ... } }; Foo f; f.bar&lt;true&gt;();</li>
+                <li><input type="radio" name="26" value="102" disabled="disabled"> template &lt;int N&gt; enum A { Elem
+                    = N };</li>
+                <li><input type="radio" name="26" value="103" disabled="disabled"> template &lt;typename T&gt; typedef
+                    std::set&lt;T, std::greater&lt;T&gt; &gt; GreaterSet;</li>
+                <li><input type="radio" name="26" value="104" disabled="disabled"> template &lt;typename T = int&gt;
+                    const T&amp; max(const T&amp; a, const T&amp; b);</li>
+            </ul>
+        </div>
+        <hr class="separator">
+        <div class="question-block">
+            <p class="q">27. Mit jelent a static kulcsszó az alábbi osztálydefinícióban?</p>
+            <div class="code">
+                <pre>struct S
+{
+    static int x;
+};</pre>
+            </div>
+            <ul class="answers">
+                <li><input type="radio" name="27" value="105" disabled="disabled"> S-ből nem lehet objektumot létrehozni
+                </li>
+                <li><input type="radio" name="27" value="106" disabled="disabled"> az x változót csak S tagfügvényei
+                    érhetik el</li>
+                <li><input type="radio" name="27" value="107" disabled="disabled"> x osztályszintű adattag</li>
+                <li><input type="radio" name="27" value="108" disabled="disabled"> semmit, struct kulcsszóval nem lehet
+                    osztályt definiálni</li>
+            </ul>
+        </div>
+        <hr class="separator">
+        <div class="question-block">
+            <p class="q">28. Melyik állítás igaz az alábbiak közül?</p>
+            <ul class="answers">
+                <li><input type="radio" name="28" value="109" disabled="disabled"> A sizeof(int) == sizeof(int* const)
+                    reláció mindig igaz.</li>
+                <li><input type="radio" name="28" value="110" disabled="disabled"> Egy int* const típusú pointer mérete
+                    8 byte.</li>
+                <li><input type="radio" name="28" value="111" disabled="disabled"> Egy int* const típusú pointer
+                    mutathat változóra.</li>
+                <li><input type="radio" name="28" value="112" disabled="disabled"> Egy int* const típusú pointer nem
+                    változtathatja meg a mutatott értéket.</li>
+            </ul>
+        </div>
+        <hr class="separator">
+        <div class="question-block">
+            <p class="q">30. Mennyi a 012 konstans értéke?</p>
+            <ul class="answers">
+                <li><input type="radio" name="30" value="117" disabled="disabled"> 18</li>
+                <li><input type="radio" name="30" value="118" disabled="disabled"> 0.12</li>
+                <li><input type="radio" name="30" value="119" disabled="disabled"> 12</li>
+                <li><input type="radio" name="30" value="120" disabled="disabled"> 10</li>
+            </ul>
+        </div>
+        <hr class="separator">
+        <div class="question-block">
+            <p class="q">31. Melyik nem definíció az alábbiak közül?</p>
+            <ul class="answers">
+                <li><input type="radio" name="31" value="121" disabled="disabled"> struct Foo { // ... };</li>
+                <li><input type="radio" name="31" value="122" disabled="disabled"> void f(int i);</li>
+                <li><input type="radio" name="31" value="123" disabled="disabled"> int i;</li>
+                <li><input type="radio" name="31" value="124" disabled="disabled"> class Foo { // ... };</li>
+            </ul>
+        </div>
+        <hr class="separator">
+        <div class="question-block">
+            <p class="q">32. Melyik deklarációra illeszkedik a csillaggal jelölt sorban meghívott művelet?</p>
+            <div class="code">
+                <pre>class Foo
+{
+// ...
+};
+
+Foo f;
+Foo g = f; // (*)</pre>
+            </div>
+            <ul class="answers">
+                <li><input type="radio" name="32" value="125" disabled="disabled"> Foo&amp; Foo::operator=(const
+                    Foo&amp; rhs);</li>
+                <li><input type="radio" name="32" value="126" disabled="disabled"> Foo::Foo();</li>
+                <li><input type="radio" name="32" value="127" disabled="disabled"> Foo::Foo(const Foo&amp; rhs);</li>
+                <li><input type="radio" name="32" value="128" disabled="disabled"> void Foo::operator()();</li>
+            </ul>
+        </div>
+        <hr class="separator">
+        <div class="question-block">
+            <p class="q">34. Mi lesz az <b>a</b> változó értéke a függvényhívás után?</p>
+            <div class="code">
+                <pre>int a = 1;
+
+void f(int&amp; x, int&amp; y)
+{
+    int t = x;
+    x = y;
+    y = t;
+}
+
+f(a,2);</pre>
+            </div>
+            <ul class="answers">
+                <li><input type="radio" name="34" value="133" disabled="disabled"> 2</li>
+                <li><input type="radio" name="34" value="134" disabled="disabled"> 1</li>
+                <li><input type="radio" name="34" value="135" disabled="disabled"> semmi, fordítási hiba keletkezik</li>
+                <li><input type="radio" name="34" value="136" disabled="disabled"> nem definiált</li>
+            </ul>
+        </div>
+        <hr class="separator">
+        <div class="question-block">
+            <p class="q">35. Melyik állítás igaz egy <b>konstans</b> objektum esetében?</p>
+            <ul class="answers">
+                <li><input type="radio" name="35" value="137" disabled="disabled"> Az objektumnak csak a konstans
+                    taggügvényei hívhatóak meg.</li>
+                <li><input type="radio" name="35" value="138" disabled="disabled"> Az objektumnak csak private adattagja
+                    lehet.</li>
+                <li><input type="radio" name="35" value="139" disabled="disabled"> Az objektumnak csak azok a
+                    tagfüggvényei hívhatóak meg, amelyek nem módosítják az adattagjait.</li>
+                <li><input type="radio" name="35" value="140" disabled="disabled"> Az objektum csak default
+                    konstruktorral hozható létre.</li>
+            </ul>
+        </div>
+        <hr class="separator">
+        <div class="question-block">
+            <p class="q">36. Mitől válik egy osztály absztrakttá?</p>
+            <ul class="answers">
+                <li><input type="radio" name="36" value="141" disabled="disabled"> Van virtuális destruktora.</li>
+                <li><input type="radio" name="36" value="142" disabled="disabled"> Van tisztán virtuális tagfüggvénye.
+                </li>
+                <li><input type="radio" name="36" value="143" disabled="disabled"> A tagfüggvényeinek csak a
+                    deklarációja ismert.</li>
+                <li><input type="radio" name="36" value="144" disabled="disabled"> Van bázisosztálya.</li>
+            </ul>
+        </div>
+        <hr class="separator">
+        <div class="question-block">
+            <p class="q">37. Mi történik az alábbi függvényhíváskor?</p>
+            <div class="code">
+                <pre>template &lt;typename T&gt;
+T max(const T&amp; a, const T&amp; b);
+
+max(4.3, 23);</pre>
+            </div>
+            <ul class="answers">
+                <li><input type="radio" name="37" value="145" disabled="disabled"> Mindkét paraméter int-té
+                    konvertálódik</li>
+                <li><input type="radio" name="37" value="146" disabled="disabled"> Fordítási hiba keletkezik</li>
+                <li><input type="radio" name="37" value="147" disabled="disabled"> Mindkét paraméter double-lé
+                    konvertálódik</li>
+                <li><input type="radio" name="37" value="148" disabled="disabled"> Futás idejű hiba keletkezik</li>
+            </ul>
+        </div>
+        <hr class="separator">
+        <div class="question-block">
+            <p class="q">38. Mit nevezünk funktornak?</p>
+            <ul class="answers">
+                <li><input type="radio" name="38" value="149" disabled="disabled"> Azokat az objektumokat, amelyeknek
+                    van operator()-a.</li>
+                <li><input type="radio" name="38" value="150" disabled="disabled"> implementáció függő.</li>
+                <li><input type="radio" name="38" value="151" disabled="disabled"> Azokat az alprogramokat, amelyeknek
+                    nem void a visszatérési érték típusa.</li>
+                <li><input type="radio" name="38" value="152" disabled="disabled"> Azokat az alprogramokat, amelyeknek
+                    void a visszatérési érték típusa.</li>
+            </ul>
+        </div>
+        <hr class="separator">
+        <div class="question-block">
+            <p class="q">39. Melyik igaz az alábbiak közül?</p>
+            <ul class="answers">
+                <li><input type="radio" name="39" value="153" disabled="disabled"> A friend kulcsszó több osztály
+                    logikai csoportosítására szolgál.</li>
+                <li><input type="radio" name="39" value="154" disabled="disabled"> Egy friend függvény hozzáférhet az
+                    osztály private tagjaihoz.</li>
+                <li><input type="radio" name="39" value="155" disabled="disabled"> A friend kulcsszóval meghatározhatjuk
+                    a közelebbi osztályt többszörös öröklődés esetében.</li>
+                <li><input type="radio" name="39" value="156" disabled="disabled"> Egy friend template osztály esetén
+                    példányosításkor nem kötelező explicit megadni a template paramétereket.</li>
+            </ul>
+        </div>
+        <hr class="separator">
+        <div class="question-block">
+            <p class="q">40. Hány byte-on tárol a C++ egy float-ot?</p>
+            <ul class="answers">
+                <li><input type="radio" name="40" value="157" disabled="disabled"> 6</li>
+                <li><input type="radio" name="40" value="158" disabled="disabled"> 8</li>
+                <li><input type="radio" name="40" value="159" disabled="disabled"> 4</li>
+                <li><input type="radio" name="40" value="160" disabled="disabled"> implementáció-függő</li>
+            </ul>
+        </div>
+        <hr class="separator">
+        <div class="question-block">
+            <p class="q">41. Melyik preprocesszor direktíva?</p>
+            <ul class="answers">
+                <li><input type="radio" name="41" value="161" disabled="disabled"> #undefine</li>
+                <li><input type="radio" name="41" value="162" disabled="disabled"> #then</li>
+                <li><input type="radio" name="41" value="163" disabled="disabled"> #elif</li>
+                <li><input type="radio" name="41" value="164" disabled="disabled"> #while</li>
+            </ul>
+        </div>
+        <hr class="separator">
+        <div class="question-block">
+            <p class="q">42. Melyik nem definíció az alábbiak közül?</p>
+            <ul class="answers">
+                <li><input type="radio" name="42" value="165" disabled="disabled"> const int l = 1;</li>
+                <li><input type="radio" name="42" value="166" disabled="disabled"> static int i;</li>
+                <li><input type="radio" name="42" value="167" disabled="disabled"> extern int j;</li>
+                <li><input type="radio" name="42" value="168" disabled="disabled"> int k;</li>
+            </ul>
+        </div>
+        <hr class="separator">
+        <div class="question-block">
+            <p class="q">43. Az X::f() függvényhívás során mit ír ki a program?</p>
+            <div class="code">
+                <pre>int i = 1;
+namespace X
+{
+    int i = 2;
+
+    void f()
+    {
+        int a = i + 1;
+        int i = ::i - 1;
+        std::cout &lt;&lt; a &lt;&lt; ", " &lt;&lt; i &lt;&lt; std::endl;
+    }
+}</pre>
+            </div>
+            <ul class="answers">
+                <li><input type="radio" name="43" value="169" disabled="disabled"> 3, 0</li>
+                <li><input type="radio" name="43" value="170" disabled="disabled"> semmit, fordítási hiba keletkezik
+                </li>
+                <li><input type="radio" name="43" value="171" disabled="disabled"> 3, 2</li>
+                <li><input type="radio" name="43" value="172" disabled="disabled"> 2, 1</li>
+            </ul>
+        </div>
+        <hr class="separator">
+        <div class="question-block">
+            <p class="q">44. Az alábbi példában a Foo(10); konstruktor hívása után mennyi lesz f.x értéke?</p>
+            <div class="code">
+                <pre>struct Foo
+{
+    int x, y;
+    Foo(int i):y(i),x(y++) {}
+};</pre>
+            </div>
+            <ul class="answers">
+                <li><input type="radio" name="44" value="173" disabled="disabled"> 11</li>
+                <li><input type="radio" name="44" value="174" disabled="disabled"> 10</li>
+                <li><input type="radio" name="44" value="175" disabled="disabled"> nemdefiniált</li>
+                <li><input type="radio" name="44" value="176" disabled="disabled"> 0</li>
+            </ul>
+        </div>
+        <hr class="separator">
+        <div class="question-block">
+            <p class="q">46. Melyik állítás igaz az alábbiak közül?</p>
+            <ul class="answers">
+                <li><input type="radio" name="46" value="181" disabled="disabled"> A dynamic_cast fordítás idejű
+                    típuskonverziót végez.</li>
+                <li><input type="radio" name="46" value="182" disabled="disabled"> A dynamic_cast használatához nem
+                    lehet statikus adattagja az osztálynak.</li>
+                <li><input type="radio" name="46" value="183" disabled="disabled"> A dynamic_cast soha nem dob kivételt.
+                </li>
+                <li><input type="radio" name="46" value="184" disabled="disabled"> A dynamic_cast használatához polimorf
+                    osztályokra van szükség.</li>
+            </ul>
+        </div>
+        <hr class="separator">
+        <div class="question-block">
+            <p class="q">47. Melyik állítás igaz az alábbiak közül?</p>
+            <ul class="answers">
+                <li><input type="radio" name="47" value="185" disabled="disabled"> Az alaptípsuok prefix operator++-nak
+                    void a visszatérési érték típusa.</li>
+                <li><input type="radio" name="47" value="186" disabled="disabled"> deklarációban egy plusz paraméterrel
+                    tudjuk megkülönbztetni a postfix operator++-t a prefix-től.</li>
+                <li><input type="radio" name="47" value="187" disabled="disabled"> A postfix operator++ mindig
+                    hatékonyabb, mint a prefix</li>
+                <li><input type="radio" name="47" value="188" disabled="disabled"> A postfix operator++ mindig a
+                    megnövelt értéket adja vissza.</li>
+            </ul>
+        </div>
+        <hr class="separator">
+        <div class="question-block">
+            <p class="q">48. Melyik állítás igaz az alábbiak közül?</p>
+            <ul class="answers">
+                <li><input type="radio" name="48" value="189" disabled="disabled"> Polimorf osztályok esetében az összes
+                    konstruktornak virtuálisnak kell lennie.</li>
+                <li><input type="radio" name="48" value="190" disabled="disabled"> Nem lehet olyan osztályból
+                    származtatni, amelynek nincsen virtuális destruktora.</li>
+                <li><input type="radio" name="48" value="191" disabled="disabled"> A bázisosztály konstruktorai nem
+                    öröklődnek a származtatott típusba.</li>
+                <li><input type="radio" name="48" value="192" disabled="disabled"> A konstruktor közül csak a copy
+                    konstruktor lehet virtuális, hogy felüldefiniálható legyen a másolás.</li>
+            </ul>
+        </div>
+        <hr class="separator">
+        <div class="question-block">
+            <p class="q">49. Mi <b>nem</b> lehet template paraméter az alábbiak közül?</p>
+            <ul class="answers">
+                <li><input type="radio" name="49" value="193" disabled="disabled"> Karakterlánc iterál</li>
+                <li><input type="radio" name="49" value="194" disabled="disabled"> Típus</li>
+                <li><input type="radio" name="49" value="195" disabled="disabled"> Egész konstans</li>
+                <li><input type="radio" name="49" value="196" disabled="disabled"> Külső szerkesztésű függvény címe</li>
+            </ul>
+        </div>
+        <hr class="separator">
+        <div class="question-block">
+            <p class="q">50. Melyik állítás igaz az alábbiak közül?</p>
+            <ul class="answers">
+                <li><input type="radio" name="50" value="197" disabled="disabled"> paraméterdedukció csak függvények
+                    esetében használható.</li>
+                <li><input type="radio" name="50" value="198" disabled="disabled"> Nem lehet származtatni typedef által
+                    meghatározott típusból.</li>
+                <li><input type="radio" name="50" value="199" disabled="disabled"> A paraméterdedukció futási időben
+                    történik.</li>
+                <li><input type="radio" name="50" value="200" disabled="disabled"> Az objektumok dinamikus típusút
+                    ismeri a fordítóprogram.</li>
+            </ul>
+        </div>
+        <hr class="separator">
+        <div class="question-block">
+            <p class="q">51. Mi a típusa a 5e2f literálnak?</p>
+            <ul class="answers">
+                <li><input type="radio" name="51" value="201" disabled="disabled"> float</li>
+                <li><input type="radio" name="51" value="202" disabled="disabled"> int</li>
+                <li><input type="radio" name="51" value="203" disabled="disabled"> double</li>
+                <li><input type="radio" name="51" value="204" disabled="disabled"> ez nem szabályos konstans</li>
+            </ul>
+        </div>
+        <hr class="separator">
+        <div class="question-block">
+            <p class="q">52. Mi a problémája a preprocesszor használatának?</p>
+            <ul class="answers">
+                <li><input type="radio" name="52" value="205" disabled="disabled"> A Java programozási nyelv nem
+                    támogatja, ezért nem tudjuk együtt használni a C++-t a Java-val.</li>
+                <li><input type="radio" name="52" value="206" disabled="disabled"> A preprocesszor
+                    implementáció-specifikus.</li>
+                <li><input type="radio" name="52" value="207" disabled="disabled"> Jelentősen növeli a futási időt.</li>
+                <li><input type="radio" name="52" value="208" disabled="disabled"> Független a C++ nyelvtől, ezért nincs
+                    tekintettel a nyelvi szabályokra.</li>
+            </ul>
+        </div>
+        <hr class="separator">
+        <div class="question-block">
+            <p class="q">53. Mennyi lesz foo.a értéke?</p>
+            <div class="code">
+                <pre>struct Foo
+{
+    int a;
+    
+    Foo(int i):Foo(i, 0)
+    {
+    }
+
+    Foo(int i, int j):a(i)
+    {
+    }
+};
+
+Foo foo(4);</pre>
+            </div>
+            <ul class="answers">
+                <li><input type="radio" name="53" value="209" disabled="disabled"> Fordítási hibát kapunk.</li>
+                <li><input type="radio" name="53" value="210" disabled="disabled"> 0</li>
+                <li><input type="radio" name="53" value="211" disabled="disabled"> Nemdefiniált</li>
+                <li><input type="radio" name="53" value="212" disabled="disabled"> 4</li>
+            </ul>
+        </div>
+        <hr class="separator">
+        <div class="question-block">
+            <p class="q">54. Hány byte-on tárol a C++ egy short int-et?</p>
+            <ul class="answers">
+                <li><input type="radio" name="54" value="213" disabled="disabled"> 1</li>
+                <li><input type="radio" name="54" value="214" disabled="disabled"> 2</li>
+                <li><input type="radio" name="54" value="215" disabled="disabled"> 8</li>
+                <li><input type="radio" name="54" value="216" disabled="disabled"> Implementáció-függő</li>
+            </ul>
+        </div>
+        <hr class="separator">
+        <div class="question-block">
+            <p class="q">55. Melyik definíció az alábbiak közül?</p>
+            <ul class="answers">
+                <li><input type="radio" name="55" value="217" disabled="disabled"> void* p;</li>
+                <li><input type="radio" name="55" value="218" disabled="disabled"> struct X;</li>
+                <li><input type="radio" name="55" value="219" disabled="disabled"> int f();</li>
+                <li><input type="radio" name="55" value="220" disabled="disabled"> extern int i;</li>
+            </ul>
+        </div>
+        <hr class="separator">
+        <div class="question-block">
+            <p class="q">56. Milyen konstruktora(i) van(nak) az alábbi struct-nak?</p>
+            <div class="code">
+                <pre>struct X
+{
+    X(int) {...}
+};</pre>
+            </div>
+            <ul class="answers">
+                <li><input type="radio" name="56" value="221" disabled="disabled"> csak copy konstruktora</li>
+                <li><input type="radio" name="56" value="222" disabled="disabled"> csak egy int paraméteres konstruktora
+                </li>
+                <li><input type="radio" name="56" value="223" disabled="disabled"> csak default konstruktora</li>
+                <li><input type="radio" name="56" value="224" disabled="disabled"> copy konstruktora és egy int
+                    paraméteres konstruktora</li>
+            </ul>
+        </div>
+        <hr class="separator">
+        <div class="question-block">
+            <p class="q">57. Mi <b>nem</b> lehet template paraméter az alábbiak közül?</p>
+            <ul class="answers">
+                <li><input type="radio" name="57" value="225" disabled="disabled"> Lebegőpontos konstans</li>
+                <li><input type="radio" name="57" value="226" disabled="disabled"> Külső szerkesztésű objektum címe</li>
+                <li><input type="radio" name="57" value="227" disabled="disabled"> Logikai konstans</li>
+                <li><input type="radio" name="57" value="228" disabled="disabled"> Típus</li>
+            </ul>
+        </div>
+        <hr class="separator">
+        <div class="question-block">
+            <p class="q">58. Mi a típusa a 0xff konstansnak?</p>
+            <ul class="answers">
+                <li><input type="radio" name="58" value="229" disabled="disabled"> double</li>
+                <li><input type="radio" name="58" value="230" disabled="disabled"> char*</li>
+                <li><input type="radio" name="58" value="231" disabled="disabled"> double*</li>
+                <li><input type="radio" name="58" value="232" disabled="disabled"> int</li>
+            </ul>
+        </div>
+        <hr class="separator">
+        <div class="question-block">
+            <p class="q">59. Melyik kulcsszó <b>nem</b> a tárolási osztályt specifikálja egy deklarációban ill.
+                definícióban?</p>
+            <ul class="answers">
+                <li><input type="radio" name="59" value="233" disabled="disabled"> static</li>
+                <li><input type="radio" name="59" value="234" disabled="disabled"> register</li>
+                <li><input type="radio" name="59" value="235" disabled="disabled"> public</li>
+                <li><input type="radio" name="59" value="236" disabled="disabled"> auto</li>
+            </ul>
+        </div>
+        <hr class="separator">
+        <div class="question-block">
+            <p class="q">60. Melyik állítás igaz az alábbiak közül?</p>
+            <ul class="answers">
+                <li><input type="radio" name="60" value="237" disabled="disabled"> Absztrakt osztályból nem lehet
+                    objektumot létrehozni.</li>
+                <li><input type="radio" name="60" value="238" disabled="disabled"> Absztrakt osztálynak nem lehet
+                    adattagja.</li>
+                <li><input type="radio" name="60" value="239" disabled="disabled"> Absztrakt osztályból nem lehet
+                    származtatni.</li>
+                <li><input type="radio" name="60" value="240" disabled="disabled"> Absztrakt osztálynak nem lehet
+                    konstruktora.</li>
+            </ul>
+        </div>
+        <hr class="separator">
+        <div class="question-block">
+            <p class="q">61. Melyik vezet fordítási hibához az alábbi osztály template definíciók közül?</p>
+            <div class="code">
+                <pre>template &lt;class T&gt;
+class A
+{
+};
+
+template &lt;struct T&gt;
+class B
+{
+};
+
+template &lt;typename T&gt;
+class C
+{
+};
+
+template &lt;int N&gt;
+class D
+{
+};</pre>
+            </div>
+            <ul class="answers">
+                <li><input type="radio" name="61" value="241" disabled="disabled"> A</li>
+                <li><input type="radio" name="61" value="242" disabled="disabled"> B</li>
+                <li><input type="radio" name="61" value="243" disabled="disabled"> C</li>
+                <li><input type="radio" name="61" value="244" disabled="disabled"> D</li>
+            </ul>
+        </div>
+        <hr class="separator">
+        <div class="question-block">
+            <p class="q">62. Az alábbiak közül melyik függvényhívással lehet ekvivalens az alábbi (csillaggal jelölt)
+                operátorhívás?</p>
+            <div class="code">
+                <pre>class Matrix
+{
+    // ...
+};
+
+Matrix a,b;
+a + b; // (*)</pre>
+            </div>
+            <ul class="answers">
+                <li><input type="radio" name="62" value="245" disabled="disabled"> operator+(a,b);</li>
+                <li><input type="radio" name="62" value="246" disabled="disabled"> a.operator+(a,b);</li>
+                <li><input type="radio" name="62" value="247" disabled="disabled"> Matrix.operator+(a,b);</li>
+                <li><input type="radio" name="62" value="248" disabled="disabled"> b.operator+(a);</li>
+            </ul>
+        </div>
+        <hr class="separator">
+        <div class="question-block">
+            <p class="q">63. Melyik reláció igaz az alábbiak közül?</p>
+            <ul class="answers">
+                <li><input type="radio" name="63" value="249" disabled="disabled"> sizeof(bool) &lt; sizeof(char)</li>
+                <li><input type="radio" name="63" value="250" disabled="disabled"> sizeof(unsigned char) &lt;
+                    sizeof(char)</li>
+                <li><input type="radio" name="63" value="251" disabled="disabled"> sizeof(int) &lt;= sizeof(char)</li>
+                <li><input type="radio" name="63" value="252" disabled="disabled"> sizeof(float) &lt;= sizeof(double)
+                </li>
+            </ul>
+        </div>
+        <hr class="separator">
+        <div class="question-block">
+            <p class="q">64. Az alábbi függvény deklarációk alapján melyik tagfüggvény hívható meg <b>const Foo</b>
+                objektumon?</p>
+            <div class="code">
+                <pre>struct Foo
+{
+    virtual void a(const int i);
+    const int&amp; b(const int i);
+    void c() const;
+    const Foo&amp; d(const Foo&amp; f);
+};
+
+Foo foo;</pre>
+            </div>
+            <ul class="answers">
+                <li><input type="radio" name="64" value="253" disabled="disabled"> foo.b(12);</li>
+                <li><input type="radio" name="64" value="254" disabled="disabled"> foo.c();</li>
+                <li><input type="radio" name="64" value="255" disabled="disabled"> foo.d(foo);</li>
+                <li><input type="radio" name="64" value="256" disabled="disabled"> foo.a(3);</li>
+            </ul>
+        </div>
+        <hr class="separator">
+        <div class="question-block">
+            <p class="q">65. Mi a paraméterdedukció?</p>
+            <ul class="answers">
+                <li><input type="radio" name="65" value="257" disabled="disabled"> Az az eljárás, amikor
+                    referencia-szerinti paraméterátadásra cseréljük az érték-szerintit.</li>
+                <li><input type="radio" name="65" value="258" disabled="disabled"> Az az eljárás, amikor a
+                    fordítóprogram levezeti a template paramétereket a függvényhívásból.</li>
+                <li><input type="radio" name="65" value="259" disabled="disabled"> Az az eljárás, amikor linker feloldja
+                    a Külső függvényhívások paramétereit.</li>
+                <li><input type="radio" name="65" value="260" disabled="disabled"> Az az eljárás, amikor default
+                    paraméterekkel látjuk el a függvény paramétereket.</li>
+            </ul>
+        </div>
+        <hr class="separator">
+        <div class="question-block">
+            <p class="q">66. Mennyi a 0x11 konstans értéke?</p>
+            <ul class="answers">
+                <li><input type="radio" name="66" value="261" disabled="disabled"> 11</li>
+                <li><input type="radio" name="66" value="262" disabled="disabled"> 9</li>
+                <li><input type="radio" name="66" value="263" disabled="disabled"> 17</li>
+                <li><input type="radio" name="66" value="264" disabled="disabled"> 3</li>
+            </ul>
+        </div>
+        <hr class="separator">
+        <div class="question-block">
+            <p class="q">67. Az alábbiak közül melyiket kötelező inicializálni az inicializáló listában?</p>
+            <ul class="answers">
+                <li><input type="radio" name="67" value="265" disabled="disabled"> az STL-es konténereket</li>
+                <li><input type="radio" name="67" value="266" disabled="disabled"> a referenciákat</li>
+                <li><input type="radio" name="67" value="267" disabled="disabled"> a pointereket</li>
+                <li><input type="radio" name="67" value="268" disabled="disabled"> az összes adattagot</li>
+            </ul>
+        </div>
+        <hr class="separator">
+        <div class="question-block">
+            <p class="q">68. Melyik konténer szekvenciális?</p>
+            <ul class="answers">
+                <li><input type="radio" name="68" value="269" disabled="disabled"> std::set</li>
+                <li><input type="radio" name="68" value="270" disabled="disabled"> std::deque</li>
+                <li><input type="radio" name="68" value="271" disabled="disabled"> std::queue</li>
+                <li><input type="radio" name="68" value="272" disabled="disabled"> std::map</li>
+            </ul>
+        </div>
+        <hr class="separator">
+        <div class="question-block">
+            <p class="q">69. Melyik állítás igaz az alábbiak közül?</p>
+            <ul class="answers">
+                <li><input type="radio" name="69" value="273" disabled="disabled"> A tömbök és a pointerek mindig
+                    ekvivalensek.</li>
+                <li><input type="radio" name="69" value="274" disabled="disabled"> A tömbaritmetika több műveletet képes
+                    elvégezni, mint a pointeraritmetika.</li>
+                <li><input type="radio" name="69" value="275" disabled="disabled"> A tömböket mindig void* pointer
+                    típusú paraméterként adjuk át a függvényeknek.</li>
+                <li><input type="radio" name="69" value="276" disabled="disabled"> A tömbök mindig konvertálódnak első
+                    elemre mutató pointerré.</li>
+            </ul>
+        </div>
+        <hr class="separator">
+        <div class="question-block">
+            <p class="q">70. Az X::f() függvényhívás során mit ír ki a program?</p>
+            <div class="code">
+                <pre>int i = 1;
+namespace X
+{
+    int i = 2;
+
+    void f()
+    {
+        int a = i;
+        int i = a + X::i + ::i;
+        std::cout &lt;&lt; i &lt;&lt; std::endl;
+    }
+}</pre>
+            </div>
+            <ul class="answers">
+                <li><input type="radio" name="70" value="277" disabled="disabled"> 1</li>
+                <li><input type="radio" name="70" value="278" disabled="disabled"> 4</li>
+                <li><input type="radio" name="70" value="279" disabled="disabled"> 5</li>
+                <li><input type="radio" name="70" value="280" disabled="disabled"> semmit, fordítási hiba keletkezik
+                </li>
+            </ul>
+        </div>
+        <hr class="separator">
+        <div class="question-block">
+            <p class="q">71. Az alábbiak közül melyik függvény tisztán virtuális?</p>
+            <div class="code">
+                <pre>struct Foo
+{
+    virtual void a();
+    void b() const;
+    static void c();
+    virtual void d()=0;
+};</pre>
+            </div>
+            <ul class="answers">
+                <li><input type="radio" name="71" value="281" disabled="disabled"> a</li>
+                <li><input type="radio" name="71" value="282" disabled="disabled"> b</li>
+                <li><input type="radio" name="71" value="283" disabled="disabled"> c</li>
+                <li><input type="radio" name="71" value="284" disabled="disabled"> d</li>
+            </ul>
+        </div>
+        <hr class="separator">
+        <div class="question-block">
+            <p class="q">72. Mikor nevezünk erősen típusosnak egy nyelvet?</p>
+            <ul class="answers">
+                <li><input type="radio" name="72" value="285" disabled="disabled"> Erősen típusos, ha a fordítóprogram
+                    ellenőrzi, hogy definiált-e egy objektum vagy alprogram.</li>
+                <li><input type="radio" name="72" value="286" disabled="disabled"> Erősen típusos, ha minden kifejezés
+                    és részkifejezés típusa futási időben meghatározott.</li>
+                <li><input type="radio" name="72" value="287" disabled="disabled"> Erősen típusos, ha minden kifejezés
+                    és részkifejezés típusa fordítási időben meghatározott.</li>
+                <li><input type="radio" name="72" value="288" disabled="disabled"> Erősen típusos, ha a futási időben
+                    nem keletkezik kivétel.</li>
+            </ul>
+        </div>
+        <hr class="separator">
+        <div class="question-block">
+            <p class="q">73. Az std::sort algoritmus melyik konténerrel használható?</p>
+            <ul class="answers">
+                <li><input type="radio" name="73" value="289" disabled="disabled"> std::queue</li>
+                <li><input type="radio" name="73" value="290" disabled="disabled"> std::list</li>
+                <li><input type="radio" name="73" value="291" disabled="disabled"> std::set</li>
+                <li><input type="radio" name="73" value="292" disabled="disabled"> std::vector</li>
+            </ul>
+        </div>
+        <hr class="separator">
+        <div class="question-block">
+            <p class="q">74. Melyik állítás igaz az alábbiak közül?</p>
+            <ul class="answers">
+                <li><input type="radio" name="74" value="293" disabled="disabled"> A typedef konstrukcióból nem lehet
+                    sablont (template-t) írni.</li>
+                <li><input type="radio" name="74" value="294" disabled="disabled"> Nem lehet sablon (template)
+                    tagfüggvénye egy nem-template osztálynak.</li>
+                <li><input type="radio" name="74" value="295" disabled="disabled"> Az enum konstrukcióból lehet sablont
+                    (template-t) írni.</li>
+                <li><input type="radio" name="74" value="296" disabled="disabled"> A struct konstrukcióból nem lehet
+                    sablont (template-t) írni.</li>
+            </ul>
+        </div>
+        <hr class="separator">
+        <div class="question-block">
+            <p class="q">75. Melyik állítás igaz az alábbiak közül?</p>
+            <ul class="answers">
+                <li><input type="radio" name="75" value="297" disabled="disabled"> A C++ engedélyezi a többszörös
+                    öröklődést.</li>
+                <li><input type="radio" name="75" value="298" disabled="disabled"> Nem lehet alkalmazni a többszörös
+                    öröklődést, ha azonosító ütközés lépne fel.</li>
+                <li><input type="radio" name="75" value="299" disabled="disabled"> Csak akkor használható a többszörös
+                    öröklődés, ha az összes bázisosztálynak van virtuális destruktora.</li>
+                <li><input type="radio" name="75" value="300" disabled="disabled"> A C++ tiltja a többszörös öröklődést.
+                </li>
+            </ul>
+        </div>
+        <hr class="separator">
+        <div class="question-block">
+            <p class="q">76. Milyen konstruktorok hívhatóak az alábbi struct esetében?</p>
+            <div class="code">
+                <pre>struct X
+{
+};</pre>
+            </div>
+            <ul class="answers">
+                <li><input type="radio" name="76" value="301" disabled="disabled"> Csak copy konstruktor</li>
+                <li><input type="radio" name="76" value="302" disabled="disabled"> Nincsen konstruktora</li>
+                <li><input type="radio" name="76" value="303" disabled="disabled"> Copy és default konstruktor</li>
+                <li><input type="radio" name="76" value="304" disabled="disabled"> Csak default konstruktor</li>
+            </ul>
+        </div>
+        <hr class="separator">
+        <div class="question-block">
+            <p class="q">77. Melyik állítás igaz az alábbiak közül?</p>
+            <ul class="answers">
+                <li><input type="radio" name="77" value="305" disabled="disabled"> A sizeof(int) == sizeof(const int*)
+                    reláció mindig igaz.</li>
+                <li><input type="radio" name="77" value="306" disabled="disabled"> Egy const int* típusú pointer
+                    mutathat változóra.</li>
+                <li><input type="radio" name="77" value="307" disabled="disabled"> Egy const int* típusú pointer mérete
+                    4 byte.</li>
+                <li><input type="radio" name="77" value="308" disabled="disabled"> Egy const int* típusú pointer
+                    megváltoztathatja a mutatott értéket.</li>
+            </ul>
+        </div>
+        <hr class="separator">
+        <div class="question-block">
+            <p class="q">78. Mi a típusa az 5f2e konstansnak?</p>
+            <ul class="answers">
+                <li><input type="radio" name="78" value="309" disabled="disabled"> int</li>
+                <li><input type="radio" name="78" value="310" disabled="disabled"> ez nem szabályos konstans</li>
+                <li><input type="radio" name="78" value="311" disabled="disabled"> float</li>
+                <li><input type="radio" name="78" value="312" disabled="disabled"> double</li>
+            </ul>
+        </div>
+        <hr class="separator">
+        <div class="question-block">
+            <p class="q">79. A C++ kódokban lévő makrókat melyik egység dolgozza fel az alábbiak közül?</p>
+            <ul class="answers">
+                <li><input type="radio" name="79" value="313" disabled="disabled"> preprocessor</li>
+                <li><input type="radio" name="79" value="314" disabled="disabled"> A szabványos C++-ban nem is írhatunk
+                    makrókat (csak C-ben)</li>
+                <li><input type="radio" name="79" value="315" disabled="disabled"> assembler</li>
+                <li><input type="radio" name="79" value="316" disabled="disabled"> linker</li>
+            </ul>
+        </div>
+        <hr class="separator">
+        <div class="question-block">
+            <p class="q">80. Adott egy típus, melynek mérete nem egyezik meg a típus adattagjai méreteinek összegével.
+                Mi történhetett?</p>
+            <ul class="answers">
+                <li><input type="radio" name="80" value="317" disabled="disabled"> Megörökölték annak az osztálynak a
+                    tagjait is, amelyik minden C++ osztálynak az őse.</li>
+                <li><input type="radio" name="80" value="318" disabled="disabled"> Megfeledkeztünk a header guard-okról
+                    és több helyre is be include-oltuk a header filet.</li>
+                <li><input type="radio" name="80" value="319" disabled="disabled"> Találtunk egy bugot a
+                    fordítóprogramban.</li>
+                <li><input type="radio" name="80" value="320" disabled="disabled"> A fordítóprogram szóhatárra
+                    optimalizálta az adattago(ka)t</li>
+            </ul>
+        </div>
+        <hr class="separator">
+        <div class="question-block">
+            <p class="q">81. Definiálhatunk-e egy C++ függvény legbelső blokkjában két azonos nevű változót?</p>
+            <ul class="answers">
+                <li><input type="radio" name="81" value="321" disabled="disabled"> Igen, definiálhatunk.</li>
+                <li><input type="radio" name="81" value="322" disabled="disabled"> Nem.</li>
+                <li><input type="radio" name="81" value="323" disabled="disabled"> Ezt csak a g++ fordítóprogram
+                    támogatja.</li>
+                <li><input type="radio" name="81" value="324" disabled="disabled"> Csa akkor, ha különböző a típusuk.
+                </li>
+            </ul>
+        </div>
+        <hr class="separator">
+        <div class="question-block">
+            <p class="q">82. Adott egy típus, melynek mérete nem egyezik meg a típus adattagjai méreteinek összegével.
+                Mi történhetett?</p>
+            <ul class="answers">
+                <li><input type="radio" name="82" value="325" disabled="disabled"> A this pointer miatt nagyobb az
+                    osztály mérete.</li>
+                <li><input type="radio" name="82" value="326" disabled="disabled"> Megörökölték annak az osztálynak a
+                    tagjait is, amelyik minden C++ osztálynak az őse.</li>
+                <li><input type="radio" name="82" value="327" disabled="disabled"> Az osztályunknak van virtuális
+                    függvénye, egy létrejött a virtuális tábla pointer.</li>
+                <li><input type="radio" name="82" value="328" disabled="disabled"> Találtunk egy bugot a
+                    fordítóprogramban.</li>
+            </ul>
+        </div>
+        <hr class="separator">
+        <div class="question-block">
+            <p class="q">83. Az std::sort algoritmus melyik konténerrel használható?</p>
+            <ul class="answers">
+                <li><input type="radio" name="83" value="329" disabled="disabled"> std::set</li>
+                <li><input type="radio" name="83" value="330" disabled="disabled"> std::list</li>
+                <li><input type="radio" name="83" value="331" disabled="disabled"> std::auto_prt</li>
+                <li><input type="radio" name="83" value="332" disabled="disabled"> std::deque</li>
+            </ul>
+        </div>
+        <hr class="separator">
+        <div class="question-block">
+            <p class="q">84. Melyik állítás igaz az alábbiak közül?</p>
+            <ul class="answers">
+                <li><input type="radio" name="84" value="333" disabled="disabled"> A long long típust 8 byte-on
+                    ábrázolja a C++.</li>
+                <li><input type="radio" name="84" value="334" disabled="disabled"> A sizeof(long int) &lt;= sizeof(long
+                    long) reláció mindig igaz.</li>
+                <li><input type="radio" name="84" value="335" disabled="disabled"> A szabványos C++ nem definiálja a
+                    long long típust.</li>
+                <li><input type="radio" name="84" value="336" disabled="disabled"> A sizeof(long double) == sizeof(long
+                    long) reláció mindig igaz.</li>
+            </ul>
+        </div>
+        <hr class="separator">
+        <div class="question-block">
+            <p class="q">85. Melyik azonosító szabályos a C++ szabályai szerint?</p>
+            <ul class="answers">
+                <li><input type="radio" name="85" value="337" disabled="disabled"> 101_kiskutya</li>
+                <li><input type="radio" name="85" value="338" disabled="disabled"> _1</li>
+                <li><input type="radio" name="85" value="339" disabled="disabled"> miez?</li>
+                <li><input type="radio" name="85" value="340" disabled="disabled"> jo!</li>
+            </ul>
+        </div>
+        <hr class="separator">
+        <div class="question-block">
+            <p class="q">86. Melyik igaz az alábbiak közül?</p>
+            <div class="code">
+                <pre>template
+class Foo;
+
+int i;
+
+template
+void f(const T&amp; t)
+{
+    typename Foo::N * i;
+    // ...
+}</pre>
+            </div>
+            <ul class="answers">
+                <li><input type="radio" name="86" value="341" disabled="disabled">
+                    A fordítóprogram a fenti kódot úgy elemzi tovább, hogy a függvény
+                    sablon első sorában egy i nevű pointerrel elfedtük a globális int i-t.</li>
+                <li><input type="radio" name="86" value="342" disabled="disabled"> A fordítóprogram a fenti kódot úgy
+                    elemzi tovább, hogy végeztünk egy szorzást a függvény sablon első sorában.</li>
+                <li><input type="radio" name="86" value="343" disabled="disabled"> Nem fedhetjük el a Külső i
+                    azonosítót, ezért a fenti kód fordításakor hiba keletkezik.</li>
+                <li><input type="radio" name="86" value="344" disabled="disabled"> A fordítóprogramtól függ, hogy a fenti
+                    kódban szorzást végzünk vagy egy pointert hozunk létre.</li>
+            </ul>
+        </div>
+        <hr class="separator">
+        <div class="question-block">
+            <p class="q">87. Melyik konténer asszociatív?</p>
+            <ul class="answers">
+                <li><input type="radio" name="87" value="345" disabled="disabled"> std::hashmap</li>
+                <li><input type="radio" name="87" value="346" disabled="disabled"> std::set</li>
+                <li><input type="radio" name="87" value="347" disabled="disabled"> std::vector</li>
+                <li><input type="radio" name="87" value="348" disabled="disabled"> std::list</li>
+            </ul>
+        </div>
+        <hr class="separator">
+        <div class="question-block">
+            <p class="q">88. Melyik nyelvi konstrukció támogatja párhuzamos programok írását C++-ban?</p>
+            <ul class="answers">
+                <li><input type="radio" name="88" value="349" disabled="disabled"> polimorfizmus</li>
+                <li><input type="radio" name="88" value="350" disabled="disabled"> template</li>
+                <li><input type="radio" name="88" value="351" disabled="disabled"> Nincs olyan nyelvi konstrukció, ami
+                    támogatja párhuzamos programok írását.</li>
+                <li><input type="radio" name="88" value="352" disabled="disabled"> protected</li>
+            </ul>
+        </div>
+        <hr class="separator">
+        <div class="question-block">
+            <p class="q">89. Melyik azonosító szabályos a C++ szabályai szerint?</p>
+            <ul class="answers">
+                <li><input type="radio" name="89" value="353" disabled="disabled"> std::stack</li>
+                <li><input type="radio" name="89" value="354" disabled="disabled"> vector</li>
+                <li><input type="radio" name="89" value="355" disabled="disabled"> t[i]</li>
+                <li><input type="radio" name="89" value="356" disabled="disabled"> ~dtor</li>
+            </ul>
+        </div>
+        <hr class="separator">
+        <div class="question-block">
+            <p class="q">90. Mit ír ki a képernyőre az alábbi kódrészlet?</p>
+            <div class="code">
+                <pre>template
+const T&amp; max(const T&amp; a, const T&amp; b)
+{
+    return a &gt; b ? a : b;
+}
+
+std::cout &lt;&lt; max("abc", "sef");</pre>
+            </div>
+            <ul class="answers">
+                <li><input type="radio" name="90" value="357" disabled="disabled"> abc</li>
+                <li><input type="radio" name="90" value="358" disabled="disabled"> sef</li>
+                <li><input type="radio" name="90" value="359" disabled="disabled"> nemdefiniált az eredménye</li>
+                <li><input type="radio" name="90" value="360" disabled="disabled"> fordítási hiba keletkezik.</li>
+            </ul>
+        </div>
+        <hr class="separator">
+        <div class="question-block">
+            <p class="q">91. Melyik állítás igaz az alábbiak közül?</p>
+            <ul class="answers">
+                <li><input type="radio" name="91" value="361" disabled="disabled"> Nem lehet olyan programot írni
+                    C++-ban, amelyik adatbázisszerverhez kapcsolódna.</li>
+                <li><input type="radio" name="91" value="362" disabled="disabled"> Lehet olyan programot írni C++-ban,
+                    amelyik fordítása közben algoritmusokat hajt végre.</li>
+                <li><input type="radio" name="91" value="363" disabled="disabled"> Nem lehet párhuzamos programot írni
+                    C++-ban.</li>
+                <li><input type="radio" name="91" value="364" disabled="disabled"> Lehet olyan programot írni C++-ban,
+                    amelyik fordítás nélkül is futhat.</li>
+            </ul>
+        </div>
+        <hr class="separator">
+        <div class="question-block">
+            <p class="q">92. Mennyi a 018 konstans értéke?</p>
+            <ul class="answers">
+                <li><input type="radio" name="92" value="365" disabled="disabled"> Nincs ilyen konstans</li>
+                <li><input type="radio" name="92" value="366" disabled="disabled"> 0.18</li>
+                <li><input type="radio" name="92" value="367" disabled="disabled"> 24</li>
+                <li><input type="radio" name="92" value="368" disabled="disabled"> 18</li>
+            </ul>
+        </div>
+        <hr class="separator">
+        <div class="question-block">
+            <p class="q">93. Melyik paradigma alapján épül fel a C++ Standard Template Library?</p>
+            <ul class="answers">
+                <li><input type="radio" name="93" value="369" disabled="disabled"> funkcionális</li>
+                <li><input type="radio" name="93" value="370" disabled="disabled"> generikus</li>
+                <li><input type="radio" name="93" value="371" disabled="disabled"> objektum-orientált</li>
+                <li><input type="radio" name="93" value="372" disabled="disabled"> iterator</li>
+            </ul>
+        </div>
+        <hr class="separator">
+        <div class="question-block">
+            <p class="q">94.
+                Projektünkben az összes fordítási egység lefordult, de nem jön létre a
+                futtatható állomány a build folyamat végén. Mi lehet a baj?</p>
+            <ul class="answers">
+                <li><input type="radio" name="94" value="373" disabled="disabled"> A build folyamat közben nem találtuk
+                    meg a preprocessor-t.</li>
+                <li><input type="radio" name="94" value="374" disabled="disabled"> A linker nem talált meg egy dinamikus
+                    linkelésű library-t.</li>
+                <li><input type="radio" name="94" value="375" disabled="disabled"> A linker nem talált meg egy statikus
+                    linkelésű library-t.</li>
+                <li><input type="radio" name="94" value="376" disabled="disabled"> A virtuális destruktorok hiánya
+                    okozta.</li>
+            </ul>
+        </div>
+        <hr class="separator">
+    </div>
+
+
+</body>
+
+</html>

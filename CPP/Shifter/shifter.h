@@ -14,13 +14,7 @@ struct template_type<t<T, B, Args...>> {
     typedef B type_b;
 };
 
-template<typename T>
-using first_template_type_t = typename template_type<T>::type_t;
-
-template<typename B>
-using second_template_type_b = typename template_type<B>::type_b;
-
-template <typename C, typename T = second_template_type_b<C>>
+template <typename C, typename T = typename template_type<C>::type_b>
 class shifter
 {
 private:
@@ -97,7 +91,7 @@ public:
 };
 
 template< typename C >
-class shifter<C, second_template_type_b<C>>{
+class shifter<C, typename template_type<C>::type_b>{
 private:
     C& Cont;
 public:
@@ -107,7 +101,7 @@ public:
     void shift(int value){
         if(value != 0){
             int size = Cont.size();
-            std::vector<second_template_type_b<C>> temp(size);
+            std::vector<typename template_type<C>::type_b> temp(size);
             if(value > 0){
                 value = value % size;
                 typename C::iterator it = Cont.begin();

@@ -4,6 +4,7 @@
 #include <map>
 #include <string>
 #include <type_traits>
+#include <iostream>
 
 template<typename T> struct template_type;
 
@@ -19,7 +20,7 @@ using first_template_type_t = typename template_type<T>::type_t;
 template<typename B>
 using second_template_type_b = typename template_type<B>::type_b;
 
-template <typename C, typename T = second_template_type_b<C>, typename K = first_template_type_t<C>>
+template <typename C, typename T = second_template_type_b<C>>
 class shifter
 {
 private:
@@ -31,55 +32,37 @@ public:
     void shift(int value){
         if(value != 0){
             int size = Cont.size();
-            C temp(size);
-            value = value % size;
+            std::vector<T> temp(size);
             if(value > 0){
+                value = value % size;
                 typename C::iterator it = Cont.begin();
                 for(int i = 0; i < size - value; ++i ){
-                    try{
-                        temp[i + value] = it->second;
-                    }
-                    catch(){
-                        temp[i + value] = *it;
-                    }
+                    temp[i + value] = *it;
                     ++it;
                 }
                 int j = 0;
                 for(int i = size - value; i < size; ++i ){
-                    try{
-                        temp[i + value] = it->second;
-                    }
-                    catch(){
-                        temp[i + value] = *it;
-                    }
+                    temp[j] = *it;
                     ++j;
                     ++it;
                 }
+                
+                
             }
             else if(value < 0){
-                int j = 0;
                 value = value * -1;
+                value = value % size;
                 typename C::iterator it = Cont.begin();
-                for(int i = 0; i < value; ++i){
-                    ++it;
-                }
+                std::advance(it, value);
+                int j = 0;
                 for(int i = value; i < size; ++i){
-                    try{
-                        temp[i + value] = it->second;
-                    }
-                    catch(){
-                        temp[i + value] = *it;
-                    }
+                    temp[j] = *it;
+                    ++it;
                     ++j;
                 }
                 it = Cont.begin();
                 for(int i = 0; i < value; ++i){
-                    try{
-                        temp[i + value] = it->second;
-                    }
-                    catch(){
-                        temp[i + value] = *it;
-                    }
+                    temp[j] = *it;
                     ++j;
                     ++it;
                 }
@@ -87,14 +70,12 @@ public:
             
             typename C::iterator it = Cont.begin();
             for(int i = 0; i < size; ++i){
-                try{
-                    temp[i + value] = it->second;
-                }
-                catch(){
-                    temp[i + value] = *it;
-                }
+                *it = temp[i];
+                //std::cout << *it << ' ';
                 ++it;
             }
+            
+            
         }
     }
 
@@ -113,6 +94,82 @@ public:
     friend void operator << (const int& value, shifter& other){
         other.shift(value);
     }  
+};
+
+template< typename C >
+class shifter<C, second_template_type_b<C>>{
+private:
+    C& Cont;
+public:
+    shifter(C& cont) : Cont(cont){}
+    ~shifter(){} 
+
+    void shift(int value){
+        if(value != 0){
+            int size = Cont.size();
+            std::vector<second_template_type_b<C>> temp(size);
+            if(value > 0){
+                value = value % size;
+                typename C::iterator it = Cont.begin();
+                for(int i = 0; i < size - value; ++i ){
+                    temp[i + value] = it->second;
+                    ++it;
+                }
+                int j = 0;
+                for(int i = size - value; i < size; ++i ){
+                    temp[j] = it->second;
+                    ++j;
+                    ++it;
+                }
+                
+                
+            }
+            else if(value < 0){
+                value = value * -1;
+                value = value % size;
+                typename C::iterator it = Cont.begin();
+                std::advance(it, value);
+                int j = 0;
+                for(int i = value; i < size; ++i){
+                    temp[j] = it->second;
+                    ++it;
+                    ++j;
+                }
+                it = Cont.begin();
+                for(int i = 0; i < value; ++i){
+                    temp[j] = it->second;
+                    ++j;
+                    ++it;
+                }
+            }
+            
+            typename C::iterator it = Cont.begin();
+            for(int i = 0; i < size; ++i){
+                it->second = temp[i];
+                //std::cout << *it << ' ';
+                ++it;
+            }
+            
+            
+        }
+    }
+
+    
+    void operator >> (int value){
+        shift(value);
+    }
+
+    void operator << (int value){
+        shift(-1 * value);
+    }
+
+    friend void operator >> (const int& value, shifter& other){
+        other.shift(-1 * value);
+    } 
+
+    friend void operator << (const int& value, shifter& other){
+        other.shift(value);
+    } 
 };
  
 

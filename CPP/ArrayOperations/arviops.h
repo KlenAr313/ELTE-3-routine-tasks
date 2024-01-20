@@ -46,7 +46,7 @@ public:
 
     void shift(int value){
         if(value != 0){
-            T temp[size];
+            T* temp = new T[size];
             value = value % size;
             if(value > 0){
                 int i;
@@ -73,6 +73,8 @@ public:
             for(int i = 0; i < size; ++i){
                 outer[i] = temp[i];
             }
+
+            delete [] temp;
         }
     }
 

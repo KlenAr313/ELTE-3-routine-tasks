@@ -64,9 +64,7 @@ int main()
   1 << vsh;
   vsh << 2;
   dsh >> -1;
-  -1 >> dsh;
-  
-  std::cout << s << std::endl;
+  -1 >> dsh;;
 
   if( v[ 2 ] && !v[ 0 ] && "Hello World!" == s && 0 == vm[ max - 3 ] &&
       5.89 < d[ 0 ] && 2.5 > d[ 1 ] && 3 == v.size() )
